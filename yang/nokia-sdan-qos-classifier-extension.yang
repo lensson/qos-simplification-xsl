@@ -1,0 +1,345 @@
+module nokia-sdan-qos-classifier-extension {
+  yang-version 1.1;
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/"
+          + "nokia-sdan-qos-classifier-extension";
+
+  prefix nokia-qos-cls-ext;
+
+  import bbf-qos-classifiers {
+    prefix bbf-qos-cls;
+  }
+
+  import bbf-qos-types {
+    prefix bbf-qos-t;
+  }
+
+  import bbf-frame-classification {
+    prefix bbf-classif;
+  }
+
+  import bbf-qos-policing {
+    prefix bbf-qos-plc;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "Comments or questions about this Nokia YANG module should be
+     directed to <mailto:isam.yang@nokia.com>.";
+
+  description
+    "This module contains a collection of YANG definitions for
+     supporting Nokia specific requirements as applicable to its
+     access network equipment.
+
+     Specifically, this module contains definition of policing traffic
+     class added to classifier action types.
+
+     This specification is published by Nokia under Non-Disclosure
+     Agreement(s) (NDA) with specific parties and has to be considered
+     as Confidential Information as defined in such NDA. Nokia
+     reserves the right to revise this document for any reason,
+     including but not limited to conformity with standards
+     promulgated by various agencies, utilisation of advances in the
+     state of the technical areas, or the reflection of changes in the
+     design of any equipment, techniques, or procedures described or
+     referred to herein.
+
+     The product specifications and other technical or performance
+     information contained herein are subject to change without
+     notice. Updates of this document will be issued under the above
+     NDA's.
+
+     Nokia makes no representation or warranty, expressed or implied,
+     with respect to the sufficiency, accuracy, or utility of any
+     information or opinion contained herein. Nokia expressly advises
+     that any use of for any purpose or reliance upon this technical
+     reference is at the risk of the user and that Nokia shall not be
+     liable for any damage or injury incurred by any person arising
+     out of the sufficiency, accuracy, or utility of any information
+     or opinion contained herein.
+
+     This document is not to be construed as a suggestion to any
+     manufacturer to modify or change any of its products, nor does
+     this document represent any commitment by Nokia to sell or
+     purchase any product. Nothing contained herein shall be construed
+     as conferring by implication, estoppel, or otherwise any license
+     or right under any patent, whether or not the use of any
+     information herein necessarily employs an invention of any
+     existing or later issued patent.
+
+     Nokia reserves the right not to offer any or all of these
+     products and to withdraw any or all of them at any future time.
+
+     Copyright (C) 2021, Nokia. All Rights Reserved.";
+
+ revision 2022-08-05 {
+    description
+      "Added frame metadata elements and system-default-action
+       container.";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2021-11-24 {
+    description
+      "Initial revision.";
+    reference
+      "Nokia specific";
+  }
+
+  feature classifier-action-policing-traffic-class {
+    description
+      "This feature indicates the system supports the action
+       'policing-traffic-class' for packets that are classified using
+       a QoS classification mechanism.";
+  }
+
+  feature classifier-action-count {
+    description
+      "This feature indicates the system supports the action 'count'
+      for packets that are classified using a QoS classification
+      mechanism.";
+  }
+
+  feature preserve-pbit-dei-from-frame-to-metadata {
+    description
+      "Indicates support for preserving p-bits and DEI fields from the
+       frame into metadata.";
+  }
+
+  feature qos-bac-color-from-flow-color {
+    description
+      "Indicates support for copying the flow color into the BAC color.";
+  }
+
+  typedef write-bac-color {
+    type union {
+      type bbf-qos-plc:qos-color;
+      type enumeration {
+        enum copy-from-flow-color {
+          value 4;
+          if-feature 'qos-bac-color-from-flow-color';
+          description
+            "The BAC color of a frames is the same as its flow
+             color.";
+        }
+      }
+    }
+    description
+      "The BAC color to be written. Either this is a specific BAC
+       color value, or it it indicates where to take the BAC color
+       from.";
+  }
+
+  identity policing-traffic-class {
+    if-feature "classifier-action-policing-traffic-class";
+    base bbf-qos-cls:action-type;
+    description
+      "The action-type identity indicating a policing traffic
+       class.";
+  }
+
+  identity count {
+    if-feature "classifier-action-count";
+    base bbf-qos-cls:action-type;
+    description
+      "The action-type identity indicating the count action.";
+  }
+
+  augment '/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/'
+        + 'bbf-qos-cls:classifier-action-entry-cfg/bbf-qos-cls:'
+        + 'action-cfg-params' {
+    description
+      "Choice of action types for packets matching a classification
+       criterion.";
+
+    case policing-traffic-class {
+      if-feature "classifier-action-policing-traffic-class";
+      when "bbf-qos-cls:action-type =
+           'nokia-qos-cls-ext:policing-traffic-class'" {
+      description
+        "only applicable when action type is
+         policing-traffic-class.";
+      }
+
+      leaf policing-traffic-class {
+        type bbf-qos-t:traffic-class-id;
+        description
+          "Defines the traffic class for policing.
+
+           This classifier action is used by policer types
+          'two-rate-three-color-marker-with-cos' and
+          'two-rate-three-color-marker-mef-with-cos' to prioritize
+           the traffic in token buckets during Policing.
+
+           Traffic can be assigned with a
+           'policing-traffic-class' using its Class of Service(CoS)
+           parameters like 'pbit/dei'.
+           Example: pbit to policing-traffic-class mapping.";
+      }
+    }
+
+    case count {
+      if-feature "classifier-action-count";
+      leaf count {
+        when '../bbf-qos-cls:action-type="nokia-qos-cls-ext:count"' {
+          description
+            "Only applicable when the action-type is count.";
+        }
+        type empty;
+        description
+          "Defines the action to count frames for a flow.";
+      }
+    }
+  }
+
+  augment '/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/'
+        + 'bbf-qos-cls:classifier-action-entry-cfg/bbf-qos-cls:'
+        + 'action-cfg-params/bbf-qos-cls:pbit-marking/bbf-qos-cls:'
+        + 'pbit-marking-cfg/bbf-qos-cls:pbit-marking-list' {
+
+      leaf pbit-from-frame-tag {
+        if-feature "preserve-pbit-dei-from-frame-to-metadata";
+        type bbf-classif:tag-index;
+        must 'not(boolean(../bbf-qos-cls:pbit-value))' {
+          error-message
+            "The leaf 'pbit-from-frame-tag' can not be configured "
+          + "when the leaf 'pbit-value' is configured.";
+          description
+            "The leaf 'pbit-from-frame-tag' indicates that frames will
+             get a metadata p-bits value by copying the p-bits value
+             from the frame's VLAN tag as configured in this leaf.
+             This is exclusive with configuring the frames will get a
+             fixed value metadata p-bits value as configured in the
+             leaf 'pbit-value'.";
+        }
+        description
+          "Specifies from which input VLAN tag the p-bits field MUST
+           be copied to the frame's metadata marking list.";
+      }
+  }
+
+  augment '/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/bbf-qos-cls:'
+        + 'classifier-action-entry-cfg/bbf-qos-cls:action-cfg-params/'
+        + 'bbf-qos-cls:dei-marking/bbf-qos-cls:dei-marking-cfg/'
+        + 'bbf-qos-cls:dei-marking-list' {
+
+       leaf dei-from-frame-tag {
+        if-feature "preserve-pbit-dei-from-frame-to-metadata";
+        type bbf-classif:tag-index;
+        must 'not(boolean(../bbf-qos-cls:dei-value))' {
+          error-message
+            "The leaf 'dei-from-frame-tag' can not be configured when"
+          + " the leaf 'dei-value' is configured.";
+          description
+            "The leaf 'dei-from-frame-tag' indicates that frames will
+             get a metadata DEI value by copying the DEI value from
+             the frame's VLAN tag as configured in this leaf. This is
+             exclusive with configuring the frames will get a fixed
+             value metadata DEI value as configured in the leaf
+             'dei-value'.";
+        }
+        description
+          "Specifies from which input VLAN tag the DEI field MUST be
+           copied to the frame's metadata marking list.";
+      }
+  }
+
+  augment '/bbf-qos-cls:classifiers' {
+    container system-default-actions {
+      config false;
+      description
+        "Reports the set of system defaults that apply when the
+        application of QoS policies does not generate such data, but
+        the processing of a frame requires this data.
+
+        When a frame is received or to be transmitted on an
+        interface, then it can be subject to QoS policies that are
+        configured for this interface. The definition of QoS policies
+        includes the assignment of metadata to frames which can then
+        be used during the further processing of the frame.
+
+        An example is the assignment of a traffic class. This traffic
+        class is used, after the forwarding decision has been made
+        and all QOS polices are applied, to identify the queue on the
+        outgoing interface. If a traffic class is not explicitly
+        configured, a default must be used for each matched ingress
+        frame. This value is reported in 'scheduling-traffic-class'.
+
+        And similar for the other data nodes.";
+      leaf scheduling-traffic-class {
+        type union {
+          type bbf-qos-t:traffic-class-id;
+          type enumeration {
+            enum discard {
+              description
+                "The traffic class 'discard' means that frames will
+                not get a traffic class by default. When the
+                processing of the frame comes to a moment that a
+                traffic class is needed, and none is assigned through
+                having applied the QoS profiles, then the system
+                shall discard the frame.";
+            }
+          }
+       }
+       description
+         "Defines the traffic class assigned by default to frames.";
+      }
+      leaf flow-color {
+        type union {
+          type bbf-qos-plc:qos-color;
+          type enumeration {
+            enum discard {
+              description
+                "The flow color 'discard' means that frames will not
+                get a flow color by default. When the processing of
+                the frame comes to a moment that a flow color is
+                needed, and none is assigned through having applied
+                the QoS profiles, then the system shall discard the
+                frame.";
+            }
+          }
+        }
+        description
+          "Defines the frame's flow color for when color-aware
+          classification and/or actions are needed in the processing
+          of a frame.";
+      }
+      leaf bac-color {
+        type union {
+          type write-bac-color;
+          type enumeration {
+            enum discard {
+              description
+                "The BAC color 'discard' means that frames will not
+                get a BAC color by default. When the processing of
+                the frame comes to a moment that a BAC color is
+                needed, and none is assigned through having applied
+                the QoS profiles, then the system shall discard the
+                frame.";
+            }
+          }
+        }
+        description
+          "Defines the frame's BAC color for when color-aware
+          classification and/or actions are needed in the processing
+          of a frame. More specific, when the frame is to be queued
+          using a color aware BAC method.";
+      }
+      leaf metered-flow {
+        type boolean;
+        description
+          "Defines the frames flow as metered by policer or not
+           by default.";
+      }
+      leaf metered-color {
+        type boolean;
+        description
+          "Defines the frames default color marking by policer.";
+      }
+    }
+  }
+}
+

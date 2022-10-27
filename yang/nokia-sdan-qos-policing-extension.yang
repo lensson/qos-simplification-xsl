@@ -1,0 +1,587 @@
+module nokia-sdan-qos-policing-extension {
+  yang-version 1.1;
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/"
+          + "nokia-sdan-qos-policing-extension";
+
+  prefix nokia-qos-plc-ext;
+
+  import bbf-qos-policing {
+    prefix bbf-qos-plc;
+  }
+
+  import bbf-yang-types {
+    prefix bbf-yang;
+  }
+
+  import bbf-qos-policing-types {
+    prefix bbf-qos-plc-tp;
+  }
+
+  import bbf-qos-types {
+    prefix bbf-qos-t;
+  }
+
+  import bbf-qos-classifiers {
+    prefix bbf-qos-cls;
+  }
+
+  import nokia-sdan-qos-classifier-extension {
+    prefix nokia-qos-cls-ext;
+  }
+
+  import bbf-frame-classification {
+    prefix bbf-classif;
+  }
+
+  import nokia-qos-filters-ext {
+    prefix nokia-qos-filt;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "Comments or questions about this Broadband Forum YANG module
+     should be directed to <mailto:isam.yang@nokia.com>.";
+
+  description
+    "This module contains a collection of YANG definitions for
+     supporting Nokia specific requirements as applicable to its
+     access network equipment.
+
+     Specifically, this module contains a collection of type and data
+     definitions for use of some policer types that act on an
+     individual flow.
+
+     This specification is published by Nokia under Non-Disclosure
+     Agreement(s) (NDA) with specific parties and has to be considered
+     as Confidential Information as defined in such NDA. Nokia
+     reserves the right to revise this document for any reason,
+     including but not limited to conformity with standards
+     promulgated by various agencies, utilisation of advances in the
+     state of the technical areas, or the reflection of changes in the
+     design of any equipment, techniques, or procedures described or
+     referred to herein.
+
+     The product specifications and other technical or performance
+     information contained herein are subject to change without
+     notice. Updates of this document will be issued under the above
+     NDA's.
+
+     Nokia makes no representation or warranty, expressed or implied,
+     with respect to the sufficiency, accuracy, or utility of any
+     information or opinion contained herein. Nokia expressly advises
+     that any use of for any purpose or reliance upon this technical
+     reference is at the risk of the user and that Nokia shall not be
+     liable for any damage or injury incurred by any person arising
+     out of the sufficiency, accuracy, or utility of any information
+     or opinion contained herein.
+
+     This document is not to be construed as a suggestion to any
+     manufacturer to modify or change any of its products, nor does
+     this document represent any commitment by Nokia to sell or
+     purchase any product. Nothing contained herein shall be construed
+     as conferring by implication, estoppel, or otherwise any license
+     or right under any patent, whether or not the use of any
+     information herein necessarily employs an invention of any
+     existing or later issued patent.
+
+     Nokia reserves the right not to offer any or all of these
+     products and to withdraw any or all of them at any future time.
+
+     Copyright (C) 2021, Nokia. All Rights Reserved.";
+
+  revision 2022-08-05 {
+    description
+      "Added policing actions and pre-handling containers";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2021-11-24 {
+    description
+      "Initial revision.";
+    reference
+      "Nokia specific";
+  }
+
+  feature two-rate-three-color-marker-with-cos {
+    description
+      "The system supports the two rate three color policer
+       based on CoS.";
+  }
+
+  feature two-rate-three-color-marker-mef-with-cos {
+    description
+      "The system supports the two rate three color MEF policer
+       based on CoS.";
+  }
+
+  feature qos-policing-actions {
+    description
+      "Indicates support for policer actions inline in the policer
+       profile.";
+  }
+
+  feature qos-policing-pre-handlings {
+    description
+      "Indicates support for policer pre-handlings inline in the policer
+       profile.";
+  }
+
+  grouping cos-tc-threshold {
+    description
+      "Configuration to assign threshold values to CoS parameters
+       based on policing-traffic-class (policing-tc).";
+
+    list policing-tc-threshold {
+      key "tc";
+      min-elements 2;
+      description
+        "A policing-tc to threshold mapping.
+
+         The threshold determines the burstiness to be applied
+         for policing the traffic that is marked with the
+         policing-traffic-class for which it is configured.
+         Minimum of two policing-tc-threshold profiles are a must to
+         police traffic class aware frames.";
+
+      leaf tc {
+        type uint8 {
+          range "0..7";
+        }
+        description
+          "Identifies the policing-tc value.";
+        }
+
+      leaf threshold {
+        type bbf-yang:percent;
+        mandatory true;
+        description
+          "Identifies the threshold value for a policing-tc.
+
+           A policer uses parameters in pairs: the information rate
+           determines the bandwidth, and a burstiness provides some
+           timing elasticity to be applied on the first. E.g. a PIR
+           (peak information rate) is combined with PBS (peak
+           burst size).
+
+           The threshold is a percentage to calculate a different
+           burstiness parameter to be applied when policing a frame
+           of the specified policing traffic class.
+
+           The higher the threshold, the lower the chance the frame
+           gets marked 'red' by the policer.
+           The traffic which is configured with higher threshold
+           would consume higher token bucket size and have a higher
+           chance to have tokens.
+
+           Example:  policing-tc  threshold
+                               5         90%
+                               2         40%
+                               4         20%
+           Suppose at moment 't' a frame has to be evaluated by the
+           policer. When the frame is marked with policing-tc '5' the
+           policer will evaluate whether this frame, (in combination
+           with all earlier frames currently processing in the token
+           bucket irrespective of the policing-tc they got assigned),
+           will fit in the to be evaluated information rate combined
+           with 90% of the configured burstiness. The same approach
+           applies to the other policing traffic classes..";
+      }
+    }
+  }
+
+  grouping cir_cbs_and_threshold {
+    description
+      "Defines the CIR, CBS and threshold parameters";
+
+      leaf cir {
+        type bbf-qos-plc-tp:information-rate;
+        mandatory true;
+        description
+          "Committed Information Rate (CIR) is used to define the
+           average rate of traffic that respect the guarantees of
+           bandwidth. This traffic is defined as green traffic its
+           transmission is guaranteed across the network.";
+      }
+
+      leaf cbs {
+        type bbf-qos-plc-tp:burst-size;
+        mandatory true;
+        description
+          "Committed Burst Size (CBS) defines the amount of traffic
+           that can be admitted above the CIR and is considered
+           green.";
+      }
+
+      container cbs-tc-threshold {
+        uses nokia-qos-plc-ext:cos-tc-threshold;
+        description
+          "A list of policing-tc to threshold mapping are assigned
+           to CBS bucket during Policing.";
+      }
+  }
+
+  grouping two-rate-three-color-marker-with-cos {
+    container two-rate-three-color-marker-with-cos {
+      description
+        "Two rate three color CoS policer.
+
+         Here, traffic prioritization is achieved using policing-tc.
+         Thresholds are defined to specify the virtual bucket size
+         per policing-tc to prioritize the traffic in
+         CBS and PBS token buckets.
+
+         This is a variant of two-rate-three-color-marker (RFC2698)
+         standard. It differs in a way that traffic prioritization
+         is based on policing-tc and not by pre-color.";
+
+      uses cir_cbs_and_threshold;
+
+      leaf pir {
+        type bbf-qos-plc-tp:information-rate;
+        mandatory true;
+        description
+          "Peak Information Rate (PIR) is used to define the average
+           rate of traffic that is admitted in the network with the
+           assurance that it will not be discarded directly by the
+           policer, the traffic in excess to the green one can be
+           discarded in case of congestion and is considered
+           yellow.";
+      }
+
+      leaf pbs {
+        type bbf-qos-plc-tp:burst-size;
+        mandatory true;
+        description
+          "Peak burst size (PBS) defines the amount of traffic that
+           can be admitted above the PIR (burst) without being
+           discarded directly by the policer (yellow).";
+      }
+
+      container pbs-tc-threshold {
+        uses nokia-qos-plc-ext:cos-tc-threshold;
+        description
+          "A list of policing-tc to threshold mapping are assigned
+           to PBS token bucket for Policing.";
+      }
+    }
+
+    description
+      "Two rate three color CoS policer attributes.";
+    reference
+      "Nokia internal.";
+  }
+
+  grouping two-rate-three-color-marker-mef-with-cos {
+    container two-rate-three-color-marker-mef-with-cos {
+      description
+        "Two rate three color CoS policer based on
+         MEF standard.
+
+         Here, traffic prioritization is achieved using policing-tc.
+         Thresholds are defined to specify the virtual bucket size per
+         policing-tc to prioritize the traffic in CBS and EBS buckets.
+
+         This is the variant of two-rate-three-color-marker 'MEF 10.2'
+         standard. It differs in a way that traffic prioritization
+         is based on policing-tc and not by pre-color.";
+
+      uses cir_cbs_and_threshold;
+
+      leaf eir {
+        type bbf-qos-plc-tp:information-rate;
+        default "0";
+        description
+          "Excess Information Rate (EIR) is used to define how much
+           traffic exceeding the CIR can be admitted in the network
+           with the assurance that it will not be discarded directly
+           by the policer, this traffic can be discarded in case of
+           congestion and is considered yellow.";
+      }
+
+      leaf ebs {
+        type bbf-qos-plc-tp:burst-size;
+        default "0";
+        description
+          "Excess burst size (EBS) defines the amount of excessive
+           traffic that can be admitted above the EIR without being
+           discarded directly by the policer (yellow).";
+      }
+
+      leaf couple-flag {
+        type bbf-qos-plc-tp:coupling-flag;
+        default "0";
+        description
+          "The Coupling Flag CF controls the volume of the packets
+           that are declared Yellow.
+
+           When CF is set to 0, the long term average bit rate of
+           packets that are declared Yellow is bounded by EIR.
+
+           When CF is set to 1, the long term average bit rate of
+           packets that are declared Yellow is bounded by CIR + EIR
+           depending on volume of the offered Service Frames that
+           are declared Green. In both cases the burst size of the
+           packets that are declared Yellow is bounded by EBS.";
+      }
+
+      container ebs-tc-threshold {
+        when '../ebs > "0"';
+        uses nokia-qos-plc-ext:cos-tc-threshold;
+        description
+          "A list of policing-tc to threshold mapping are assigned
+           to EBS bucket for Policing. This list is allowed to
+           configure only when EBS value is greater than '0'.";
+      }
+    }
+
+    description
+      "Two rate three color MEF CoS policer attributes.";
+    reference
+      "Nokia internal";
+  }
+
+  container policing-pre-handling-profiles {
+    if-feature "nokia-qos-plc-ext:qos-policing-pre-handlings";
+    description
+      "Provides data nodes to manage set of pre-handling actions
+      such as assigning flow-color and policing-traffic-class to the
+      frames applicable to specific policing methods.
+
+      All actions within the profile are independent of each other
+      and are not overlapping.";
+
+    list pre-handling-profile {
+      key "name";
+      description
+        "A QoS pre-handling profile.";
+
+      leaf name {
+        type bbf-yang:string-ascii64;
+        description
+          "The name of a QoS pre-handling profile.";
+      }
+      list pre-handling-entry {
+        key "name";
+        ordered-by user;
+        description
+          "A QoS pre-handling profile entry.";
+
+        leaf name {
+          type bbf-yang:string-ascii64;
+          description
+            "The name of a QoS pre-handling profile entry.";
+        }
+        container match-params {
+          description
+            "Match fields for the pre-handling profile";
+
+          container vlans {
+            presence
+              "Enables setting a filter on the frame's VLAN tags.";
+            description
+              "Match criteria associated with VLAN tags.";
+
+            list tag {
+              key "index";
+              min-elements 1;
+              max-elements 2;
+              description
+                "Provides values to evaluate against packet's
+                their corresponding VLAN tag fields. When multiple
+                match criteria are specified, then all of them
+                must evaluate positive to have a match. The
+                outermost tag is assigned index 0. ";
+
+              leaf index {
+                type bbf-classif:tag-index;
+                description
+                  "The index into the tag stack with the outermost
+                  tag represented by index 0.";
+              }
+              uses bbf-qos-cls:in-pbit-list;
+              uses bbf-qos-cls:in-dei;
+            }
+          }
+
+          uses nokia-qos-filt:pbit-marking-list;
+          uses bbf-qos-cls:dei-marking-list;
+        }
+
+        choice action-cfg-params {
+          description
+            "Choice of the set of pre-handling action";
+          case flow-color {
+            leaf flow-color {
+              type bbf-qos-plc:qos-color;
+              description
+                "Defines the packet color for when color-aware
+                classification/actions is needed in a proceeding QoS
+                policy.";
+            }
+          }
+          case policing-traffic-class {
+            leaf policing-traffic-class {
+              if-feature "two-rate-three-color-marker-with-cos
+                         or two-rate-three-color-marker-mef-with-cos";
+              type bbf-qos-t:traffic-class-id;
+              description
+                "Defines the traffic class for policing.
+                This classifier action is used by policer types
+                'two-rate-three-color-marker-with-cos' and
+                'two-rate-three-color-marker-mef-with-cos' to
+                prioritize the traffic in token buckets during Policing.
+
+                Traffic can be assigned with a 'policing-traffic-class'
+                using its Class of Service(CoS)
+                parameters like 'pbit/dei'.
+                Example: pbit to policing-traffic-class mapping.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping policing-pre-handling-profile-ref {
+    description
+      "A reference to a pre-handling profile.";
+
+    leaf policing-pre-handling-profile {
+      if-feature "qos-policing-pre-handlings";
+      type leafref {
+        path
+          "/policing-pre-handling-profiles/"
+        + "pre-handling-profile/name";
+      }
+      description
+        "The name of the referenced QoS policing pre-handling
+         profile.";
+    }
+  }
+
+  container policing-action-profiles {
+    if-feature "nokia-qos-plc-ext:qos-policing-actions";
+    description
+      "Provides data nodes to manage a set of actions together as a
+       profile.
+
+       All actions within the profile are independent of each other
+       and are not overlapping.";
+
+    list action-profile {
+      key "name";
+      description
+        "A QoS action profile.";
+      leaf name {
+        type bbf-yang:string-ascii64;
+        description
+          "The name of a QoS action profile.";
+      }
+      list action {
+        key "flow-color";
+        description
+          "Configuration of actions per flow color.
+
+           The absence of configuration for a particular color has a
+           color dependent meaning:
+           - green or yellow: the frame continues further processing,
+             without being subject to immediate actions,
+           - red: the frame will be discarded.";
+        leaf flow-color {
+          type bbf-qos-plc:qos-color;
+          description
+            "The frames that have this flow color will be subject to
+             the actions configured in the referenced profile.";
+        }
+        choice action-cfg-params {
+          description
+            "Choice of the set of actions.";
+          case assign-metadata {
+            uses bbf-qos-cls:pbit-marking-list;
+            uses bbf-qos-cls:dei-marking-list;
+
+            leaf bac-color {
+              type nokia-qos-cls-ext:write-bac-color;
+              description
+                "Defines the frame color for color aware BAC queuing.";
+            }
+
+            leaf metered-flow {
+              type boolean;
+              description
+                "Denotes the frame which are metered by policer.";
+            }
+
+            leaf metered-color {
+              type boolean;
+              description
+                "Denotes the frame which are color-marked after
+                 policing by certain policer types.";
+            }
+          }
+          case discard {
+            leaf discard {
+              type empty;
+              description
+                "Defines the frame shall be discarded.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping policing-action-profile-ref {
+    description
+      "A reference to a action profile.";
+    leaf policing-action-profile {
+      if-feature "nokia-qos-plc-ext:qos-policing-actions";
+      type leafref {
+        path
+          "/nokia-qos-plc-ext:policing-action-profiles/"
+        + "nokia-qos-plc-ext:action-profile/"
+        + "nokia-qos-plc-ext:name";
+      }
+      description
+        "The name of the referenced QoS policing action profile.";
+    }
+  }
+
+  augment "/bbf-qos-plc:policing-profiles/"
+    + "bbf-qos-plc:policing-profile/"
+    + "bbf-qos-plc:policing-type" {
+
+      description
+        "Defines two rate three color markers based on CoS
+         to policing types";
+
+      case two-rate-three-color-marker-with-cos-type {
+        if-feature "two-rate-three-color-marker-with-cos";
+        uses two-rate-three-color-marker-with-cos;
+        description
+          "This represents the policer type for two rate three color
+           marker based on CoS.";
+      }
+
+      case two-rate-three-color-marker-mef-with-cos-type {
+        if-feature "two-rate-three-color-marker-mef-with-cos";
+        uses two-rate-three-color-marker-mef-with-cos;
+        description
+          "This represents the policer type for two rate three color
+           marker of MEF standard based on CoS.";
+      }
+    }
+
+  augment "/bbf-qos-plc:policing-profiles/"
+    + "bbf-qos-plc:policing-profile" {
+      description
+        "Defines QoS policing actions to policing types.";
+
+      uses policing-pre-handling-profile-ref;
+      uses policing-action-profile-ref;
+    }
+}
+

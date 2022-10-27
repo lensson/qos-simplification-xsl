@@ -1,0 +1,979 @@
+module: bbf-qos-classifiers
+  +--rw classifiers
+     +--rw classifier-entry* [name]
+     |  +--rw name                                             bbf-yang:string-ascii64
+     |  +--rw description?                                     bbf-yang:string-ascii64-or-empty
+     |  x--rw filter-operation?                                identityref
+     |  +--rw (filter-method)?
+     |  |  x--:(inline)
+     |  |  |  x--rw match-criteria
+     |  |  |     x--rw (vlan-tag-match-type)?
+     |  |  |     |  x--:(match-all)
+     |  |  |     |  |  x--rw match-all?                       empty
+     |  |  |     |  x--:(untagged)
+     |  |  |     |  |  x--rw untagged?                        empty
+     |  |  |     |  x--:(vlan-tagged)
+     |  |  |     |     x--rw tag* [index]
+     |  |  |     |        x--rw index           bbf-classif:tag-index
+     |  |  |     |        x--rw in-pbit-list?   bbf-dot1qt:pbit-list
+     |  |  |     |        x--rw in-dei?         uint8
+     |  |  |     x--rw dscp-range?                            bbf-classif:dscp-range-or-any
+     |  |  |     x--rw (protocols)?
+     |  |  |     |  x--:(any-protocol)
+     |  |  |     |  |  x--rw any-protocol?                    empty
+     |  |  |     |  x--:(protocol)
+     |  |  |     |     x--rw protocol*                        bbf-classif:protocols
+     |  |  |     |     +--rw nokia-qos-filt:other-protocol*   enumeration
+     |  |  |     x--rw bbf-qos-plc:pbit-marking-list* [index]
+     |  |  |     |  x--rw bbf-qos-plc:index         bbf-qos-cls:qos-pbit-marking-index
+     |  |  |     |  x--rw bbf-qos-plc:pbit-value?   bbf-dot1qt:pbit
+     |  |  |     x--rw bbf-qos-plc:dei-marking-list* [index]
+     |  |  |     |  x--rw bbf-qos-plc:index        bbf-qos-cls:qos-dei-marking-index
+     |  |  |     |  x--rw bbf-qos-plc:dei-value?   bbf-dot1qt:dei
+     |  |  |     x--rw bbf-qos-plc:flow-color*                qos-color
+     |  |  |     +--rw nokia-qos-filt:unmetered?              empty {nokia-match-on-unmetered-fields}?
+     |  |  |     +--rw nokia-qos-filt:ip-precedence-range?    ip-precedence-range {nokia-match-on-ip-precedence-range}?
+     |  |  +--:(bbf-qos-filt:by-reference)
+     |  |  |  +--rw bbf-qos-filt:filter* [name]
+     |  |  |     +--rw bbf-qos-filt:name           bbf-yang:string-ascii64
+     |  |  |     +--rw bbf-qos-filt:filter-name?   -> /filters/filter/name
+     |  |  +--:(bbf-qos-enhfilt:any-frame)
+     |  |  |  +--rw bbf-qos-enhfilt:any-frame?                 empty
+     |  |  +--:(bbf-qos-enhfilt:enhanced-filter)
+     |  |  |  +--rw bbf-qos-enhfilt:enhanced-filter-name?      -> /bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/name
+     |  |  +--:(bbf-qos-enhfilt:enhanced-classifier)
+     |  |     +--rw bbf-qos-enhfilt:source-mac-address!
+     |  |     |  +--rw bbf-qos-enhfilt:filter-match?                      boolean
+     |  |     |  +--rw (bbf-qos-enhfilt:mac-address)
+     |  |     |     +--:(bbf-qos-enhfilt:any-multicast-mac-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:any-multicast-mac-address?   empty
+     |  |     |     +--:(bbf-qos-enhfilt:unicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:unicast-address?             empty
+     |  |     |     +--:(bbf-qos-enhfilt:broadcast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:broadcast-address?           empty
+     |  |     |     +--:(bbf-qos-enhfilt:cfm-multicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:cfm-multicast-address?       empty
+     |  |     |     +--:(bbf-qos-enhfilt:ipv4-multicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:ipv4-multicast-address?      empty
+     |  |     |     +--:(bbf-qos-enhfilt:ipv6-multicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:ipv6-multicast-address?      empty
+     |  |     |     +--:(bbf-qos-enhfilt:mac-address-filter)
+     |  |     |        +--rw bbf-qos-enhfilt:mac-address-value?           yang:mac-address
+     |  |     |        +--rw bbf-qos-enhfilt:mac-address-mask?            yang:mac-address
+     |  |     +--rw bbf-qos-enhfilt:destination-mac-address!
+     |  |     |  +--rw bbf-qos-enhfilt:filter-match?                      boolean
+     |  |     |  +--rw (bbf-qos-enhfilt:mac-address)
+     |  |     |     +--:(bbf-qos-enhfilt:any-multicast-mac-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:any-multicast-mac-address?   empty
+     |  |     |     +--:(bbf-qos-enhfilt:unicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:unicast-address?             empty
+     |  |     |     +--:(bbf-qos-enhfilt:broadcast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:broadcast-address?           empty
+     |  |     |     +--:(bbf-qos-enhfilt:cfm-multicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:cfm-multicast-address?       empty
+     |  |     |     +--:(bbf-qos-enhfilt:ipv4-multicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:ipv4-multicast-address?      empty
+     |  |     |     +--:(bbf-qos-enhfilt:ipv6-multicast-address)
+     |  |     |     |  +--rw bbf-qos-enhfilt:ipv6-multicast-address?      empty
+     |  |     |     +--:(bbf-qos-enhfilt:mac-address-filter)
+     |  |     |        +--rw bbf-qos-enhfilt:mac-address-value?           yang:mac-address
+     |  |     |        +--rw bbf-qos-enhfilt:mac-address-mask?            yang:mac-address
+     |  |     +--rw bbf-qos-enhfilt:vlans!
+     |  |     |  +--rw (bbf-qos-enhfilt:vlan-match)?
+     |  |     |     +--:(bbf-qos-enhfilt:match-untagged)
+     |  |     |     |  +--rw bbf-qos-enhfilt:untagged?   empty
+     |  |     |     +--:(bbf-qos-enhfilt:match-vlan-tagged)
+     |  |     |        +--rw bbf-qos-enhfilt:tag* [index]
+     |  |     |           +--rw bbf-qos-enhfilt:index           bbf-classif:tag-index
+     |  |     |           +--rw bbf-qos-enhfilt:in-pbit-list?   bbf-dot1qt:pbit-list
+     |  |     |           +--rw bbf-qos-enhfilt:in-dei?         uint8
+     |  |     +--rw bbf-qos-enhfilt:ethernet-frame-type?       union
+     |  |     +--rw bbf-qos-enhfilt:ipv4! {match-on-specific-ipv4-header-fields}?
+     |  |     |  +--rw bbf-qos-enhfilt:ihl?                              uint8
+     |  |     |  +--rw bbf-qos-enhfilt:flags?                            bits
+     |  |     |  +--rw bbf-qos-enhfilt:offset?                           uint16
+     |  |     |  +--rw bbf-qos-enhfilt:identification?                   uint16
+     |  |     |  +--rw (bbf-qos-enhfilt:destination-network)?
+     |  |     |  |  +--:(bbf-qos-enhfilt:destination-ipv4-network)
+     |  |     |  |     +--rw bbf-qos-enhfilt:destination-ipv4-network?   inet:ipv4-prefix
+     |  |     |  +--rw (bbf-qos-enhfilt:source-network)?
+     |  |     |     +--:(bbf-qos-enhfilt:source-ipv4-network)
+     |  |     |        +--rw bbf-qos-enhfilt:source-ipv4-network?        inet:ipv4-prefix
+     |  |     +--rw bbf-qos-enhfilt:ipv6! {match-on-specific-ipv6-header-fields}?
+     |  |     |  +--rw (bbf-qos-enhfilt:destination-network)?
+     |  |     |  |  +--:(bbf-qos-enhfilt:destination-ipv6-network)
+     |  |     |  |     +--rw bbf-qos-enhfilt:destination-ipv6-network?   inet:ipv6-prefix
+     |  |     |  +--rw (bbf-qos-enhfilt:source-network)?
+     |  |     |  |  +--:(bbf-qos-enhfilt:source-ipv6-network)
+     |  |     |  |     +--rw bbf-qos-enhfilt:source-ipv6-network?        inet:ipv6-prefix
+     |  |     |  +--rw bbf-qos-enhfilt:flow-label?                       inet:ipv6-flow-label
+     |  |     +--rw bbf-qos-enhfilt:ip-common! {match-on-common-ip-header-fields}?
+     |  |     |  +--rw bbf-qos-enhfilt:dscp-range?   bbf-classif:dscp-range-or-any
+     |  |     |  +--rw bbf-qos-enhfilt:dscp?         inet:dscp
+     |  |     |  +--rw bbf-qos-enhfilt:ecn?          uint8
+     |  |     |  +--rw bbf-qos-enhfilt:length?       uint16
+     |  |     |  +--rw bbf-qos-enhfilt:ttl?          uint8
+     |  |     |  +--rw bbf-qos-enhfilt:protocol?     uint8
+     |  |     +--rw bbf-qos-enhfilt:transport! {match-on-common-ip-header-fields}?
+     |  |     |  +--rw bbf-qos-enhfilt:source-port-range!
+     |  |     |  |  +--rw (bbf-qos-enhfilt:port-range-or-operator)?
+     |  |     |  |     +--:(bbf-qos-enhfilt:range)
+     |  |     |  |     |  +--rw bbf-qos-enhfilt:lower-port    inet:port-number
+     |  |     |  |     |  +--rw bbf-qos-enhfilt:upper-port    inet:port-number
+     |  |     |  |     +--:(bbf-qos-enhfilt:operator)
+     |  |     |  |        +--rw bbf-qos-enhfilt:operator?     operator
+     |  |     |  |        +--rw bbf-qos-enhfilt:port          inet:port-number
+     |  |     |  +--rw bbf-qos-enhfilt:destination-port-range!
+     |  |     |     +--rw (bbf-qos-enhfilt:port-range-or-operator)?
+     |  |     |        +--:(bbf-qos-enhfilt:range)
+     |  |     |        |  +--rw bbf-qos-enhfilt:lower-port    inet:port-number
+     |  |     |        |  +--rw bbf-qos-enhfilt:upper-port    inet:port-number
+     |  |     |        +--:(bbf-qos-enhfilt:operator)
+     |  |     |           +--rw bbf-qos-enhfilt:operator?     operator
+     |  |     |           +--rw bbf-qos-enhfilt:port          inet:port-number
+     |  |     +--rw bbf-qos-enhfilt:protocol*                  bbf-classif:protocols
+     |  |     +--rw bbf-qos-enhfilt:pbit-marking-list* [index]
+     |  |     |  +--rw bbf-qos-enhfilt:index         bbf-qos-cls:qos-pbit-marking-index
+     |  |     |  +--rw bbf-qos-enhfilt:pbit-value*   bbf-dot1qt:pbit
+     |  |     +--rw bbf-qos-enhfilt:dei-marking-list* [index]
+     |  |     |  +--rw bbf-qos-enhfilt:index        qos-dei-marking-index
+     |  |     |  +--rw bbf-qos-enhfilt:dei-value?   bbf-dot1qt:dei
+     |  |     +--rw bbf-qos-enhfilt:flow-color*                bbf-qos-plc:qos-color
+     |  |     +--rw nokia-qos-filt:metered-flow?               boolean {nokia-match-on-metered-fields}?
+     |  |     +--rw nokia-qos-filt:metered-color?              boolean {nokia-match-on-metered-fields}?
+     |  +--rw classifier-action-entry-cfg* [action-type]
+     |  |  +--rw action-type                                       identityref
+     |  |  +--rw (action-cfg-params)?
+     |  |     +--:(pbit-marking)
+     |  |     |  +--rw pbit-marking-cfg
+     |  |     |     +--rw pbit-marking-list* [index]
+     |  |     |        +--rw index                                    qos-pbit-marking-index
+     |  |     |        +--rw pbit-value?                              bbf-dot1qt:pbit
+     |  |     |        +--rw nokia-qos-cls-ext:pbit-from-frame-tag?   bbf-classif:tag-index {preserve-pbit-dei-from-frame-to-metadata}?
+     |  |     +--:(dei-marking)
+     |  |     |  +--rw dei-marking-cfg
+     |  |     |     +--rw dei-marking-list* [index]
+     |  |     |        +--rw index                                   qos-dei-marking-index
+     |  |     |        +--rw dei-value?                              bbf-dot1qt:dei
+     |  |     |        +--rw nokia-qos-cls-ext:dei-from-frame-tag?   bbf-classif:tag-index {preserve-pbit-dei-from-frame-to-metadata}?
+     |  |     +--:(dscp-marking)
+     |  |     |  +--rw dscp-marking-cfg
+     |  |     |     +--rw dscp?   inet:dscp
+     |  |     +--:(scheduling-traffic-class)
+     |  |     |  +--rw scheduling-traffic-class?                   bbf-qos-t:traffic-class-id
+     |  |     +--:(pass) {qos-action-pass}?
+     |  |     |  +--rw pass?                                       empty
+     |  |     +--:(bbf-qos-plc:flow-color)
+     |  |     |  +--rw bbf-qos-plc:flow-color?                     qos-color
+     |  |     +--:(bbf-qos-plc:bac-color)
+     |  |     |  +--rw bbf-qos-plc:bac-color?                      qos-color
+     |  |     +--:(bbf-qos-plc:discard)
+     |  |     |  +--rw bbf-qos-plc:discard?                        empty
+     |  |     +--:(bbf-qos-plc:policing)
+     |  |     |  +--rw bbf-qos-plc:policing
+     |  |     |     +--rw bbf-qos-plc:policing-profile?   -> /policing-profiles/policing-profile/name
+     |  |     +--:(nokia-qos-cls-ext:policing-traffic-class) {classifier-action-policing-traffic-class}?
+     |  |     |  +--rw nokia-qos-cls-ext:policing-traffic-class?   bbf-qos-t:traffic-class-id
+     |  |     +--:(nokia-qos-cls-ext:count) {classifier-action-count}?
+     |  |     |  +--rw nokia-qos-cls-ext:count?                    empty
+     |  |     +--:(bbf-qos-plc-ep:envelope-policing)
+     |  |     |  +--rw bbf-qos-plc-ep:policer-envelope-flow
+     |  |     |     +--rw bbf-qos-plc-ep:envelope?   -> /envelope-profiles/envelope-profile/name
+     |  |     |     +--rw bbf-qos-plc-ep:flow?       -> /envelope-profiles/envelope-profile[bbf-qos-plc-ep:name=current()/../envelope]/flows/flow/rank
+     |  |     +--:(bbf-qos-rc:rate-limit-frames)
+     |  |        +--rw bbf-qos-rc:rate-limit-frames
+     |  |           +--rw bbf-qos-rc:rate?         uint32
+     |  |           +--rw bbf-qos-rc:burst-size?   uint32
+     |  +--rw nokia-qos-pol-ext:profile-index
+     |     +--rw nokia-qos-pol-ext:index?   uint32
+     +--ro nokia-qos-cls-ext:system-default-actions
+        +--ro nokia-qos-cls-ext:scheduling-traffic-class?   union
+        +--ro nokia-qos-cls-ext:flow-color?                 union
+        +--ro nokia-qos-cls-ext:bac-color?                  union
+        +--ro nokia-qos-cls-ext:metered-flow?               boolean
+        +--ro nokia-qos-cls-ext:metered-color?              boolean
+
+module: bbf-qos-enhanced-scheduling
+  augment /if:interfaces/if:interface:
+    +--rw egress-tm-objects!
+       +--rw (select-tm-objects-method)?
+          +--:(scheduler)
+             +--rw root-if-name?          -> /if:interfaces/interface/name
+             +--rw scheduler-node-name?   -> /if:interfaces/interface[if:name = current()/../root-if-name]/bbf-qos-tm:tm-root/bbf-qos-sched:scheduler-node/name
+module: bbf-qos-filters
+  +--rw filters
+     +--rw filter* [name]
+     |  +--rw name                               bbf-yang:string-ascii64
+     |  +--rw description?                       bbf-yang:string-ascii64-or-empty
+     |  +--rw filter-match?                      boolean
+     |  +--rw (filter-field)?
+     |  |  +--:(source-mac-address)
+     |  |  |  +--rw source-mac-address
+     |  |  |     +--rw (mac-address)?
+     |  |  |        +--:(any-multicast-mac-address)
+     |  |  |        |  +--rw any-multicast-mac-address?   empty
+     |  |  |        +--:(unicast-address)
+     |  |  |        |  +--rw unicast-address?             empty
+     |  |  |        +--:(broadcast-address)
+     |  |  |        |  +--rw broadcast-address?           empty
+     |  |  |        +--:(cfm-multicast-address)
+     |  |  |        |  +--rw cfm-multicast-address?       empty
+     |  |  |        +--:(ipv4-multicast-address)
+     |  |  |        |  +--rw ipv4-multicast-address?      empty
+     |  |  |        +--:(ipv6-multicast-address)
+     |  |  |        |  +--rw ipv6-multicast-address?      empty
+     |  |  |        +--:(mac-address-filter)
+     |  |  |           +--rw mac-address-value?           yang:mac-address
+     |  |  |           +--rw mac-address-mask?            yang:mac-address
+     |  |  +--:(destination-mac-address)
+     |  |  |  +--rw destination-mac-address
+     |  |  |     +--rw (mac-address)?
+     |  |  |        +--:(any-multicast-mac-address)
+     |  |  |        |  +--rw any-multicast-mac-address?   empty
+     |  |  |        +--:(unicast-address)
+     |  |  |        |  +--rw unicast-address?             empty
+     |  |  |        +--:(broadcast-address)
+     |  |  |        |  +--rw broadcast-address?           empty
+     |  |  |        +--:(cfm-multicast-address)
+     |  |  |        |  +--rw cfm-multicast-address?       empty
+     |  |  |        +--:(ipv4-multicast-address)
+     |  |  |        |  +--rw ipv4-multicast-address?      empty
+     |  |  |        +--:(ipv6-multicast-address)
+     |  |  |        |  +--rw ipv6-multicast-address?      empty
+     |  |  |        +--:(mac-address-filter)
+     |  |  |           +--rw mac-address-value?           yang:mac-address
+     |  |  |           +--rw mac-address-mask?            yang:mac-address
+     |  |  +--:(nokia-qos-filt:ip4-header)
+     |  |  |  +--rw nokia-qos-filt:ipv4 {nokia-match-on-specific-ipv4-header-fields}?
+     |  |  |     +--rw nokia-qos-filt:ihl?                              uint8
+     |  |  |     +--rw nokia-qos-filt:flags?                            bits
+     |  |  |     +--rw nokia-qos-filt:offset?                           uint16
+     |  |  |     +--rw nokia-qos-filt:identification?                   uint16
+     |  |  |     +--rw (nokia-qos-filt:destination-network)?
+     |  |  |     |  +--:(nokia-qos-filt:destination-ipv4-network)
+     |  |  |     |     +--rw nokia-qos-filt:destination-ipv4-network?   inet:ipv4-prefix
+     |  |  |     +--rw (nokia-qos-filt:source-network)?
+     |  |  |        +--:(nokia-qos-filt:source-ipv4-network)
+     |  |  |           +--rw nokia-qos-filt:source-ipv4-network?        inet:ipv4-prefix
+     |  |  +--:(nokia-qos-filt:ip6-header)
+     |  |  |  +--rw nokia-qos-filt:ipv6 {nokia-match-on-specific-ipv6-header-fields}?
+     |  |  |     +--rw (nokia-qos-filt:destination-network)?
+     |  |  |     |  +--:(nokia-qos-filt:destination-ipv6-network)
+     |  |  |     |     +--rw nokia-qos-filt:destination-ipv6-network?   inet:ipv6-prefix
+     |  |  |     +--rw (nokia-qos-filt:source-network)?
+     |  |  |     |  +--:(nokia-qos-filt:source-ipv6-network)
+     |  |  |     |     +--rw nokia-qos-filt:source-ipv6-network?        inet:ipv6-prefix
+     |  |  |     +--rw nokia-qos-filt:flow-label?                       inet:ipv6-flow-label
+     |  |  +--:(nokia-qos-filt:ip-header-common) {nokia-match-on-common-ip-header-fields}?
+     |  |     +--rw nokia-qos-filt:transport
+     |  |        +--rw nokia-qos-filt:dscp?                     inet:dscp
+     |  |        +--rw nokia-qos-filt:ecn?                      uint8
+     |  |        +--rw nokia-qos-filt:length?                   uint16
+     |  |        +--rw nokia-qos-filt:ttl?                      uint8
+     |  |        +--rw nokia-qos-filt:protocol?                 uint8
+     |  |        +--rw nokia-qos-filt:source-port-range!
+     |  |        |  +--rw (nokia-qos-filt:port-range-or-operator)?
+     |  |        |     +--:(nokia-qos-filt:range)
+     |  |        |     |  +--rw nokia-qos-filt:lower-port    inet:port-number
+     |  |        |     |  +--rw nokia-qos-filt:upper-port    inet:port-number
+     |  |        |     +--:(nokia-qos-filt:operator)
+     |  |        |        +--rw nokia-qos-filt:operator?     operator
+     |  |        |        +--rw nokia-qos-filt:port          inet:port-number
+     |  |        +--rw nokia-qos-filt:destination-port-range!
+     |  |           +--rw (nokia-qos-filt:port-range-or-operator)?
+     |  |              +--:(nokia-qos-filt:range)
+     |  |              |  +--rw nokia-qos-filt:lower-port    inet:port-number
+     |  |              |  +--rw nokia-qos-filt:upper-port    inet:port-number
+     |  |              +--:(nokia-qos-filt:operator)
+     |  |                 +--rw nokia-qos-filt:operator?     operator
+     |  |                 +--rw nokia-qos-filt:port          inet:port-number
+     |  +--rw nokia-qos-pol-ext:profile-index
+     |     +--rw nokia-qos-pol-ext:index?   uint32
+     +--rw bbf-qos-enhfilt:enhanced-filter* [name]
+        +--rw bbf-qos-enhfilt:name                bbf-yang:string-ascii64
+        +--rw bbf-qos-enhfilt:description?        bbf-yang:string-ascii64-or-empty
+        +--rw bbf-qos-enhfilt:filter-operation?   identityref
+        +--rw bbf-qos-enhfilt:filter* [name]
+        |  +--rw bbf-qos-enhfilt:name                             bbf-yang:string-ascii64
+        |  +--rw bbf-qos-enhfilt:description?                     bbf-yang:string-ascii64-or-empty
+        |  +--rw (bbf-qos-enhfilt:filter-method)?
+        |     +--:(bbf-qos-enhfilt:by-reference)
+        |     |  +--rw bbf-qos-enhfilt:enhanced-filter-name?      -> /bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/name
+        |     +--:(bbf-qos-enhfilt:inline)
+        |        +--rw bbf-qos-enhfilt:source-mac-address!
+        |        |  +--rw bbf-qos-enhfilt:filter-match?                      boolean
+        |        |  +--rw (bbf-qos-enhfilt:mac-address)
+        |        |     +--:(bbf-qos-enhfilt:any-multicast-mac-address)
+        |        |     |  +--rw bbf-qos-enhfilt:any-multicast-mac-address?   empty
+        |        |     +--:(bbf-qos-enhfilt:unicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:unicast-address?             empty
+        |        |     +--:(bbf-qos-enhfilt:broadcast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:broadcast-address?           empty
+        |        |     +--:(bbf-qos-enhfilt:cfm-multicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:cfm-multicast-address?       empty
+        |        |     +--:(bbf-qos-enhfilt:ipv4-multicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:ipv4-multicast-address?      empty
+        |        |     +--:(bbf-qos-enhfilt:ipv6-multicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:ipv6-multicast-address?      empty
+        |        |     +--:(bbf-qos-enhfilt:mac-address-filter)
+        |        |        +--rw bbf-qos-enhfilt:mac-address-value?           yang:mac-address
+        |        |        +--rw bbf-qos-enhfilt:mac-address-mask?            yang:mac-address
+        |        +--rw bbf-qos-enhfilt:destination-mac-address!
+        |        |  +--rw bbf-qos-enhfilt:filter-match?                      boolean
+        |        |  +--rw (bbf-qos-enhfilt:mac-address)
+        |        |     +--:(bbf-qos-enhfilt:any-multicast-mac-address)
+        |        |     |  +--rw bbf-qos-enhfilt:any-multicast-mac-address?   empty
+        |        |     +--:(bbf-qos-enhfilt:unicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:unicast-address?             empty
+        |        |     +--:(bbf-qos-enhfilt:broadcast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:broadcast-address?           empty
+        |        |     +--:(bbf-qos-enhfilt:cfm-multicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:cfm-multicast-address?       empty
+        |        |     +--:(bbf-qos-enhfilt:ipv4-multicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:ipv4-multicast-address?      empty
+        |        |     +--:(bbf-qos-enhfilt:ipv6-multicast-address)
+        |        |     |  +--rw bbf-qos-enhfilt:ipv6-multicast-address?      empty
+        |        |     +--:(bbf-qos-enhfilt:mac-address-filter)
+        |        |        +--rw bbf-qos-enhfilt:mac-address-value?           yang:mac-address
+        |        |        +--rw bbf-qos-enhfilt:mac-address-mask?            yang:mac-address
+        |        +--rw bbf-qos-enhfilt:vlans!
+        |        |  +--rw (bbf-qos-enhfilt:vlan-match)?
+        |        |     +--:(bbf-qos-enhfilt:match-untagged)
+        |        |     |  +--rw bbf-qos-enhfilt:untagged?   empty
+        |        |     +--:(bbf-qos-enhfilt:match-vlan-tagged)
+        |        |        +--rw bbf-qos-enhfilt:tag* [index]
+        |        |           +--rw bbf-qos-enhfilt:index           bbf-classif:tag-index
+        |        |           +--rw bbf-qos-enhfilt:in-pbit-list?   bbf-dot1qt:pbit-list
+        |        |           +--rw bbf-qos-enhfilt:in-dei?         uint8
+        |        +--rw bbf-qos-enhfilt:ethernet-frame-type?       union
+        |        +--rw bbf-qos-enhfilt:ipv4! {match-on-specific-ipv4-header-fields}?
+        |        |  +--rw bbf-qos-enhfilt:ihl?                              uint8
+        |        |  +--rw bbf-qos-enhfilt:flags?                            bits
+        |        |  +--rw bbf-qos-enhfilt:offset?                           uint16
+        |        |  +--rw bbf-qos-enhfilt:identification?                   uint16
+        |        |  +--rw (bbf-qos-enhfilt:destination-network)?
+        |        |  |  +--:(bbf-qos-enhfilt:destination-ipv4-network)
+        |        |  |     +--rw bbf-qos-enhfilt:destination-ipv4-network?   inet:ipv4-prefix
+        |        |  +--rw (bbf-qos-enhfilt:source-network)?
+        |        |     +--:(bbf-qos-enhfilt:source-ipv4-network)
+        |        |        +--rw bbf-qos-enhfilt:source-ipv4-network?        inet:ipv4-prefix
+        |        +--rw bbf-qos-enhfilt:ipv6! {match-on-specific-ipv6-header-fields}?
+        |        |  +--rw (bbf-qos-enhfilt:destination-network)?
+        |        |  |  +--:(bbf-qos-enhfilt:destination-ipv6-network)
+        |        |  |     +--rw bbf-qos-enhfilt:destination-ipv6-network?   inet:ipv6-prefix
+        |        |  +--rw (bbf-qos-enhfilt:source-network)?
+        |        |  |  +--:(bbf-qos-enhfilt:source-ipv6-network)
+        |        |  |     +--rw bbf-qos-enhfilt:source-ipv6-network?        inet:ipv6-prefix
+        |        |  +--rw bbf-qos-enhfilt:flow-label?                       inet:ipv6-flow-label
+        |        +--rw bbf-qos-enhfilt:ip-common! {match-on-common-ip-header-fields}?
+        |        |  +--rw bbf-qos-enhfilt:dscp-range?   bbf-classif:dscp-range-or-any
+        |        |  +--rw bbf-qos-enhfilt:dscp?         inet:dscp
+        |        |  +--rw bbf-qos-enhfilt:ecn?          uint8
+        |        |  +--rw bbf-qos-enhfilt:length?       uint16
+        |        |  +--rw bbf-qos-enhfilt:ttl?          uint8
+        |        |  +--rw bbf-qos-enhfilt:protocol?     uint8
+        |        +--rw bbf-qos-enhfilt:transport! {match-on-common-ip-header-fields}?
+        |        |  +--rw bbf-qos-enhfilt:source-port-range!
+        |        |  |  +--rw (bbf-qos-enhfilt:port-range-or-operator)?
+        |        |  |     +--:(bbf-qos-enhfilt:range)
+        |        |  |     |  +--rw bbf-qos-enhfilt:lower-port    inet:port-number
+        |        |  |     |  +--rw bbf-qos-enhfilt:upper-port    inet:port-number
+        |        |  |     +--:(bbf-qos-enhfilt:operator)
+        |        |  |        +--rw bbf-qos-enhfilt:operator?     operator
+        |        |  |        +--rw bbf-qos-enhfilt:port          inet:port-number
+        |        |  +--rw bbf-qos-enhfilt:destination-port-range!
+        |        |     +--rw (bbf-qos-enhfilt:port-range-or-operator)?
+        |        |        +--:(bbf-qos-enhfilt:range)
+        |        |        |  +--rw bbf-qos-enhfilt:lower-port    inet:port-number
+        |        |        |  +--rw bbf-qos-enhfilt:upper-port    inet:port-number
+        |        |        +--:(bbf-qos-enhfilt:operator)
+        |        |           +--rw bbf-qos-enhfilt:operator?     operator
+        |        |           +--rw bbf-qos-enhfilt:port          inet:port-number
+        |        +--rw bbf-qos-enhfilt:protocol*                  bbf-classif:protocols
+        |        +--rw bbf-qos-enhfilt:pbit-marking-list* [index]
+        |        |  +--rw bbf-qos-enhfilt:index         bbf-qos-cls:qos-pbit-marking-index
+        |        |  +--rw bbf-qos-enhfilt:pbit-value*   bbf-dot1qt:pbit
+        |        +--rw bbf-qos-enhfilt:dei-marking-list* [index]
+        |        |  +--rw bbf-qos-enhfilt:index        qos-dei-marking-index
+        |        |  +--rw bbf-qos-enhfilt:dei-value?   bbf-dot1qt:dei
+        |        +--rw bbf-qos-enhfilt:flow-color*                bbf-qos-plc:qos-color
+        +--rw nokia-qos-pol-ext:profile-index
+           +--rw nokia-qos-pol-ext:index?   uint32
+module: bbf-qos-policer-envelope-profiles
+  +--rw envelope-profiles
+     +--rw envelope-profile* [name]
+        +--rw name             bbf-yang:string-ascii64
+        +--rw scope?           identityref
+        +--rw coupling-flag?   bbf-qos-plc-tp:coupling-flag
+        +--rw flows
+           +--rw flow* [rank]
+              +--rw rank             flow-rank
+              +--rw cir?             bbf-qos-plc-tp:information-rate
+              +--rw cir-max?         bbf-qos-plc-tp:information-rate
+              +--rw cbs?             bbf-qos-plc-tp:burst-size
+              +--rw eir?             bbf-qos-plc-tp:information-rate
+              +--rw eir-max?         bbf-qos-plc-tp:information-rate
+              +--rw ebs?             bbf-qos-plc-tp:burst-size
+              +--rw coupling-flag?   bbf-qos-plc-tp:coupling-flag
+              +--rw color-mode?      bbf-qos-plc-tp:color-mode
+
+module: bbf-qos-policies-state
+  augment /if:interfaces-state/if:interface:
+    +--ro qos-policies
+       +--ro ingress
+       |  +--ro policy* [name]
+       |     +--ro name          bbf-yang:string-ascii64
+       |     +--ro classifier* [name]
+       |        +--ro name                     bbf-yang:string-ascii64
+       |        +--ro nokia-flow-stats:flow
+       |           +--ro nokia-flow-stats:statistics
+       |              +--ro nokia-flow-stats:creation-time?     uint32
+       |              +--ro nokia-flow-stats:duration-active?   uint32
+       |              +--ro nokia-flow-stats:fwd-bytes?         yang:counter64
+       |              +--ro nokia-flow-stats:fwd-frames?        yang:counter64
+       +--ro egress
+          +--ro policy* [name]
+             +--ro name          bbf-yang:string-ascii64
+             +--ro classifier* [name]
+                +--ro name                     bbf-yang:string-ascii64
+                +--ro nokia-flow-stats:flow
+                   +--ro nokia-flow-stats:statistics
+                      +--ro nokia-flow-stats:creation-time?     uint32
+                      +--ro nokia-flow-stats:duration-active?   uint32
+                      +--ro nokia-flow-stats:fwd-bytes?         yang:counter64
+                      +--ro nokia-flow-stats:fwd-frames?        yang:counter64
+
+module: bbf-qos-policies-sub-interfaces
+  augment /if:interfaces/if:interface/bbf-subif:frame-processing/bbf-subif:inline-frame-processing/bbf-subif:inline-frame-processing/bbf-subif:ingress-rule/bbf-subif:rule/bbf-subif:ingress-rewrite/bbf-subif-tag:push-tag/bbf-subif-tag:dot1q-tag/bbf-subif-tag:pbit:
+    +--:(generate-pbit-via-profile-or-0)
+       +--rw pbit-marking-index?   bbf-qos-cls:qos-pbit-marking-index
+  augment /if:interfaces/if:interface/bbf-subif:frame-processing/bbf-subif:inline-frame-processing/bbf-subif:inline-frame-processing/bbf-subif:ingress-rule/bbf-subif:rule/bbf-subif:ingress-rewrite/bbf-subif-tag:push-tag/bbf-subif-tag:dot1q-tag/bbf-subif-tag:dei:
+    +--:(generate-dei-via-profile-or-0)
+       +--rw dei-marking-index?   bbf-qos-cls:qos-dei-marking-index
+  augment /if:interfaces/if:interface/bbf-subif:frame-processing/bbf-subif:inline-frame-processing/bbf-subif:inline-frame-processing/bbf-subif:egress-rewrite/bbf-subif-tag:push-tag/bbf-subif-tag:dot1q-tag/bbf-subif-tag:pbit:
+    +--:(generate-pbit-via-profile-or-0)
+       +--rw pbit-marking-index?   bbf-qos-cls:qos-pbit-marking-index
+  augment /if:interfaces/if:interface/bbf-subif:frame-processing/bbf-subif:inline-frame-processing/bbf-subif:inline-frame-processing/bbf-subif:egress-rewrite/bbf-subif-tag:push-tag/bbf-subif-tag:dot1q-tag/bbf-subif-tag:dei:
+    +--:(generate-dei-via-profile-or-0)
+       +--rw dei-marking-index?   bbf-qos-cls:qos-dei-marking-index
+
+module: bbf-qos-policies-sub-itf-rewrite
+  augment /if:interfaces/if:interface/bbf-subif:frame-processing/bbf-subif:inline-frame-processing/bbf-subif:inline-frame-processing/bbf-subif:ingress-rule/bbf-subif:rule/bbf-subif:ingress-rewrite:
+    +--rw copy-from-tags-to-marking-list* [tag-index]
+       +--rw tag-index             bbf-classif:tag-index
+       +--rw pbit-marking-index?   union
+       +--rw dei-marking-index?    union
+module: bbf-qos-policies
+  +--rw policies
+  |  +--rw policy* [name]
+  |     +--rw name                               bbf-yang:string-ascii64
+  |     +--rw description?                       bbf-yang:string-ascii64-or-empty
+  |     +--rw classifiers* [name]
+  |     |  +--rw name    -> /bbf-qos-cls:classifiers/classifier-entry/name
+  |     +--rw nokia-qos-pol-ext:profile-index
+  |        +--rw nokia-qos-pol-ext:index?   uint32
+  +--rw qos-policy-profiles
+     +--rw policy-profile* [name]
+        +--rw name                               bbf-yang:string-ascii64
+        +--rw policy-list* [name]
+        |  +--rw name    -> /policies/policy/name
+        +--rw nokia-qos-pol-ext:profile-index
+           +--rw nokia-qos-pol-ext:index?   uint32
+
+  augment /if:interfaces/if:interface:
+    +--rw ingress-qos-policy-profile?   qos-policy-profile-ref
+    +--rw egress-qos-policy-profile?    qos-policy-profile-ref
+module: bbf-qos-policing
+  +--rw policing-profiles
+     +--rw policing-profile* [name]
+        +--rw name                                                                bbf-yang:string-ascii64
+        +--rw scope?                                                              bbf-qos-cls:action-scope
+        +--rw (policing-type)
+        |  +--:(single-rate-two-color-marker-type) {single-rate-two-color-marker}?
+        |  |  +--rw single-rate-two-color-marker
+        |  |     +--rw cir?   bbf-qos-plc-tp:information-rate
+        |  |     +--rw cbs?   bbf-qos-plc-tp:burst-size
+        |  +--:(single-rate-three-color-marker-type) {single-rate-three-color-marker}?
+        |  |  +--rw single-rate-three-color-marker
+        |  |     +--rw cir?   bbf-qos-plc-tp:information-rate
+        |  |     +--rw cbs?   bbf-qos-plc-tp:burst-size
+        |  |     +--rw ebs?   bbf-qos-plc-tp:burst-size
+        |  +--:(two-rate-three-color-marker-type) {two-rate-three-color-marker}?
+        |  |  +--rw two-rate-three-color-marker
+        |  |     +--rw cir?   bbf-qos-plc-tp:information-rate
+        |  |     +--rw cbs?   bbf-qos-plc-tp:burst-size
+        |  |     +--rw pir?   bbf-qos-plc-tp:information-rate
+        |  |     +--rw pbs?   bbf-qos-plc-tp:burst-size
+        |  +--:(two-rate-three-color-marker-mef-type) {two-rate-three-color-marker-mef}?
+        |  |  +--rw two-rate-three-color-marker-mef
+        |  |     +--rw cir?           bbf-qos-plc-tp:information-rate
+        |  |     +--rw cbs?           bbf-qos-plc-tp:burst-size
+        |  |     +--rw eir?           bbf-qos-plc-tp:information-rate
+        |  |     +--rw ebs?           bbf-qos-plc-tp:burst-size
+        |  |     +--rw couple-flag?   bbf-qos-plc-tp:coupling-flag
+        |  |     +--rw color-mode?    bbf-qos-plc-tp:color-mode
+        |  +--:(nokia-qos-plc-ext:two-rate-three-color-marker-with-cos-type) {two-rate-three-color-marker-with-cos}?
+        |  |  +--rw nokia-qos-plc-ext:two-rate-three-color-marker-with-cos
+        |  |     +--rw nokia-qos-plc-ext:cir                 bbf-qos-plc-tp:information-rate
+        |  |     +--rw nokia-qos-plc-ext:cbs                 bbf-qos-plc-tp:burst-size
+        |  |     +--rw nokia-qos-plc-ext:cbs-tc-threshold
+        |  |     |  +--rw nokia-qos-plc-ext:policing-tc-threshold* [tc]
+        |  |     |     +--rw nokia-qos-plc-ext:tc           uint8
+        |  |     |     +--rw nokia-qos-plc-ext:threshold    bbf-yang:percent
+        |  |     +--rw nokia-qos-plc-ext:pir                 bbf-qos-plc-tp:information-rate
+        |  |     +--rw nokia-qos-plc-ext:pbs                 bbf-qos-plc-tp:burst-size
+        |  |     +--rw nokia-qos-plc-ext:pbs-tc-threshold
+        |  |        +--rw nokia-qos-plc-ext:policing-tc-threshold* [tc]
+        |  |           +--rw nokia-qos-plc-ext:tc           uint8
+        |  |           +--rw nokia-qos-plc-ext:threshold    bbf-yang:percent
+        |  +--:(nokia-qos-plc-ext:two-rate-three-color-marker-mef-with-cos-type) {two-rate-three-color-marker-mef-with-cos}?
+        |     +--rw nokia-qos-plc-ext:two-rate-three-color-marker-mef-with-cos
+        |        +--rw nokia-qos-plc-ext:cir                 bbf-qos-plc-tp:information-rate
+        |        +--rw nokia-qos-plc-ext:cbs                 bbf-qos-plc-tp:burst-size
+        |        +--rw nokia-qos-plc-ext:cbs-tc-threshold
+        |        |  +--rw nokia-qos-plc-ext:policing-tc-threshold* [tc]
+        |        |     +--rw nokia-qos-plc-ext:tc           uint8
+        |        |     +--rw nokia-qos-plc-ext:threshold    bbf-yang:percent
+        |        +--rw nokia-qos-plc-ext:eir?                bbf-qos-plc-tp:information-rate
+        |        +--rw nokia-qos-plc-ext:ebs?                bbf-qos-plc-tp:burst-size
+        |        +--rw nokia-qos-plc-ext:couple-flag?        bbf-qos-plc-tp:coupling-flag
+        |        +--rw nokia-qos-plc-ext:ebs-tc-threshold
+        |           +--rw nokia-qos-plc-ext:policing-tc-threshold* [tc]
+        |              +--rw nokia-qos-plc-ext:tc           uint8
+        |              +--rw nokia-qos-plc-ext:threshold    bbf-yang:percent
+        +--rw hierarchical-policing
+        |  +--rw policing-profile?   -> /policing-profiles/policing-profile/name
+        +--rw nokia-qos-plc-ext:policing-pre-handling-profile?                    -> /policing-pre-handling-profiles/pre-handling-profile/name {qos-policing-pre-handlings}?
+        +--rw nokia-qos-plc-ext:policing-action-profile?                          -> /policing-action-profiles/action-profile/name {nokia-qos-plc-ext:qos-policing-actions}?
+        +--rw nokia-qos-pol-ext:profile-index
+           +--rw nokia-qos-pol-ext:index?   uint32
+module: bbf-qos-traffic-mngt
+  +--rw tm-profiles
+     +--rw tc-id-2-queue-id-mapping-profile* [name] {tc-id-2-queue-id-mapping-config}?
+     |  +--rw name                               bbf-yang:string-ascii64
+     |  +--rw mapping-entry* [traffic-class-id]
+     |  |  +--rw traffic-class-id    bbf-qos-t:traffic-class-id
+     |  |  +--rw local-queue-id      queue-id
+     |  +--rw nokia-qos-pol-ext:profile-index
+     |     +--rw nokia-qos-pol-ext:index?   uint32
+     +--rw bac-entry* [name]
+     |  +--rw name                               bbf-yang:string-ascii64
+     |  +--rw max-queue-size?                    uint32
+     |  +--rw (bac-type)
+     |  |  +--:(taildrop)
+     |  |  |  +--rw taildrop
+     |  |  |     +--rw max-threshold?   bbf-yang:percent
+     |  |  +--:(red)
+     |  |  |  +--rw red
+     |  |  |     +--rw min-threshold?     bbf-yang:percent
+     |  |  |     +--rw max-threshold?     bbf-yang:percent
+     |  |  |     +--rw max-probability?   bbf-yang:percent
+     |  |  +--:(wtaildrop)
+     |  |  |  +--rw wtaildrop
+     |  |  |     +--rw color
+     |  |  |        +--rw green
+     |  |  |        |  +--rw max-threshold?   bbf-yang:percent
+     |  |  |        +--rw yellow
+     |  |  |        |  +--rw max-threshold?   bbf-yang:percent
+     |  |  |        +--rw red
+     |  |  |           +--rw max-threshold?   bbf-yang:percent
+     |  |  +--:(wred)
+     |  |     +--rw wred
+     |  |        +--rw color
+     |  |           +--rw green
+     |  |           |  +--rw min-threshold?     bbf-yang:percent
+     |  |           |  +--rw max-threshold?     bbf-yang:percent
+     |  |           |  +--rw max-probability?   bbf-yang:percent
+     |  |           +--rw yellow
+     |  |           |  +--rw min-threshold?     bbf-yang:percent
+     |  |           |  +--rw max-threshold?     bbf-yang:percent
+     |  |           |  +--rw max-probability?   bbf-yang:percent
+     |  |           +--rw red
+     |  |              +--rw min-threshold?     bbf-yang:percent
+     |  |              +--rw max-threshold?     bbf-yang:percent
+     |  |              +--rw max-probability?   bbf-yang:percent
+     |  +--rw nokia-qos-pol-ext:profile-index
+     |     +--rw nokia-qos-pol-ext:index?   uint32
+     +--rw bbf-qos-shap:shaper-profile* [name]
+        +--rw bbf-qos-shap:name                         bbf-yang:string-ascii64
+        +--rw (bbf-qos-shap:shaper-type)
+        |  +--:(bbf-qos-shap:single-token-bucket)
+        |     +--rw bbf-qos-shap:single-token-bucket
+        |        +--rw bbf-qos-shap:pir?   uint32
+        |        +--rw bbf-qos-shap:pbs?   uint32
+        +--rw nokia-qos-pol-ext:profile-index
+           +--rw nokia-qos-pol-ext:index?   uint32
+
+  augment /if:interfaces/if:interface:
+    +--rw tm-root
+       +--rw (children-type)?
+       |  +--:(queues)
+       |  |  +--rw queue* [local-queue-id]
+       |  |  |  +--rw local-queue-id                    queue-id
+       |  |  |  +--rw bac-name?                         -> /tm-profiles/bac-entry/name
+       |  |  |  +--rw (queue-scheduling-cfg-type)?
+       |  |  |  |  +--:(inline)
+       |  |  |  |     +--rw priority?                   scheduling-priority
+       |  |  |  |     +--rw weight?                     scheduling-weight
+       |  |  |  |     +--rw bbf-qos-shap:shaper-name?   -> /bbf-qos-tm:tm-profiles/bbf-qos-shap:shaper-profile/name
+       |  |  |  +--rw pre-emption?                      boolean {pre-emption}?
+       |  |  +--rw nokia-queue-mon:queue-monitoring
+       |  |     +--rw nokia-queue-mon:enable-statistics?    boolean {queue-statistics}?
+       |  |     +--rw nokia-queue-mon:enable-performance?   boolean {queue-performance-15min or
+queue-performance-24hr}?
+       |  +--:(bbf-qos-sched:scheduler-node)
+       |     +--rw bbf-qos-sched:scheduler-node* [name]
+       |     |  +--rw bbf-qos-sched:name                           bbf-yang:string-ascii64
+       |     |  +--rw bbf-qos-sched:description?                   bbf-yang:string-ascii64
+       |     |  +--rw bbf-qos-sched:scheduling-level               uint8
+       |     |  +--rw bbf-qos-sched:shaper-name?                   -> /bbf-qos-tm:tm-profiles/bbf-qos-shap:shaper-profile/name
+       |     |  +--rw (bbf-qos-sched:children-type)?
+       |     |  |  +--:(bbf-qos-sched:scheduler-node)
+       |     |  |  |  +--rw bbf-qos-sched:child-scheduler-nodes* [name]
+       |     |  |  |     +--rw bbf-qos-sched:name              -> ../../../scheduler-node/name
+       |     |  |  |     +--rw (bbf-qos-sched:scheduling-type)?
+       |     |  |  |        +--:(bbf-qos-sched:inline)
+       |     |  |  |           +--rw bbf-qos-sched:priority?   scheduling-priority
+       |     |  |  |           +--rw bbf-qos-sched:weight?     scheduling-weight
+       |     |  |  +--:(bbf-qos-sched:queue)
+       |     |  |     +--rw bbf-qos-sched:contains-queues?         boolean
+       |     |  |     +--rw bbf-qos-sched:queue* [local-queue-id]
+       |     |  |        +--rw bbf-qos-sched:local-queue-id       queue-id
+       |     |  |        +--rw bbf-qos-sched:bac-name?            -> /bbf-qos-tm:tm-profiles/bac-entry/name
+       |     |  |        +--rw (bbf-qos-sched:queue-scheduling-cfg-type)?
+       |     |  |        |  +--:(bbf-qos-sched:inline)
+       |     |  |        |     +--rw bbf-qos-sched:priority?      scheduling-priority
+       |     |  |        |     +--rw bbf-qos-sched:weight?        scheduling-weight
+       |     |  |        |     +--rw bbf-qos-sched:shaper-name?   -> /bbf-qos-tm:tm-profiles/bbf-qos-shap:shaper-profile/name
+       |     |  |        +--rw bbf-qos-sched:pre-emption?         boolean {pre-emption}?
+       |     |  +--rw nokia-qos-enh-ext:profile-index
+       |     |  |  +--rw nokia-qos-enh-ext:index?   uint32
+       |     |  +--rw nokia-queue-mon-ext:queue-monitoring
+       |     |     +--rw nokia-queue-mon-ext:enable-statistics?    boolean {queue-statistics}?
+       |     |     +--rw nokia-queue-mon-ext:enable-performance?   boolean {queue-performance-15min or
+queue-performance-24hr}?
+       |     +--rw bbf-qos-sched:child-scheduler-nodes* [name]
+       |        +--rw bbf-qos-sched:name              -> ../../scheduler-node/name
+       |        +--rw (bbf-qos-sched:scheduling-type)?
+       |           +--:(bbf-qos-sched:inline)
+       |              +--rw bbf-qos-sched:priority?   scheduling-priority
+       |              +--rw bbf-qos-sched:weight?     scheduling-weight
+       +--rw tc-id-2-queue-id-mapping-profile-name?       -> /tm-profiles/tc-id-2-queue-id-mapping-profile/name {tc-id-2-queue-id-mapping-config}?
+       +--rw bbf-qos-shap:shaper-name?                    -> /bbf-qos-tm:tm-profiles/bbf-qos-shap:shaper-profile/name
+
+module: nokia-cpe-qos-management
+  augment /if:interfaces/if:interface:
+    +--rw cpe-network-port-management {nokia-cpe-management:remote-modem-management}?
+       +--rw egress-qos-policy-profile?   bbf-qos-pol:qos-policy-profile-ref
+module: nokia-ingress-cpu-packets-rate-limit
+  +--rw cpu-load-control-cfg
+     +--rw default-ingress-cpu-packets-rate-limit* [interface-usage]
+        +--rw interface-usage           bbf-if-usg:interface-usage
+        +--rw rate-limit-policy-name    rate-limit-policy-ref
+
+  augment /if:interfaces/if:interface:
+    +--rw ingress-cpu-packets-rate-limit
+       +--rw (cpu-packets-rate-limit-control)?
+          +--:(no-rate-limit)
+          |  +--rw no-rate-limit?            empty
+          +--:(policy)
+             +--rw rate-limit-policy-name?   rate-limit-policy-ref
+
+module: nokia-qos-queue-monitoring
+  augment /if:interfaces-state/if:interface:
+    +--ro tm-root
+       +---x clear-statistics {queue-statistics}?
+       +--ro discontinuity-time?                         yang:date-and-time {queue-statistics}?
+       +--ro (children-type)?
+          +--:(queues)
+          |  +--ro queue* [local-queue-id]
+          |     +--ro local-queue-id    bbf-qos-tm:queue-id
+          |     +--ro statistics {queue-statistics}?
+          |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |     |  +--ro color {queue-color-counter}?
+          |     |     +--ro green
+          |     |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |     |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |     |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |     |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |     |     +--ro yellow
+          |     |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |     |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |     |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |     |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |     |     +--ro red
+          |     |        +--ro out-pkts?      bbf-yang:performance-counter64
+          |     |        +--ro out-octets?    bbf-yang:performance-counter64
+          |     |        +--ro drop-pkts?     bbf-yang:performance-counter64
+          |     |        +--ro drop-octets?   bbf-yang:performance-counter64
+          |     +--ro performance
+          |        +--ro intervals-15min {queue-performance-15min}?
+          |        |  +--ro current
+          |        |  |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |  |  +--ro out-octets?    bbf-yang:performance-counter64
+          |        |  |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |  |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |        |  |  +--ro color {queue-color-counter}?
+          |        |  |     +--ro green
+          |        |  |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |  |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |        |  |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |  |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |        |  |     +--ro yellow
+          |        |  |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |  |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |        |  |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |  |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |        |  |     +--ro red
+          |        |  |        +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |  |        +--ro out-octets?    bbf-yang:performance-counter64
+          |        |  |        +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |  |        +--ro drop-octets?   bbf-yang:performance-counter64
+          |        |  +--ro number-of-intervals?   performance-15min-interval
+          |        |  +--ro non-valid-intervals?   performance-15min-interval
+          |        |  +--ro history* [interval-number]
+          |        |     +--ro interval-number      bbf-if-pm:performance-15min-history-interval
+          |        |     +--ro measured-time?       uint32
+          |        |     +--ro invalid-data-flag?   boolean
+          |        |     +--ro time-stamp?          yang:date-and-time
+          |        |     +--ro out-pkts?            bbf-yang:performance-counter64
+          |        |     +--ro out-octets?          bbf-yang:performance-counter64
+          |        |     +--ro drop-pkts?           bbf-yang:performance-counter64
+          |        |     +--ro drop-octets?         bbf-yang:performance-counter64
+          |        |     +--ro color {queue-color-counter}?
+          |        |        +--ro green
+          |        |        |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |        |  +--ro out-octets?    bbf-yang:performance-counter64
+          |        |        |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |        |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |        |        +--ro yellow
+          |        |        |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |        |  +--ro out-octets?    bbf-yang:performance-counter64
+          |        |        |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |        |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |        |        +--ro red
+          |        |           +--ro out-pkts?      bbf-yang:performance-counter64
+          |        |           +--ro out-octets?    bbf-yang:performance-counter64
+          |        |           +--ro drop-pkts?     bbf-yang:performance-counter64
+          |        |           +--ro drop-octets?   bbf-yang:performance-counter64
+          |        +--ro intervals-24hr {queue-performance-24hr}?
+          |           +--ro current
+          |           |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |           |  +--ro out-octets?    bbf-yang:performance-counter64
+          |           |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |           |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |           |  +--ro color {queue-color-counter}?
+          |           |     +--ro green
+          |           |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |           |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |           |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |           |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |           |     +--ro yellow
+          |           |     |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |           |     |  +--ro out-octets?    bbf-yang:performance-counter64
+          |           |     |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |           |     |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |           |     +--ro red
+          |           |        +--ro out-pkts?      bbf-yang:performance-counter64
+          |           |        +--ro out-octets?    bbf-yang:performance-counter64
+          |           |        +--ro drop-pkts?     bbf-yang:performance-counter64
+          |           |        +--ro drop-octets?   bbf-yang:performance-counter64
+          |           +--ro number-of-intervals?   performance-24hr-interval
+          |           +--ro non-valid-intervals?   performance-24hr-interval
+          |           +--ro history* [interval-number]
+          |              +--ro interval-number      bbf-if-pm:performance-24hr-history-interval
+          |              +--ro measured-time?       uint32
+          |              +--ro invalid-data-flag?   boolean
+          |              +--ro time-stamp?          yang:date-and-time
+          |              +--ro out-pkts?            bbf-yang:performance-counter64
+          |              +--ro out-octets?          bbf-yang:performance-counter64
+          |              +--ro drop-pkts?           bbf-yang:performance-counter64
+          |              +--ro drop-octets?         bbf-yang:performance-counter64
+          |              +--ro color {queue-color-counter}?
+          |                 +--ro green
+          |                 |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |                 |  +--ro out-octets?    bbf-yang:performance-counter64
+          |                 |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |                 |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |                 +--ro yellow
+          |                 |  +--ro out-pkts?      bbf-yang:performance-counter64
+          |                 |  +--ro out-octets?    bbf-yang:performance-counter64
+          |                 |  +--ro drop-pkts?     bbf-yang:performance-counter64
+          |                 |  +--ro drop-octets?   bbf-yang:performance-counter64
+          |                 +--ro red
+          |                    +--ro out-pkts?      bbf-yang:performance-counter64
+          |                    +--ro out-octets?    bbf-yang:performance-counter64
+          |                    +--ro drop-pkts?     bbf-yang:performance-counter64
+          |                    +--ro drop-octets?   bbf-yang:performance-counter64
+          +--:(nokia-queue-mon-ext:scheduler-node)
+             +--ro nokia-queue-mon-ext:scheduler-node* [name]
+                +--ro nokia-queue-mon-ext:name                  bbf-yang:string-ascii64
+                +---x nokia-queue-mon-ext:clear-statistics {nokia-queue-mon:queue-statistics}?
+                +--ro nokia-queue-mon-ext:discontinuity-time?   yang:date-and-time {nokia-queue-mon:queue-statistics}?
+                +--ro nokia-queue-mon-ext:queue* [local-queue-id]
+                   +--ro nokia-queue-mon-ext:local-queue-id    bbf-qos-tm:queue-id
+                   +--ro nokia-queue-mon-ext:statistics {queue-statistics}?
+                   |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                   |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                   |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                   |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                   |  +--ro nokia-queue-mon-ext:color {queue-color-counter}?
+                   |     +--ro nokia-queue-mon-ext:green
+                   |     |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                   |     |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                   |     |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                   |     |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                   |     +--ro nokia-queue-mon-ext:yellow
+                   |     |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                   |     |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                   |     |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                   |     |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                   |     +--ro nokia-queue-mon-ext:red
+                   |        +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                   |        +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                   |        +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                   |        +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                   +--ro nokia-queue-mon-ext:performance
+                      +--ro nokia-queue-mon-ext:intervals-15min {queue-performance-15min}?
+                      |  +--ro nokia-queue-mon-ext:current
+                      |  |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |  |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |  |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |  |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      |  |  +--ro nokia-queue-mon-ext:color {queue-color-counter}?
+                      |  |     +--ro nokia-queue-mon-ext:green
+                      |  |     |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |  |     |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |  |     |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |  |     |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      |  |     +--ro nokia-queue-mon-ext:yellow
+                      |  |     |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |  |     |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |  |     |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |  |     |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      |  |     +--ro nokia-queue-mon-ext:red
+                      |  |        +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |  |        +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |  |        +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |  |        +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      |  +--ro nokia-queue-mon-ext:number-of-intervals?   performance-15min-interval
+                      |  +--ro nokia-queue-mon-ext:non-valid-intervals?   performance-15min-interval
+                      |  +--ro nokia-queue-mon-ext:history* [interval-number]
+                      |     +--ro nokia-queue-mon-ext:interval-number      bbf-if-pm:performance-15min-history-interval
+                      |     +--ro nokia-queue-mon-ext:measured-time?       uint32
+                      |     +--ro nokia-queue-mon-ext:invalid-data-flag?   boolean
+                      |     +--ro nokia-queue-mon-ext:time-stamp?          yang:date-and-time
+                      |     +--ro nokia-queue-mon-ext:out-pkts?            bbf-yang:performance-counter64
+                      |     +--ro nokia-queue-mon-ext:out-octets?          bbf-yang:performance-counter64
+                      |     +--ro nokia-queue-mon-ext:drop-pkts?           bbf-yang:performance-counter64
+                      |     +--ro nokia-queue-mon-ext:drop-octets?         bbf-yang:performance-counter64
+                      |     +--ro nokia-queue-mon-ext:color {queue-color-counter}?
+                      |        +--ro nokia-queue-mon-ext:green
+                      |        |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |        |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |        |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |        |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      |        +--ro nokia-queue-mon-ext:yellow
+                      |        |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |        |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |        |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |        |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      |        +--ro nokia-queue-mon-ext:red
+                      |           +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                      |           +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                      |           +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                      |           +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                      +--ro nokia-queue-mon-ext:intervals-24hr {queue-performance-24hr}?
+                         +--ro nokia-queue-mon-ext:current
+                         |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                         |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                         |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                         |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                         |  +--ro nokia-queue-mon-ext:color {queue-color-counter}?
+                         |     +--ro nokia-queue-mon-ext:green
+                         |     |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                         |     |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                         |     |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                         |     |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                         |     +--ro nokia-queue-mon-ext:yellow
+                         |     |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                         |     |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                         |     |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                         |     |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                         |     +--ro nokia-queue-mon-ext:red
+                         |        +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                         |        +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                         |        +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                         |        +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                         +--ro nokia-queue-mon-ext:number-of-intervals?   performance-24hr-interval
+                         +--ro nokia-queue-mon-ext:non-valid-intervals?   performance-24hr-interval
+                         +--ro nokia-queue-mon-ext:history* [interval-number]
+                            +--ro nokia-queue-mon-ext:interval-number      bbf-if-pm:performance-24hr-history-interval
+                            +--ro nokia-queue-mon-ext:measured-time?       uint32
+                            +--ro nokia-queue-mon-ext:invalid-data-flag?   boolean
+                            +--ro nokia-queue-mon-ext:time-stamp?          yang:date-and-time
+                            +--ro nokia-queue-mon-ext:out-pkts?            bbf-yang:performance-counter64
+                            +--ro nokia-queue-mon-ext:out-octets?          bbf-yang:performance-counter64
+                            +--ro nokia-queue-mon-ext:drop-pkts?           bbf-yang:performance-counter64
+                            +--ro nokia-queue-mon-ext:drop-octets?         bbf-yang:performance-counter64
+                            +--ro nokia-queue-mon-ext:color {queue-color-counter}?
+                               +--ro nokia-queue-mon-ext:green
+                               |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                               |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                               |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                               |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                               +--ro nokia-queue-mon-ext:yellow
+                               |  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                               |  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                               |  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                               |  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+                               +--ro nokia-queue-mon-ext:red
+                                  +--ro nokia-queue-mon-ext:out-pkts?      bbf-yang:performance-counter64
+                                  +--ro nokia-queue-mon-ext:out-octets?    bbf-yang:performance-counter64
+                                  +--ro nokia-queue-mon-ext:drop-pkts?     bbf-yang:performance-counter64
+                                  +--ro nokia-queue-mon-ext:drop-octets?   bbf-yang:performance-counter64
+module: nokia-sdan-qos-policing-extension
+  +--rw policing-pre-handling-profiles {nokia-qos-plc-ext:qos-policing-pre-handlings}?
+  |  +--rw pre-handling-profile* [name]
+  |     +--rw name                  bbf-yang:string-ascii64
+  |     +--rw pre-handling-entry* [name]
+  |        +--rw name                            bbf-yang:string-ascii64
+  |        +--rw match-params
+  |        |  +--rw vlans!
+  |        |  |  +--rw tag* [index]
+  |        |  |     +--rw index           bbf-classif:tag-index
+  |        |  |     +--rw in-pbit-list?   bbf-dot1qt:pbit-list
+  |        |  |     +--rw in-dei?         uint8
+  |        |  +--rw pbit-marking-list* [index]
+  |        |  |  +--rw index         bbf-qos-cls:qos-pbit-marking-index
+  |        |  |  +--rw pbit-value*   bbf-dot1qt:pbit
+  |        |  +--rw dei-marking-list* [index]
+  |        |     +--rw index        qos-dei-marking-index
+  |        |     +--rw dei-value?   bbf-dot1qt:dei
+  |        +--rw (action-cfg-params)?
+  |           +--:(flow-color)
+  |           |  +--rw flow-color?               bbf-qos-plc:qos-color
+  |           +--:(policing-traffic-class)
+  |              +--rw policing-traffic-class?   bbf-qos-t:traffic-class-id {two-rate-three-color-marker-with-cos
+or two-rate-three-color-marker-mef-with-cos}?
+  +--rw policing-action-profiles {nokia-qos-plc-ext:qos-policing-actions}?
+     +--rw action-profile* [name]
+        +--rw name      bbf-yang:string-ascii64
+        +--rw action* [flow-color]
+           +--rw flow-color                 bbf-qos-plc:qos-color
+           +--rw (action-cfg-params)?
+              +--:(assign-metadata)
+              |  +--rw pbit-marking-list* [index]
+              |  |  +--rw index         qos-pbit-marking-index
+              |  |  +--rw pbit-value?   bbf-dot1qt:pbit
+              |  +--rw dei-marking-list* [index]
+              |  |  +--rw index        qos-dei-marking-index
+              |  |  +--rw dei-value?   bbf-dot1qt:dei
+              |  +--rw bac-color?           nokia-qos-cls-ext:write-bac-color
+              |  +--rw metered-flow?        boolean
+              |  +--rw metered-color?       boolean
+              +--:(discard)
+                 +--rw discard?             empty

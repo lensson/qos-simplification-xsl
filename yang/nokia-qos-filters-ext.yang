@@ -1,0 +1,368 @@
+module nokia-qos-filters-ext {
+  yang-version 1.1; 
+  namespace "http://www.nokia.com/Fixed-Networks/BBA/yang/"
+          + "nokia-qos-filters-ext";
+
+  prefix nokia-qos-filt;
+
+  import ietf-packet-fields {
+    prefix packet-fields;
+  }
+
+  import bbf-qos-filters {
+    prefix bbf-qos-filt;
+  }
+
+  import bbf-qos-classifiers {
+    prefix bbf-qos-cls;
+  }
+  
+  import bbf-qos-enhanced-filters {
+    prefix bbf-qos-enhfilt;
+  }
+
+  import bbf-dot1q-types {
+    prefix bbf-dot1qt;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "Comments or questions about this Nokia YANG module should be 
+     directed to <mailto:isam.yang@nokia.com>.";
+
+  description
+    "This module contains a collection of YANG definitions for 
+     supporting Nokia specific requirements as applicable to its 
+     access network equipment.
+     
+     Specifically, this module contains definitions of filter 
+     criteria.
+
+     This specification is published by Nokia under Non-Disclosure
+     Agreement(s) (NDA) with specific parties and has to be considered
+     as Confidential Information as defined in such NDA. Nokia 
+     reserves the right to revise this document for any reason, 
+     including but not limited to conformity with standards 
+     promulgated by various agencies, utilisation of advances in the 
+     state of the technical areas, or the reflection of changes in the
+     design of any equipment, techniques, or procedures described or 
+     referred to herein.
+
+     The product specifications and other technical or performance 
+     information contained herein are subject to change without 
+     notice. Updates of this document will be issued under the above 
+     NDA's.
+
+     Nokia makes no representation or warranty, expressed or implied,
+     with respect to the sufficiency, accuracy, or utility of any 
+     information or opinion contained herein. Nokia expressly advises 
+     that any use of for any purpose or reliance upon this technical 
+     reference is at the risk of the user and that Nokia shall not be 
+     liable for any damage or injury incurred by any person arising 
+     out of the sufficiency, accuracy, or utility of any information 
+     or opinion contained herein.
+
+     This document is not to be construed as a suggestion to any 
+     manufacturer to modify or change any of its products, nor does 
+     this document represent any commitment by Nokia to sell or 
+     purchase any product. Nothing contained herein shall be construed
+     as conferring by implication, estoppel, or otherwise any license 
+     or right under any patent, whether or not the use of any 
+     information herein necessarily employs an invention of any 
+     existing or later issued patent.
+
+     Nokia reserves the right not to offer any or all of these
+     products and to withdraw any or all of them at any future time.
+
+     Copyright (C) 2017, Nokia. All Rights Reserved.";
+
+  revision 2022-08-05 {
+    description
+      "Added metered-flow and color for enhanced filter category
+       and pbit marking group introduced";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2020-03-23 {
+    description
+        "Added ip-precedence-match for match-criteria";
+    reference
+        "Nokia specific";
+  }
+  
+  revision 2019-12-02 {
+    description
+      "Add unmetered for match-criteria";
+    reference
+      "Nokia specific";
+  }
+  
+  revision 2019-07-30 {
+    description
+      "Updated description for dot1x and lacp enum.";
+    reference
+      "Nokia specific";
+  }
+
+
+  revision 2018-11-20 {
+    description
+      "Added an extended list of protocols to be supported
+       in filter-match.";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2018-05-14 {
+    description
+      "Initial revision.";
+    reference
+      "Nokia specific"; 
+  }
+
+  feature nokia-match-on-specific-ipv4-header-fields {
+    description
+      "This feature indicates whether the system supports classifying 
+       packets based on the IP header fields that are specific for 
+       IPv4 packets with the purpose of giving the matching packets a 
+       special QoS treatment.";
+  }
+
+  feature nokia-match-on-specific-ipv6-header-fields {
+    description
+      "This feature indicates whether the system supports classifying 
+       packets based on the IP header fields that are specific for 
+       IPv6 packets with the purpose of giving the matching packets a 
+       special QoS treatment.";
+  }
+
+
+  feature nokia-match-on-common-ip-header-fields {
+    description
+      "This feature indicates whether the system supports classifying 
+       packets based on the IP header fields that are common for IPV4 
+       and IPv6 packets with the purpose of giving the matching 
+       packets a special QoS treatment.";
+  }
+
+  feature nokia-match-on-unmetered-fields {
+    description
+      "This feature indicates whether the system supports classifying
+       packets based on unmetered traffics by CCL policer";
+  }
+
+  feature nokia-match-on-metered-fields {
+    description
+      "This feature indicates whether the system supports classifying
+       packets based on metered traffics by policer";
+  }
+
+  feature nokia-match-on-ip-precedence-range {
+    description
+      "This feature indicates whether the system supports classifying
+       packets based on ip-precedence value (upper 3 bits of IPv4 TOS
+       value or upper 3 bits of IPv6 Traffic class value)";
+  }
+
+  typedef ip-precedence-range {
+    type string {
+      pattern '([0-7](-[0-7])?(,[0-7](-[0-7])?)*)';
+    }
+    description
+      "A list of IP Precedence values, or non overlapping IP 
+       Precedence value ranges, in ascending order, between 0 and 7.
+       Example: 0-1,3,5-7";
+  }
+
+  grouping pbit-marking-list {
+    description
+      "Nodes used to define a list of p-bit metadata.";
+
+    list pbit-marking-list {
+      key "index";
+      description
+        "The P-bit marking list provides match criteria for
+         classifying packets with the intention to apply actions at
+         matching condition. The to be evaluated P-bits are part of a
+         packet's metadata as provided as output of another QoS
+         policy.
+
+         The match criteria provides a list because a packet can
+         contain multiple VLAN tags and correspondingly can contain
+         multiple metadata P-bit fields.
+
+         There is a match if all the packet's metadata P-bit fields
+         have a match with the corresponding 'pbit-values' in this
+         list. If the list is not configured, then the metdata P-bit
+         is not a criterion and then 'all packets match'.";
+
+      leaf index {
+        type bbf-qos-cls:qos-pbit-marking-index;
+        description
+          "The index associated with a metadata P-bit value.";
+      }
+      leaf-list pbit-value {
+        type bbf-dot1qt:pbit;
+        min-elements 1;
+        description
+          "This leaf-list provides a set of possible P-bit values as a
+           criterion for classifying packets.
+
+           There is a match if the identified packet 's metadata P-bit
+           is one of the values specified in the leaf-list.";
+      }
+    }
+  }
+
+  grouping ip-precedence-match {
+    description
+      "Flexible match on the IPv4 or IPv6 IP Precedence field.";
+
+    leaf ip-precedence-range {
+      type ip-precedence-range;
+      description
+        "String identifying the ip-precedence values range.";
+    }
+  }
+
+  augment '/bbf-qos-filt:filters/bbf-qos-filt:filter/'
+        + 'bbf-qos-filt:filter-field' {
+    description
+      "Choice of filters for L3/L4 packet fields matching.";
+
+    case ip4-header {
+      container ipv4 {
+        if-feature nokia-match-on-specific-ipv4-header-fields;
+        uses packet-fields:acl-ipv4-header-fields;
+        description
+          "Rule set that matches IPv4 headers.";
+      }
+      description
+        "Choice specific for ipv4 headers";
+    }
+
+    case ip6-header {
+      container ipv6 {
+        if-feature nokia-match-on-specific-ipv6-header-fields;
+        uses packet-fields:acl-ipv6-header-fields;
+        description
+          "Rule set that matches IPv6 headers.";
+      }
+      description
+        "Choice specific for ipv6 headers";
+    }
+
+    case ip-header-common {
+      if-feature nokia-match-on-common-ip-header-fields;
+      container transport {
+        uses packet-fields:acl-ip-header-fields;
+        uses bbf-qos-enhfilt:acl-transport-header-fields;
+        description
+          "Rule set that matches IPv6 headers.";
+      }
+      description
+        "Choice of either ipv4 or ipv6 headers";
+    }
+  }
+
+  augment '/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/'
+       + 'bbf-qos-cls:filter-method/bbf-qos-cls:inline/'
+       + 'bbf-qos-cls:match-criteria/bbf-qos-cls:protocols/'
+       + 'bbf-qos-cls:protocol' {
+
+    leaf-list other-protocol {
+      type enumeration {
+        enum "icmpv6" {
+          description
+            "Identifies ICMPv6 protocol packeets. ICMPv6 messages 
+             are identified with Next Header value of 58. When 
+             the individual ICMPv6 packet types are configured 
+             then the individual configurations will take 
+             precedence over this configuration";
+        }
+        enum "nd" {
+          description
+            "Identifies IPv6 ND packets, ND packets are a subset
+             of the ICMPv6 protocol. ICMPv6 messages are 
+             identified with Next Header value of 58. ND packets 
+             are identified by specific values of the Type field.
+             Type field values are defined in RFC 3810.";
+        }
+        enum "arp" {
+          description
+            "Identifies the ARP packets, which are ethernet
+             packets of ethertype 0x0806.";
+        }
+        enum "cfm" {
+          description
+            "Identifies the CFM packets, which are ethernet
+             packets of ethertype 0x8902.";
+        }
+        enum "dot1x" {
+          description
+            "Identifies the DOT1X packets, which are ethernet
+             packets of ethertype 0x888E.";
+        }
+        enum "lacp" {
+          description
+            "Identifies the LACP packets, which are ethernet
+             packets of ethertype 0x8809.";
+        }
+      }
+      description
+        "Defines the other protocols which will be matched.";
+    }
+  }
+
+  augment "/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/"
+        + "bbf-qos-cls:filter-method/bbf-qos-cls:inline/"
+        + "bbf-qos-cls:match-criteria" {
+    if-feature "nokia-match-on-unmetered-fields";
+    description
+      "The QoS policy framework allows to configure criteria to be
+       applied to frames. Here this is extended with unmetered";
+
+      leaf unmetered {
+        type empty;
+        description
+            "Matches the traffics which are no hit by CCL policer.";
+      }
+  }
+
+  augment "/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/"
+        + "bbf-qos-cls:filter-method/bbf-qos-cls:inline/"
+        + "bbf-qos-cls:match-criteria" {
+    if-feature "nokia-match-on-ip-precedence-range";
+    description
+      "The QoS policy framework allows to configure criteria to be
+       applied to frames. Here this is extended with ip-precedence match";
+
+    uses ip-precedence-match;
+  }
+
+  augment "/bbf-qos-cls:classifiers/bbf-qos-cls:classifier-entry/"
+        + "bbf-qos-cls:filter-method/"
+        + "bbf-qos-enhfilt:enhanced-classifier" {
+    if-feature "nokia-match-on-metered-fields";
+    description
+      "The QoS policy framework allows to configure criteria to be
+       applied to frames. Here this is extended with metered-flow
+       and metered-color";
+
+     leaf metered-flow {
+       type boolean;
+       description
+         "Matches the frames which are metered by policer.";
+     }
+
+     leaf metered-color {
+       type boolean;
+       description
+         "Matches the frames which are color-marked after
+          policing by certain policer types.";
+     }
+  }
+}
