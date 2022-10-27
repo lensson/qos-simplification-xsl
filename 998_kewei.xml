@@ -1,0 +1,2527 @@
+<edit-config>
+  <target>
+    <running/>
+  </target>
+  <config>
+    <policing-profiles xmlns="urn:bbf:yang:bbf-qos-policing">
+      <policing-profile>
+        <name>policing_ccl_colorblind</name>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-blind</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_ccl_colorblind_new3</name>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-blind</color-mode>
+        </two-rate-three-color-marker-mef>
+        <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-action_port-policer_new1
+        </policing-action-profile>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_ccl_colorblind_new4</name>
+        <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-action_port-policer_new1
+        </policing-action-profile>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-blind</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_ccl_colorblind_new5</name>
+        <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-action_port-policer_new1
+        </policing-action-profile>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-blind</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_ccl_colorblind_new1</name>
+        <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-action_ccl_rule1_new1
+        </policing-action-profile>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-blind</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_ccl_policingTC_aware_new1</name>
+        <policing-pre-handling-profile
+                xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-pre-handling-policingTC-new1
+        </policing-pre-handling-profile>
+        <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-action_ccl_rule2_new1
+        </policing-action-profile>
+        <two-rate-three-color-marker-mef-with-cos
+                xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          <cir>2000000</cir>
+          <cbs>10240</cbs>
+          <cbs-tc-threshold>
+            <policing-tc-threshold>
+              <tc>0</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+            <policing-tc-threshold>
+              <tc>1</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+          </cbs-tc-threshold>
+          <eir>1000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <ebs-tc-threshold>
+            <policing-tc-threshold>
+              <tc>0</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+            <policing-tc-threshold>
+              <tc>1</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+          </ebs-tc-threshold>
+        </two-rate-three-color-marker-mef-with-cos>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_ccl_policingTC_aware</name>
+        <two-rate-three-color-marker-mef-with-cos
+                xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          <cir>2000000</cir>
+          <cbs>10240</cbs>
+          <cbs-tc-threshold>
+            <policing-tc-threshold>
+              <tc>0</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+            <policing-tc-threshold>
+              <tc>1</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+          </cbs-tc-threshold>
+          <eir>1000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <ebs-tc-threshold>
+            <policing-tc-threshold>
+              <tc>0</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+            <policing-tc-threshold>
+              <tc>1</tc>
+              <threshold>50</threshold>
+            </policing-tc-threshold>
+          </ebs-tc-threshold>
+        </two-rate-three-color-marker-mef-with-cos>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_colorblind</name>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-blind</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_unmetered_coloraware</name>
+        <scope xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:vlan-sub-interface</scope>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-aware</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+      <policing-profile>
+        <name>policing_unmetered_coloraware_new1</name>
+        <scope xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:vlan-sub-interface</scope>
+        <policing-pre-handling-profile
+                xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-pre-handling-precolor-new1
+        </policing-pre-handling-profile>
+        <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+          policing-action_port-policer_new1
+        </policing-action-profile>
+        <two-rate-three-color-marker-mef>
+          <cir>20000000</cir>
+          <cbs>10240</cbs>
+          <eir>10000000</eir>
+          <ebs>10240</ebs>
+          <couple-flag>0</couple-flag>
+          <color-mode>color-aware</color-mode>
+        </two-rate-three-color-marker-mef>
+      </policing-profile>
+    </policing-profiles>
+    <policing-pre-handling-profiles
+            xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+      <pre-handling-profile>
+        <name>policing-pre-handling-precolor-new1</name>
+        <pre-handling-entry>
+          <name>pibt0</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>red</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt1</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>red</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt2</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>yellow</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt3</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>yellow</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt4</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>yellow</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt5</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>green</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt6</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>green</flow-color>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt7</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <flow-color>green</flow-color>
+        </pre-handling-entry>
+      </pre-handling-profile>
+      <pre-handling-profile>
+        <name>policing-pre-handling-policingTC-new1</name>
+        <pre-handling-entry>
+          <name>pibt0</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>0</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt1</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>1</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt2</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>2</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt3</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>3</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt4</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>4</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt5</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>5</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt6</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>6</policing-traffic-class>
+        </pre-handling-entry>
+        <pre-handling-entry>
+          <name>pibt7</name>
+          <match-params>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-params>
+          <policing-traffic-class>7</policing-traffic-class>
+        </pre-handling-entry>
+      </pre-handling-profile>
+    </policing-pre-handling-profiles>
+    <policing-action-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+      <action-profile>
+        <name>policing-action_port-policer_new1</name>
+        <action>
+          <flow-color>green</flow-color>
+          <pbit-marking-list>
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+          <bac-color>green</bac-color>
+          <metered-flow>true</metered-flow>
+          <metered-color>true</metered-color>
+        </action>
+        <action>
+          <flow-color>yellow</flow-color>
+          <pbit-marking-list>
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+          <bac-color>yellow</bac-color>
+          <metered-flow>true</metered-flow>
+          <metered-color>true</metered-color>
+        </action>
+        <action>
+          <flow-color>red</flow-color>
+          <discard/>
+        </action>
+      </action-profile>
+      <action-profile>
+        <name>policing-action_ccl_rule2_new1</name>
+        <action>
+          <flow-color>green</flow-color>
+          <pbit-marking-list>
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+          <bac-color>green</bac-color>
+          <metered-flow>true</metered-flow>
+          <metered-color>true</metered-color>
+        </action>
+        <action>
+          <flow-color>yellow</flow-color>
+          <pbit-marking-list>
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+          <bac-color>yellow</bac-color>
+          <metered-flow>true</metered-flow>
+          <metered-color>true</metered-color>
+        </action>
+        <action>
+          <flow-color>red</flow-color>
+          <discard/>
+        </action>
+      </action-profile>
+      <action-profile>
+        <name>policing-action_ccl_rule1_new1</name>
+        <action>
+          <flow-color>green</flow-color>
+          <pbit-marking-list>
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+          <bac-color>green</bac-color>
+          <metered-flow>true</metered-flow>
+          <metered-color>true</metered-color>
+        </action>
+        <action>
+          <flow-color>yellow</flow-color>
+          <pbit-marking-list>
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+          <bac-color>yellow</bac-color>
+        </action>
+        <action>
+          <flow-color>red</flow-color>
+          <discard/>
+        </action>
+      </action-profile>
+    </policing-action-profiles>
+    <filters xmlns="urn:bbf:yang:bbf-qos-filters">
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter1_policer</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enhfilter11</name>
+          <ipv4>
+            <source-ipv4-network>192.168.1.1/32</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter2_policer</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enh_filter21</name>
+          <ipv4>
+            <source-ipv4-network>192.168.1.2/32</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter3_policer</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enh_filter31</name>
+          <ipv4>
+            <source-ipv4-network>192.168.1.3/32</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter_new1</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enh_filter1</name>
+          <ipv4>
+            <source-ipv4-network>192.168.1.4/32</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter4_discard</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enh_filter34</name>
+          <ipv4>
+            <source-ipv4-network>192.168.1.14/32</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter_new2</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enh_filter1</name>
+          <ipv4>
+            <source-ipv4-network>192.168.1.5/32</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <name>enhanced_filter_new3</name>
+        <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-any-filter</filter-operation>
+        <filter>
+          <name>enh_filter1</name>
+          <ipv4>
+            <source-ipv4-network>192.168.2.0/24</source-ipv4-network>
+          </ipv4>
+        </filter>
+      </enhanced-filter>
+      <bbf-qos-enhfilt:enhanced-filter xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <bbf-qos-enhfilt:name>enhanced-filter1_green</bbf-qos-enhfilt:name>
+        <bbf-qos-enhfilt:filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-all-filter
+        </bbf-qos-enhfilt:filter-operation>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter1_green_1</name>
+          <enhanced-filter-name>enhanced_filter1_policer</enhanced-filter-name>
+        </filter>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter1_green_2</name>
+          <flow-color>green</flow-color>
+        </filter>
+      </bbf-qos-enhfilt:enhanced-filter>
+      <bbf-qos-enhfilt:enhanced-filter xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <bbf-qos-enhfilt:name>enhanced-filter1_yellow</bbf-qos-enhfilt:name>
+        <bbf-qos-enhfilt:filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-all-filter
+        </bbf-qos-enhfilt:filter-operation>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter1_yellow_1</name>
+          <enhanced-filter-name>enhanced_filter1_policer</enhanced-filter-name>
+        </filter>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter1_yellow_2</name>
+          <flow-color>yellow</flow-color>
+        </filter>
+      </bbf-qos-enhfilt:enhanced-filter>
+      <bbf-qos-enhfilt:enhanced-filter xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <bbf-qos-enhfilt:name>enhanced-filter1_red</bbf-qos-enhfilt:name>
+        <bbf-qos-enhfilt:filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-all-filter
+        </bbf-qos-enhfilt:filter-operation>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter1_red_1</name>
+          <enhanced-filter-name>enhanced_filter1_policer</enhanced-filter-name>
+        </filter>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter1_red_2</name>
+          <flow-color>red</flow-color>
+        </filter>
+      </bbf-qos-enhfilt:enhanced-filter>
+      <bbf-qos-enhfilt:enhanced-filter xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <bbf-qos-enhfilt:name>enhanced-filter2_green</bbf-qos-enhfilt:name>
+        <bbf-qos-enhfilt:filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-all-filter
+        </bbf-qos-enhfilt:filter-operation>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter2_green_1</name>
+          <enhanced-filter-name>enhanced_filter2_policer</enhanced-filter-name>
+        </filter>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter2_green_2</name>
+          <flow-color>green</flow-color>
+        </filter>
+      </bbf-qos-enhfilt:enhanced-filter>
+      <bbf-qos-enhfilt:enhanced-filter xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <bbf-qos-enhfilt:name>enhanced-filter2_yellow</bbf-qos-enhfilt:name>
+        <bbf-qos-enhfilt:filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-all-filter
+        </bbf-qos-enhfilt:filter-operation>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter2_yellow_1</name>
+          <enhanced-filter-name>enhanced_filter2_policer</enhanced-filter-name>
+        </filter>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter2_yellow_2</name>
+          <flow-color>yellow</flow-color>
+        </filter>
+      </bbf-qos-enhfilt:enhanced-filter>
+      <bbf-qos-enhfilt:enhanced-filter xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+        <bbf-qos-enhfilt:name>enhanced-filter2_red</bbf-qos-enhfilt:name>
+        <bbf-qos-enhfilt:filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">match-all-filter
+        </bbf-qos-enhfilt:filter-operation>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter2_red_1</name>
+          <enhanced-filter-name>enhanced_filter2_policer</enhanced-filter-name>
+        </filter>
+        <filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>enhfilter2_red_2</name>
+          <flow-color>red</flow-color>
+        </filter>
+      </bbf-qos-enhfilt:enhanced-filter>
+    </filters>
+    <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+      <classifier-entry>
+        <name>cls_marker_copy</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>0-7</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-from-frame-tag
+                      xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0
+              </pbit-from-frame-tag>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type>dei-marking</action-type>
+          <dei-marking-cfg>
+            <dei-marking-list>
+              <index>0</index>
+              <dei-from-frame-tag
+                      xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0
+              </dei-from-frame-tag>
+            </dei-marking-list>
+          </dei-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_00</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>0</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_11</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>1</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_22</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>2</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_33</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>3</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_44</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>4</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_55</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>5</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_66</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>6</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_marker_77</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <tag>
+            <index>0</index>
+            <in-pbit-list>7</in-pbit-list>
+          </tag>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p0</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">red</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p1</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">red</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p2</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p3</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p4</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p5</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">green</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p6</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">green</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_precolor_p7</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:flow-color</action-type>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">green</flow-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC00</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">0
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC11</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">1
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC22</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">2
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC33</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">3
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC44</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">4
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC55</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">5
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC66</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">6
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_policingTC77</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type
+                  xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">
+            nokia-qos-cls-ext:policing-traffic-class
+          </action-type>
+          <policing-traffic-class
+                  xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension">7
+          </policing-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule1_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter1_policer
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule2_policingTC_aware</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter2_policer
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_policingTC_aware</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule3_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter3_policer
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule4_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <source-ipv4-network>192.168.1.4/32</source-ipv4-network>
+        </ipv4>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_ccl_rule1_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter1_policer
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind_new1</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_ccl_rule2_policingTC_aware</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter2_policer
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_policingTC_aware_new1</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_ccl_rule3_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter3_policer
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind_new3</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_ccl_rule4_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter_new1</enhanced-filter-name>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind_new4</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_ccl_rule5_discard</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter_new2</enhanced-filter-name>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+          <bbf-qos-plc:discard xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule5_discard</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <source-ipv4-network>192.168.1.5/32</source-ipv4-network>
+        </ipv4>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+          <bbf-qos-plc:discard xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule6_discard</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter4_discard
+        </enhanced-filter-name>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+          <bbf-qos-plc:discard xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule7_pass</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <ipv4 xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <source-ipv4-network>192.168.2.0/24</source-ipv4-network>
+        </ipv4>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type>pass</action-type>
+          <pass/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule8_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <any-frame xmlns="urn:bbf:yang:bbf-qos-enhanced-filters"/>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule7_pass_new1</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter_new3</enhanced-filter-name>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type>pass</action-type>
+          <pass/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_ccl_rule8_colorblind</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <any-frame xmlns="urn:bbf:yang:bbf-qos-enhanced-filters"/>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_ccl_colorblind_new5</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_ruleX_pass</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <any-frame xmlns="urn:bbf:yang:bbf-qos-enhanced-filters"/>
+        <classifier-action-entry-cfg>
+          <action-type>pass</action-type>
+          <pass/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_port-policer_unmetered</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <nokia-qos-filt:unmetered
+                  xmlns:nokia-qos-filt="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext"/>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_unmetered_coloraware</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_port-policer_unmetered</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-flow xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-flow>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+          <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+            <policing-profile>policing_unmetered_coloraware_new1</policing-profile>
+          </policing>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule1_action_green</name>
+        <bbf-qos-enhfilt:enhanced-filter-name xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+          enhanced-filter1_green
+        </bbf-qos-enhfilt:enhanced-filter-name>
+        <filter-operation>match-all-filter</filter-operation>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bbf-qos-plc:bac-color xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">green</bbf-qos-plc:bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule1_action_yellow</name>
+        <bbf-qos-enhfilt:enhanced-filter-name xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+          enhanced-filter1_yellow
+        </bbf-qos-enhfilt:enhanced-filter-name>
+        <filter-operation>match-all-filter</filter-operation>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bbf-qos-plc:bac-color xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">yellow</bbf-qos-plc:bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule1_action_red</name>
+        <bbf-qos-enhfilt:enhanced-filter-name xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+          enhanced-filter1_red
+        </bbf-qos-enhfilt:enhanced-filter-name>
+        <filter-operation>match-all-filter</filter-operation>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+          <bbf-qos-plc:discard xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule2_action_green</name>
+        <bbf-qos-enhfilt:enhanced-filter-name xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+          enhanced-filter2_green
+        </bbf-qos-enhfilt:enhanced-filter-name>
+        <filter-operation>match-all-filter</filter-operation>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bbf-qos-plc:bac-color xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">green</bbf-qos-plc:bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule2_action_yellow</name>
+        <bbf-qos-enhfilt:enhanced-filter-name xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+          enhanced-filter2_yellow
+        </bbf-qos-enhfilt:enhanced-filter-name>
+        <filter-operation>match-all-filter</filter-operation>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bbf-qos-plc:bac-color xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">yellow</bbf-qos-plc:bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_ccl_rule2_action_red</name>
+        <bbf-qos-enhfilt:enhanced-filter-name xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters">
+          enhanced-filter2_red
+        </bbf-qos-enhfilt:enhanced-filter-name>
+        <filter-operation>match-all-filter</filter-operation>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+          <bbf-qos-plc:discard xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_port-policer_action_green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">green</flow-color>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_port-policer_action_yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</flow-color>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>pbit-marking</action-type>
+          <pbit-marking-cfg>
+            <pbit-marking-list>
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </pbit-marking-cfg>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_port-policer_action_red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">red</flow-color>
+        </match-criteria>
+        <classifier-action-entry-cfg xmlns="urn:bbf:yang:bbf-qos-classifiers">
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+          <bbf-qos-plc:discard xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p0</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p1</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p2</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p3</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p4</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p5</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p6</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-color_p7</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p0</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>0</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p1</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>1</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p2</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>2</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p3</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>3</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p4</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>4</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p5</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>5</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p6</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>6</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_queue-color_p7</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
+        <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <index>0</index>
+          <pbit-value>7</pbit-value>
+        </pbit-marking-list>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc00</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>0</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc11</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>1</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc22</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>2</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc33</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>3</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc44</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>4</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc55</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>5</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc66</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>6</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc77</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>7</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc00red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>0</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc11red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>1</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc22yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>2</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc33yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>3</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc44yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>4</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc55green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>5</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc66green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>6</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_pbit2tc77green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>7</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc00red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>0</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc11red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>1</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc22yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>2</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc33yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>3</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc44yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>4</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc55green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>5</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc66green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>6</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_cls_pbit2tc77green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>scheduling-traffic-class</action-type>
+          <scheduling-traffic-class>7</scheduling-traffic-class>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc00red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>0</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc11red</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>1</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc22yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>2</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc33yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>3</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc44yellow</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>4</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc55green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>5</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc66green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>6</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>C_QC_cls_pbit2tc77green</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+          <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+      <classifier-entry>
+        <name>cls_queue-count_p7</name>
+        <filter-operation>match-all-filter</filter-operation>
+        <match-criteria>
+          <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+            <index>0</index>
+            <pbit-value>7</pbit-value>
+          </pbit-marking-list>
+        </match-criteria>
+        <classifier-action-entry-cfg>
+          <action-type>count</action-type>
+          <count/>
+        </classifier-action-entry-cfg>
+      </classifier-entry>
+    </classifiers>
+    <bbf-qos-pol:policies xmlns:bbf-qos-pol="urn:bbf:yang:bbf-qos-policies">
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy1_marker</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_00</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_11</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_22</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_33</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_44</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_55</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_66</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_77</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy1_marker_copy</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_marker_copy</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy2_pre-color</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p0</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p1</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p2</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p3</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p4</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p5</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p6</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_precolor_p7</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy3_PolicingTC</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC00</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC11</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC22</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC33</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC44</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC55</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC66</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_policingTC77</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy4_ccl</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule1_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule2_policingTC_aware</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule3_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule4_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule5_discard</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule6_discard</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule7_pass</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule8_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_ruleX_pass</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy5_port-policer</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_port-policer_unmetered</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy6_policer-action</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule1_action_green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule1_action_yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule1_action_red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule2_action_green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule2_action_yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule2_action_red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_port-policer_action_green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_port-policer_action_yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_port-policer_action_red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p0</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p1</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p2</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p3</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p4</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p5</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p6</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-color_p7</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy7_schedule_pbit2tc</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc00</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc11</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc22</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc33</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc44</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc55</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc66</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc77</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy7_schedule_pbit2tc2color</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc00red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc11red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc22yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc33yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc44yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc55green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc66green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_pbit2tc77green</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>policy9_queue-count</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_queue-count_p7</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>P_QC_policy6_policer-action</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p0</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p1</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p2</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p3</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p4</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p5</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p6</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_queue-color_p7</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>P_policy5_port-policer</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_port-policer_unmetered</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>P_policy4_ccl</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_ccl_rule1_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_ccl_rule2_policingTC_aware</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_ccl_rule3_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_ccl_rule4_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_ccl_rule5_discard</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule6_discard</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_rule7_pass_new1</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_ccl_rule8_colorblind</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>cls_ccl_ruleX_pass</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>P_policy7_schedule_pbit2tc2color</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc00red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc11red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc22yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc33yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc44yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc55green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc66green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_cls_pbit2tc77green</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+      <bbf-qos-pol:policy>
+        <bbf-qos-pol:name>P_QC_policy7_schedule_pbit2tc2color</bbf-qos-pol:name>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc00red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc11red</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc22yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc33yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc44yellow</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc55green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc66green</name>
+        </classifiers>
+        <classifiers xmlns="urn:bbf:yang:bbf-qos-policies">
+          <name>C_QC_cls_pbit2tc77green</name>
+        </classifiers>
+      </bbf-qos-pol:policy>
+    </bbf-qos-pol:policies>
+    <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies">
+      <policy-profile>
+        <name>DP_input</name>
+        <policy-list>
+          <name>policy1_marker</name>
+        </policy-list>
+        <policy-list>
+          <name>policy2_pre-color</name>
+        </policy-list>
+        <policy-list>
+          <name>policy3_PolicingTC</name>
+        </policy-list>
+        <policy-list>
+          <name>policy4_ccl</name>
+        </policy-list>
+        <policy-list>
+          <name>policy5_port-policer</name>
+        </policy-list>
+        <policy-list>
+          <name>policy6_policer-action</name>
+        </policy-list>
+        <policy-list>
+          <name>policy7_schedule_pbit2tc</name>
+        </policy-list>
+        <policy-list>
+          <name>policy9_queue-count</name>
+        </policy-list>
+      </policy-profile>
+      <policy-profile>
+        <name>DP_input2</name>
+        <policy-list>
+          <name>policy7_schedule_pbit2tc2color</name>
+        </policy-list>
+      </policy-profile>
+      <policy-profile>
+        <name>input</name>
+        <policy-list>
+          <name>policy1_marker</name>
+        </policy-list>
+        <policy-list>
+          <name>P_policy4_ccl</name>
+        </policy-list>
+        <policy-list>
+          <name>P_policy5_port-policer</name>
+        </policy-list>
+        <policy-list>
+          <name>policy7_schedule_pbit2tc</name>
+        </policy-list>
+        <policy-list>
+          <name>P_QC_policy6_policer-action</name>
+        </policy-list>
+        <policy-list>
+          <name>policy9_queue-count</name>
+        </policy-list>
+      </policy-profile>
+      <policy-profile>
+        <name>input2</name>
+        <policy-list>
+          <name>P_policy7_schedule_pbit2tc2color</name>
+        </policy-list>
+        <policy-list>
+          <name>P_QC_policy7_schedule_pbit2tc2color</name>
+        </policy-list>
+      </policy-profile>
+    </qos-policy-profiles>
+  </config>
+</edit-config>
