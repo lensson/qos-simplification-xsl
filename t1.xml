@@ -1,0 +1,31 @@
+<policing-profile>
+  <name>PP_cls_ccl_rule2_policingTC_aware</name>
+  <two-rate-three-color-marker-mef-with-cos
+          xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+    <cir>2000000</cir>
+    <cbs>10240</cbs>
+    <cbs-tc-threshold>
+      <policing-tc-threshold>
+        <tc>0</tc>
+        <threshold>50</threshold>
+      </policing-tc-threshold>
+      <policing-tc-threshold>
+        <tc>1</tc>
+        <threshold>50</threshold>
+      </policing-tc-threshold>
+    </cbs-tc-threshold>
+    <eir>1000000</eir>
+    <ebs>10240</ebs>
+    <couple-flag>0</couple-flag>
+    <ebs-tc-threshold>
+      <policing-tc-threshold>
+        <tc>0</tc>
+        <threshold>50</threshold>
+      </policing-tc-threshold>
+      <policing-tc-threshold>
+        <tc>1</tc>
+        <threshold>50</threshold>
+      </policing-tc-threshold>
+    </ebs-tc-threshold>
+  </two-rate-three-color-marker-mef-with-cos>
+</policing-profile>
