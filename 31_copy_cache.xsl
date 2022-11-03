@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:bbf-qos-pol="urn:bbf:yang:bbf-qos-policies"
-                xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers"
-                xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"
-                xmlns:nokia-sdan-qos-policing-extension="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension"
                 exclude-result-prefixes="bbf-qos-plc"
                 xmlns=""
                 version="1.0">
@@ -16,35 +12,12 @@
   <xsl:include href="00_head_policy_type_var.xsl"/>
 
   <!-- default rule -->
-
   <xsl:template match="*">
     <xsl:copy>
       <xsl:copy-of select="@*"/>
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
-
-  <!--
-  <xsl:template match="comment()">
-    <xsl:copy>
-      <xsl:apply-templates/>
-    </xsl:copy>
-  </xsl:template>
-  -->
-
-  <!--
-  <xsl:template match="*">
-    <xsl:element name="{local-name()}">
-      <xsl:for-each select="@*">
-        <xsl:attribute name="{local-name()}">
-          <xsl:message><xsl:value-of select="local-name()"/></xsl:message>
-          <xsl:value-of select="."/>
-        </xsl:attribute>
-      </xsl:for-each>
-      <xsl:apply-templates/>
-    </xsl:element>
-  </xsl:template>
-  -->
 
   <xsl:template match="*[
     local-name() = 'qos-policy-profiles' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policies'
@@ -149,15 +122,14 @@
       and local-name() = 'policing-pre-handling-profiles'
       and child::*[local-name() = 'policing-pre-handling-profile']
     ]"/>
-
     <xsl:copy>
       <xsl:apply-templates select="@* | node()"/>
       <xsl:copy-of select="$policingPrehandlingProfiles"/>
       <xsl:copy-of select="$policingActionProfiles"/>
     </xsl:copy>
-
   </xsl:template>
   -->
+
   <!-- rename current policy-profile if have new one -->
   <xsl:template match="*[
     local-name() = 'name'
