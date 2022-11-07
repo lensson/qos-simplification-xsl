@@ -128,8 +128,6 @@
     </xsl:choose>
   </xsl:template>
 
-
-
   <xsl:template name="getEnhancedFilterRefFilter">
     <xsl:param name="enhancedFilterName"/>
     <xsl:variable name="enhancedFilter" select="//*[

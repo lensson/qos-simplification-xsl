@@ -16,11 +16,7 @@
   <xsl:variable name="bbf-qos-enhfilt" select="'bbf-qos-enhfilt'"/>
   <xsl:variable name="bbf-qos-enhfilt-URI" select="'urn:bbf:yang:bbf-qos-enhanced-filters'"/>
 
-
-
-
   <xsl:template match="*">
-
     <xsl:variable name="parentName">
       <xsl:value-of select="name(..)"/>
     </xsl:variable>
@@ -30,13 +26,8 @@
     <xsl:variable name="parentNamespace">
       <xsl:value-of select="namespace-uri(..)"/>
     </xsl:variable>
-
-    <xsl:message>Total | <xsl:value-of select="$curNamespace"/> | <xsl:value-of select="$parentNamespace"/>
-    </xsl:message>
     <xsl:choose>
       <xsl:when test="$curNamespace != $parentNamespace">
-        <xsl:message>Match | <xsl:value-of select="name()"/> | <xsl:value-of select="name(..)"/>
-        </xsl:message>
         <xsl:choose>
           <xsl:when test="not(child::*) and not(text())">
             <xsl:text disable-output-escaping="yes">&lt;</xsl:text>
@@ -48,6 +39,22 @@
           <xsl:otherwise>
             <xsl:text disable-output-escaping="yes">&lt;</xsl:text>
             <xsl:value-of select="local-name()"/>
+            <xsl:for-each select="attribute::node()">
+              <xsl:choose>
+                <xsl:when test="current()">
+                  <xsl:text disable-output-escaping="yes"> </xsl:text>
+                  <xsl:value-of select="local-name()"/>
+                  <xsl:text disable-output-escaping="yes">="</xsl:text>
+                  <xsl:value-of select="current()"/>
+                  <xsl:text disable-output-escaping="yes">" </xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:text disable-output-escaping="yes"> </xsl:text>
+                  <xsl:value-of select="local-name()"/>
+                  <xsl:text disable-output-escaping="yes"> </xsl:text>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:for-each>
             <xsl:text disable-output-escaping="yes"> xmlns=&quot;</xsl:text>
             <xsl:value-of select="$curNamespace"/>
             <xsl:text disable-output-escaping="yes">&quot;&gt;</xsl:text>
@@ -59,7 +66,6 @@
         </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>Other | <xsl:value-of select="name()"/></xsl:message>
         <xsl:element name="{local-name()}">
           <xsl:copy-of select="@*"/>
           <xsl:apply-templates/>
@@ -67,48 +73,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-
-  <!--
-  <xsl:template match="*">
-    <xsl:choose>
-      <xsl:when test="local-name() != name()">
-        <xsl:variable name="prefix">
-          <xsl:value-of select="substring-before(name(),':')"/>
-        </xsl:variable>
-        <xsl:variable name="defaultNamespace">
-          <xsl:value-of select="namespace::*[local-name() = $prefix]"/>
-        </xsl:variable>
-        <xsl:variable name="defaultParentNamespace">
-          <xsl:call-template name="getParentDefaultNamespace">
-            <xsl:with-param name="parentNode" select=".."/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:text disable-output-escaping="yes">&lt;</xsl:text>
-        <xsl:value-of select="local-name()"/>
-        <xsl:choose>
-          <xsl:when test="$defaultNamespace = $defaultParentNamespace">
-            <xsl:text disable-output-escaping="yes">&gt;</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:text disable-output-escaping="yes"> xmlns=&quot;</xsl:text>
-            <xsl:value-of select="$defaultNamespace"/>
-            <xsl:text disable-output-escaping="yes">&quot;&gt;</xsl:text>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:apply-templates/>
-        <xsl:text disable-output-escaping="yes">&lt;/</xsl:text>
-        <xsl:value-of select="local-name()"/>
-        <xsl:text disable-output-escaping="yes">&gt;</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:copy>
-          <xsl:copy-of select="@*"/>
-          <xsl:apply-templates/>
-        </xsl:copy>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-  -->
 
   <!-- Remove all wrap , space and namespace prefix in text -->
   <xsl:template match="text()">

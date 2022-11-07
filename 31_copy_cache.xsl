@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                exclude-result-prefixes="bbf-qos-plc"
+                xmlns:bbf-qos-filt="urn:bbf:yang:bbf-qos-filters"
+                xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters"
+                xmlns:bbf-qos-pol="urn:bbf:yang:bbf-qos-policies"
+                xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers"
+                xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"
+                xmlns:nokia-qos-filt="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext"
+                xmlns:nokia-sdan-qos-policing-extension="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension"
+                xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"
                 xmlns=""
                 version="1.0">
 
@@ -107,29 +114,6 @@
     <xsl:copy-of select="$policingActionProfiles"/>
   </xsl:template>
 
-  <!--
-  <xsl:template match="*[
-    local-name() != 'new'
-    and child::*[ local-name() = 'policing-profiles' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policing']
-  ]">
-    <xsl:variable name="policingActionProfiles" select="//*[
-      parent::*[local-name() = 'new']
-      and local-name() = 'policing-action-profiles'
-      and child::*[local-name() = 'policing-action-profile']
-    ]"/>
-    <xsl:variable name="policingPrehandlingProfiles" select="//*[
-      parent::*[local-name() = 'new']
-      and local-name() = 'policing-pre-handling-profiles'
-      and child::*[local-name() = 'policing-pre-handling-profile']
-    ]"/>
-    <xsl:copy>
-      <xsl:apply-templates select="@* | node()"/>
-      <xsl:copy-of select="$policingPrehandlingProfiles"/>
-      <xsl:copy-of select="$policingActionProfiles"/>
-    </xsl:copy>
-  </xsl:template>
-  -->
-
   <!-- rename current policy-profile if have new one -->
   <xsl:template match="*[
     local-name() = 'name'
@@ -141,5 +125,4 @@
       <xsl:value-of select="concat('DP_', current())"/>
     </xsl:copy>
   </xsl:template>
-
 </xsl:stylesheet>
