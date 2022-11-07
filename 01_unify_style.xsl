@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:bbf-qos-filt="urn:bbf:yang:bbf-qos-filters"
+                xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters"
                 xmlns:bbf-qos-pol="urn:bbf:yang:bbf-qos-policies"
                 xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers"
                 xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"

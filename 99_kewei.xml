@@ -1744,7 +1744,6 @@
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
-
         <classifier-entry>
           <name>C_QC_cls_pbit2tc00red</name>
           <filter-operation>match-all-filter</filter-operation>

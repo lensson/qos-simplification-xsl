@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                exclude-result-prefixes="nokia-qos-cls-ext"
-                extension-element-prefixes="nokia-qos-cls-ext"
+                xmlns:bbf-qos-filt="urn:bbf:yang:bbf-qos-filters"
+                xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters"
                 xmlns:bbf-qos-pol="urn:bbf:yang:bbf-qos-policies"
                 xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers"
                 xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing"
-                xmlns:bbf-qos-filt="urn:bbf:yang:bbf-qos-filters"
-                xmlns:bbf-qos-enhfilt="urn:bbf:yang:bbf-qos-enhanced-filters"
                 xmlns:nokia-qos-filt="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext"
+                xmlns:nokia-sdan-qos-policing-extension="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension"
                 xmlns:nokia-qos-cls-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-classifier-extension"
-                xmlns:nokia-qos-plc-ext="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension"
-                xmlns=""
                 version="1.0">
 
   <xsl:strip-space elements="*"/>
@@ -311,20 +308,24 @@
                 <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
                   <xsl:value-of select="$newCCLPolicyName"/>
                 </xsl:element>
-                <xsl:for-each select="$CCLPolicy/node()">
+
+                <xsl:for-each select="$curCCLPolicySec/classifiers/classifier">
+                  <xsl:variable name="curClassifier" select="current()"/>
                   <xsl:variable name="curClassifierName">
                     <xsl:value-of select="child::*[local-name() = 'name']"/>
                   </xsl:variable>
-                  <xsl:if test="
-                    local-name() = 'classifiers'
-                    and boolean($curCCLPolicySec/classifiers/classifier[name = $curClassifierName])
-                  ">
-                    <xsl:element name="classifiers" namespace="urn:bbf:yang:bbf-qos-policies">
-                      <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
-                        <xsl:value-of select="concat('C_',$curClassifierName)"/>
-                      </xsl:element>
+                  <xsl:element name="classifiers" namespace="urn:bbf:yang:bbf-qos-policies">
+                    <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
+                      <xsl:choose>
+                        <xsl:when test="$curClassifier/actions/action/policing-profile or $curClassifier/filters/enh-filter-type">
+                          <xsl:value-of select="concat('C_',$curClassifierName)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="$curClassifierName"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
                     </xsl:element>
-                  </xsl:if>
+                  </xsl:element>
                 </xsl:for-each>
               </xsl:element>
             </xsl:if>
@@ -352,14 +353,22 @@
                         <xsl:choose>
                           <xsl:when test="child::*[local-name() = 'pbit-marking-list']">
                             <xsl:element name="pbit-marking-list" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
-                              <xsl:element name="index" namespace="urn:bbf:yang:bbf-qos-enhanced-filters"><xsl:value-of select="child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'index']"/></xsl:element>
-                              <xsl:element name="pbit-value" namespace="urn:bbf:yang:bbf-qos-enhanced-filters"><xsl:value-of select="child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'pbit-value']"/></xsl:element>
+                              <xsl:element name="index" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                <xsl:value-of select="child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'index']"/>
+                              </xsl:element>
+                              <xsl:element name="pbit-value" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                <xsl:value-of select="child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'pbit-value']"/>
+                              </xsl:element>
                             </xsl:element>
                           </xsl:when>
                           <xsl:when test="child::*[local-name() = 'dei-marking-list']">
                             <xsl:element name="dei-marking-list" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
-                              <xsl:element name="index" namespace="urn:bbf:yang:bbf-qos-enhanced-filters"><xsl:value-of select="child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'index']"/></xsl:element>
-                              <xsl:element name="dei-value" namespace="urn:bbf:yang:bbf-qos-enhanced-filters"><xsl:value-of select="child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'dei-value']"/></xsl:element>
+                              <xsl:element name="index" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                <xsl:value-of select="child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'index']"/>
+                              </xsl:element>
+                              <xsl:element name="dei-value" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                <xsl:value-of select="child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'dei-value']"/>
+                              </xsl:element>
                             </xsl:element>
                           </xsl:when>
                         </xsl:choose>
@@ -481,48 +490,51 @@
                 <xsl:variable name="newPolicingProfileName">
                   <xsl:value-of select="concat('PP_', $curClassifier/child::*[local-name() = 'name'])"/>
                 </xsl:variable>
-                <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                  <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                    <xsl:value-of select="concat('C_',$classifier/child::*[local-name() = 'name'])"/>
-                  </xsl:element>
-                  <xsl:copy-of select="$classifier/child::*[local-name() = 'filter-operation']"/>
+                <!-- If have enhanced-classifier or have policing-profile action, create a new classifier or any-frame-->
+                <xsl:if test="$curClassifier/actions/action/policing-profile or $curClassifier/filters/enh-filter-type">
+                  <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
+                    <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
+                      <xsl:value-of select="concat('C_',$classifier/child::*[local-name() = 'name'])"/>
+                    </xsl:element>
+                    <xsl:copy-of select="$classifier/child::*[local-name() = 'filter-operation']"/>
 
-                  <xsl:choose>
-                    <xsl:when test="$curClassifier/filters/enh-filter-type">
-                      <xsl:element name="enhanced-filter-name" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
-                        <xsl:value-of select="concat('EF_',$curClassifier/name)"/>
-                      </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:copy-of select="$classifier/child::*[local-name() = 'enhanced-filter-name']"/>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                  <xsl:for-each select="$classifier/node()">
                     <xsl:choose>
-                      <xsl:when test="local-name() = 'any-frame'">
-                        <xsl:copy-of select="."/>
+                      <xsl:when test="$curClassifier/filters/enh-filter-type">
+                        <xsl:element name="enhanced-filter-name" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                          <xsl:value-of select="concat('EF_',$curClassifier/name)"/>
+                        </xsl:element>
                       </xsl:when>
-                      <xsl:when test="local-name() = 'classifier-action-entry-cfg'">
-                        <xsl:copy>
-                          <xsl:for-each select="node()">
-                            <xsl:choose>
-                              <xsl:when test="local-name() = 'policing'">
-                                <xsl:copy>
-                                  <xsl:element name="policing-profile" namespace="urn:bbf:yang:bbf-qos-policing">
-                                    <xsl:value-of select="$newPolicingProfileName"/>
-                                  </xsl:element>
-                                </xsl:copy>
-                              </xsl:when>
-                              <xsl:otherwise>
-                                <xsl:copy-of select="."/>
-                              </xsl:otherwise>
-                            </xsl:choose>
-                          </xsl:for-each>
-                        </xsl:copy>
-                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:copy-of select="$classifier/child::*[local-name() = 'enhanced-filter-name']"/>
+                      </xsl:otherwise>
                     </xsl:choose>
-                  </xsl:for-each>
-                </xsl:element>
+                    <xsl:for-each select="$classifier/node()">
+                      <xsl:choose>
+                        <xsl:when test="local-name() = 'any-frame'">
+                          <xsl:copy-of select="."/>
+                        </xsl:when>
+                        <xsl:when test="local-name() = 'classifier-action-entry-cfg'">
+                          <xsl:copy>
+                            <xsl:for-each select="node()">
+                              <xsl:choose>
+                                <xsl:when test="local-name() = 'policing'">
+                                  <xsl:copy>
+                                    <xsl:element name="policing-profile" namespace="urn:bbf:yang:bbf-qos-policing">
+                                      <xsl:value-of select="$newPolicingProfileName"/>
+                                    </xsl:element>
+                                  </xsl:copy>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                  <xsl:copy-of select="."/>
+                                </xsl:otherwise>
+                              </xsl:choose>
+                            </xsl:for-each>
+                          </xsl:copy>
+                        </xsl:when>
+                      </xsl:choose>
+                    </xsl:for-each>
+                  </xsl:element>
+                </xsl:if>
               </xsl:for-each>
             </xsl:if>
           </xsl:element>
@@ -999,7 +1011,6 @@
   </xsl:template>
 
   <!-- ====================================== Infra Function ====================================== -->
-
 
   <xsl:template name="findCurClassifierByPolicyAndRefFilterName">
     <xsl:param name="policySec"/>
