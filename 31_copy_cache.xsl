@@ -86,6 +86,7 @@
     </xsl:copy>
   </xsl:template>
 
+  <!-- Copy policing-profile and Create policing-action-profiles and policing-pre-handling-profiles -->
   <xsl:template match="*[
     local-name() = 'policing-profiles' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policing'
     and not(parent::*[local-name() = 'new'])
@@ -111,7 +112,18 @@
       <xsl:copy-of select="$curPolicingProfiles/node()"/>
     </xsl:copy>
     <xsl:copy-of select="$policingPrehandlingProfiles"/>
-    <xsl:copy-of select="$policingActionProfiles"/>
+    
+    <xsl:element name="policing-action-profiles" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+      <xsl:for-each select="$policingActionProfiles/child::*[local-name() = 'action-profile']">
+        <xsl:variable name="curActionProfileName">
+          <xsl:value-of select="current()/child::*[local-name() = 'name']"/>
+        </xsl:variable>
+        <xsl:if test="$curPolicingProfiles/child::*[local-name() = 'policing-profile' and child::*[local-name() = 'policing-action-profile'] = $curActionProfileName]">
+          <xsl:copy-of select="."/>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:element>
+
   </xsl:template>
 
   <!-- rename current policy-profile if have new one -->

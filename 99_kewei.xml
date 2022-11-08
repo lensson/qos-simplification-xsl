@@ -71,7 +71,7 @@
           </two-rate-three-color-marker-mef>
         </policing-profile>
         <policing-profile>
-          <name>PP_policy5_port-policer</name>
+          <name>PP_input_policy5_port-policer</name>
           <scope>vlan-sub-interface</scope>
           <two-rate-three-color-marker-mef>
             <cir>20000000</cir>
@@ -81,11 +81,11 @@
             <couple-flag>0</couple-flag>
             <color-mode>color-aware</color-mode>
           </two-rate-three-color-marker-mef>
-          <policing-pre-handling-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PPHP_policy2_pre-color</policing-pre-handling-profile>
-          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_policy5_port-policer</policing-action-profile>
+          <policing-pre-handling-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PPHP_input_policy2_pre-color</policing-pre-handling-profile>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_input_policy5_port-policer</policing-action-profile>
         </policing-profile>
         <policing-profile>
-          <name>PP_cls_ccl_rule1_colorblind</name>
+          <name>PP_input_cls_ccl_rule1_colorblind</name>
           <two-rate-three-color-marker-mef>
             <cir>20000000</cir>
             <cbs>10240</cbs>
@@ -94,10 +94,10 @@
             <couple-flag>0</couple-flag>
             <color-mode>color-blind</color-mode>
           </two-rate-three-color-marker-mef>
-          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_enhanced_filter1_policer</policing-action-profile>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_input_enhanced_filter1_policer</policing-action-profile>
         </policing-profile>
         <policing-profile>
-          <name>PP_cls_ccl_rule2_policingTC_aware</name>
+          <name>PP_input_cls_ccl_rule2_policingTC_aware</name>
           <two-rate-three-color-marker-mef-with-cos xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
             <cir>2000000</cir>
             <cbs>10240</cbs>
@@ -125,11 +125,11 @@
               </policing-tc-threshold>
             </ebs-tc-threshold>
           </two-rate-three-color-marker-mef-with-cos>
-          <policing-pre-handling-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PPHP_policy3_PolicingTC</policing-pre-handling-profile>
-          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_enhanced_filter2_policer</policing-action-profile>
+          <policing-pre-handling-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PPHP_input_policy3_PolicingTC</policing-pre-handling-profile>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_input_enhanced_filter2_policer</policing-action-profile>
         </policing-profile>
         <policing-profile>
-          <name>PP_cls_ccl_rule3_colorblind</name>
+          <name>PP_input_cls_ccl_rule3_colorblind</name>
           <two-rate-three-color-marker-mef>
             <cir>20000000</cir>
             <cbs>10240</cbs>
@@ -138,10 +138,10 @@
             <couple-flag>0</couple-flag>
             <color-mode>color-blind</color-mode>
           </two-rate-three-color-marker-mef>
-          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_policy5_port-policer</policing-action-profile>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_input_policy5_port-policer</policing-action-profile>
         </policing-profile>
         <policing-profile>
-          <name>PP_cls_ccl_rule4_colorblind</name>
+          <name>PP_input_cls_ccl_rule4_colorblind</name>
           <two-rate-three-color-marker-mef>
             <cir>20000000</cir>
             <cbs>10240</cbs>
@@ -150,10 +150,10 @@
             <couple-flag>0</couple-flag>
             <color-mode>color-blind</color-mode>
           </two-rate-three-color-marker-mef>
-          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_policy5_port-policer</policing-action-profile>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_input_policy5_port-policer</policing-action-profile>
         </policing-profile>
         <policing-profile>
-          <name>PP_cls_ccl_rule8_colorblind</name>
+          <name>PP_input_cls_ccl_rule8_colorblind</name>
           <two-rate-three-color-marker-mef>
             <cir>20000000</cir>
             <cbs>10240</cbs>
@@ -162,12 +162,12 @@
             <couple-flag>0</couple-flag>
             <color-mode>color-blind</color-mode>
           </two-rate-three-color-marker-mef>
-          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_policy5_port-policer</policing-action-profile>
+          <policing-action-profile xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">PAP_input_policy5_port-policer</policing-action-profile>
         </policing-profile>
       </policing-profiles>
       <policing-pre-handling-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
         <pre-handling-profile>
-          <name>PPHP_policy2_pre-color</name>
+          <name>PPHP_input_policy2_pre-color</name>
           <pre-handling-entry>
             <name>PHE_cls_precolor_p0</name>
             <match-params>
@@ -250,7 +250,7 @@
           </pre-handling-entry>
         </pre-handling-profile>
         <pre-handling-profile>
-          <name>PPHP_policy3_PolicingTC</name>
+          <name>PPHP_input_policy3_PolicingTC</name>
           <pre-handling-entry>
             <name>PHE_cls_policingTC00</name>
             <match-params>
@@ -335,7 +335,7 @@
       </policing-pre-handling-profiles>
       <policing-action-profiles xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
         <action-profile>
-          <name>PAP_policy5_port-policer</name>
+          <name>PAP_input_policy5_port-policer</name>
           <action>
             <flow-color>green</flow-color>
             <pbit-marking-list>
@@ -362,7 +362,7 @@
           </action>
         </action-profile>
         <action-profile>
-          <name>PAP_enhanced_filter1_policer</name>
+          <name>PAP_input_enhanced_filter1_policer</name>
           <action>
             <flow-color>green</flow-color>
             <pbit-marking-list>
@@ -389,7 +389,7 @@
           </action>
         </action-profile>
         <action-profile>
-          <name>PAP_enhanced_filter2_policer</name>
+          <name>PAP_input_enhanced_filter2_policer</name>
           <action>
             <flow-color>green</flow-color>
             <pbit-marking-list>
@@ -530,7 +530,7 @@
           </filter>
         </enhanced-filter>
         <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
-          <name>EF_cls_ccl_rule4_colorblind</name>
+          <name>EF_input_cls_ccl_rule4_colorblind</name>
           <filter-operation>match-any-filter</filter-operation>
           <filter>
             <name>F_cls_ccl_rule4_colorblind</name>
@@ -540,7 +540,7 @@
           </filter>
         </enhanced-filter>
         <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
-          <name>EF_cls_ccl_rule5_discard</name>
+          <name>EF_input_cls_ccl_rule5_discard</name>
           <filter-operation>match-any-filter</filter-operation>
           <filter>
             <name>F_cls_ccl_rule5_discard</name>
@@ -550,7 +550,7 @@
           </filter>
         </enhanced-filter>
         <enhanced-filter xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
-          <name>EF_cls_ccl_rule7_pass</name>
+          <name>EF_input_cls_ccl_rule7_pass</name>
           <filter-operation>match-any-filter</filter-operation>
           <filter>
             <name>F_cls_ccl_rule7_pass</name>
@@ -1557,7 +1557,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p0</name>
+          <name>C_input_cls_queue-color_p0</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1570,7 +1570,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p1</name>
+          <name>C_input_cls_queue-color_p1</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1583,7 +1583,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p2</name>
+          <name>C_input_cls_queue-color_p2</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1596,7 +1596,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p3</name>
+          <name>C_input_cls_queue-color_p3</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1609,7 +1609,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p4</name>
+          <name>C_input_cls_queue-color_p4</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1622,7 +1622,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p5</name>
+          <name>C_input_cls_queue-color_p5</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1635,7 +1635,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p6</name>
+          <name>C_input_cls_queue-color_p6</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1648,7 +1648,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_queue-color_p7</name>
+          <name>C_input_cls_queue-color_p7</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-color xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-color>
           <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -1661,91 +1661,91 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_port-policer_unmetered</name>
+          <name>C_input_cls_port-policer_unmetered</name>
           <filter-operation>match-all-filter</filter-operation>
           <metered-flow xmlns="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</metered-flow>
           <classifier-action-entry-cfg>
             <action-type>policing</action-type>
             <policing xmlns="urn:bbf:yang:bbf-qos-policing">
-              <policing-profile>PP_policy5_port-policer</policing-profile>
+              <policing-profile>PP_input_policy5_port-policer</policing-profile>
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule1_colorblind</name>
+          <name>C_input_cls_ccl_rule1_colorblind</name>
           <filter-operation>match-all-filter</filter-operation>
           <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter1_policer</enhanced-filter-name>
           <classifier-action-entry-cfg>
             <action-type>policing</action-type>
             <policing xmlns="urn:bbf:yang:bbf-qos-policing">
-              <policing-profile>PP_cls_ccl_rule1_colorblind</policing-profile>
+              <policing-profile>PP_input_cls_ccl_rule1_colorblind</policing-profile>
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule2_policingTC_aware</name>
+          <name>C_input_cls_ccl_rule2_policingTC_aware</name>
           <filter-operation>match-all-filter</filter-operation>
           <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter2_policer</enhanced-filter-name>
           <classifier-action-entry-cfg>
             <action-type>policing</action-type>
             <policing xmlns="urn:bbf:yang:bbf-qos-policing">
-              <policing-profile>PP_cls_ccl_rule2_policingTC_aware</policing-profile>
+              <policing-profile>PP_input_cls_ccl_rule2_policingTC_aware</policing-profile>
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule3_colorblind</name>
+          <name>C_input_cls_ccl_rule3_colorblind</name>
           <filter-operation>match-all-filter</filter-operation>
           <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">enhanced_filter3_policer</enhanced-filter-name>
           <classifier-action-entry-cfg>
             <action-type>policing</action-type>
             <policing xmlns="urn:bbf:yang:bbf-qos-policing">
-              <policing-profile>PP_cls_ccl_rule3_colorblind</policing-profile>
+              <policing-profile>PP_input_cls_ccl_rule3_colorblind</policing-profile>
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule4_colorblind</name>
+          <name>C_input_cls_ccl_rule4_colorblind</name>
           <filter-operation>match-all-filter</filter-operation>
-          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">EF_cls_ccl_rule4_colorblind</enhanced-filter-name>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">EF_input_cls_ccl_rule4_colorblind</enhanced-filter-name>
           <classifier-action-entry-cfg>
             <action-type>policing</action-type>
             <policing xmlns="urn:bbf:yang:bbf-qos-policing">
-              <policing-profile>PP_cls_ccl_rule4_colorblind</policing-profile>
+              <policing-profile>PP_input_cls_ccl_rule4_colorblind</policing-profile>
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule5_discard</name>
+          <name>C_input_cls_ccl_rule5_discard</name>
           <filter-operation>match-all-filter</filter-operation>
-          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">EF_cls_ccl_rule5_discard</enhanced-filter-name>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">EF_input_cls_ccl_rule5_discard</enhanced-filter-name>
           <classifier-action-entry-cfg>
             <action-type>discard</action-type>
             <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule7_pass</name>
+          <name>C_input_cls_ccl_rule7_pass</name>
           <filter-operation>match-all-filter</filter-operation>
-          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">EF_cls_ccl_rule7_pass</enhanced-filter-name>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">EF_input_cls_ccl_rule7_pass</enhanced-filter-name>
           <classifier-action-entry-cfg>
             <action-type>pass</action-type>
             <pass/>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_ccl_rule8_colorblind</name>
+          <name>C_input_cls_ccl_rule8_colorblind</name>
           <filter-operation>match-all-filter</filter-operation>
           <any-frame xmlns="urn:bbf:yang:bbf-qos-enhanced-filters"/>
           <classifier-action-entry-cfg>
             <action-type>policing</action-type>
             <policing xmlns="urn:bbf:yang:bbf-qos-policing">
-              <policing-profile>PP_cls_ccl_rule8_colorblind</policing-profile>
+              <policing-profile>PP_input_cls_ccl_rule8_colorblind</policing-profile>
             </policing>
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc00red</name>
+          <name>C_QC_input2_cls_pbit2tc00red</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1759,7 +1759,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc00red</name>
+          <name>C_input2_cls_pbit2tc00red</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1773,7 +1773,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc11red</name>
+          <name>C_QC_input2_cls_pbit2tc11red</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1787,7 +1787,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc11red</name>
+          <name>C_input2_cls_pbit2tc11red</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1801,7 +1801,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc22yellow</name>
+          <name>C_QC_input2_cls_pbit2tc22yellow</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1815,7 +1815,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc22yellow</name>
+          <name>C_input2_cls_pbit2tc22yellow</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1829,7 +1829,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc33yellow</name>
+          <name>C_QC_input2_cls_pbit2tc33yellow</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1843,7 +1843,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc33yellow</name>
+          <name>C_input2_cls_pbit2tc33yellow</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1857,7 +1857,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc44yellow</name>
+          <name>C_QC_input2_cls_pbit2tc44yellow</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1871,7 +1871,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc44yellow</name>
+          <name>C_input2_cls_pbit2tc44yellow</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1885,7 +1885,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc55green</name>
+          <name>C_QC_input2_cls_pbit2tc55green</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1899,7 +1899,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc55green</name>
+          <name>C_input2_cls_pbit2tc55green</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1913,7 +1913,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc66green</name>
+          <name>C_QC_input2_cls_pbit2tc66green</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1927,7 +1927,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc66green</name>
+          <name>C_input2_cls_pbit2tc66green</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1939,13 +1939,9 @@
             <action-type>scheduling-traffic-class</action-type>
             <scheduling-traffic-class>6</scheduling-traffic-class>
           </classifier-action-entry-cfg>
-          <classifier-action-entry-cfg>
-            <action-type>bac-color</action-type>
-            <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
-          </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_QC_cls_pbit2tc77green</name>
+          <name>C_QC_input2_cls_pbit2tc77green</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -1959,7 +1955,7 @@
           </classifier-action-entry-cfg>
         </classifier-entry>
         <classifier-entry>
-          <name>C_cls_pbit2tc77green</name>
+          <name>C_input2_cls_pbit2tc77green</name>
           <filter-operation>match-all-filter</filter-operation>
           <match-criteria>
             <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
@@ -2200,120 +2196,120 @@
           </classifiers>
         </policy>
         <policy>
-          <name>P_QC_policy6_policer-action</name>
+          <name>P_QC_input_policy6_policer-action</name>
           <classifiers>
-            <name>C_cls_queue-color_p0</name>
+            <name>C_input_cls_queue-color_p0</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p1</name>
+            <name>C_input_cls_queue-color_p1</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p2</name>
+            <name>C_input_cls_queue-color_p2</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p3</name>
+            <name>C_input_cls_queue-color_p3</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p4</name>
+            <name>C_input_cls_queue-color_p4</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p5</name>
+            <name>C_input_cls_queue-color_p5</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p6</name>
+            <name>C_input_cls_queue-color_p6</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_queue-color_p7</name>
-          </classifiers>
-        </policy>
-        <policy>
-          <name>P_policy5_port-policer</name>
-          <classifiers>
-            <name>C_cls_port-policer_unmetered</name>
+            <name>C_input_cls_queue-color_p7</name>
           </classifiers>
         </policy>
         <policy>
-          <name>P_policy4_ccl</name>
+          <name>P_input_policy5_port-policer</name>
           <classifiers>
-            <name>C_cls_ccl_rule1_colorblind</name>
+            <name>C_input_cls_port-policer_unmetered</name>
+          </classifiers>
+        </policy>
+        <policy>
+          <name>P_input_policy4_ccl</name>
+          <classifiers>
+            <name>C_input_cls_ccl_rule1_colorblind</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_ccl_rule2_policingTC_aware</name>
+            <name>C_input_cls_ccl_rule2_policingTC_aware</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_ccl_rule3_colorblind</name>
+            <name>C_input_cls_ccl_rule3_colorblind</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_ccl_rule4_colorblind</name>
+            <name>C_input_cls_ccl_rule4_colorblind</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_ccl_rule5_discard</name>
+            <name>C_input_cls_ccl_rule5_discard</name>
           </classifiers>
           <classifiers>
             <name>cls_ccl_rule6_discard</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_ccl_rule7_pass</name>
+            <name>C_input_cls_ccl_rule7_pass</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_ccl_rule8_colorblind</name>
+            <name>C_input_cls_ccl_rule8_colorblind</name>
           </classifiers>
           <classifiers>
             <name>cls_ccl_ruleX_pass</name>
           </classifiers>
         </policy>
         <policy>
-          <name>P_policy7_schedule_pbit2tc2color</name>
+          <name>P_input2_policy7_schedule_pbit2tc2color</name>
           <classifiers>
-            <name>C_cls_pbit2tc00red</name>
+            <name>C_input2_cls_pbit2tc00red</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc11red</name>
+            <name>C_input2_cls_pbit2tc11red</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc22yellow</name>
+            <name>C_input2_cls_pbit2tc22yellow</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc33yellow</name>
+            <name>C_input2_cls_pbit2tc33yellow</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc44yellow</name>
+            <name>C_input2_cls_pbit2tc44yellow</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc55green</name>
+            <name>C_input2_cls_pbit2tc55green</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc66green</name>
+            <name>C_input2_cls_pbit2tc66green</name>
           </classifiers>
           <classifiers>
-            <name>C_cls_pbit2tc77green</name>
+            <name>C_input2_cls_pbit2tc77green</name>
           </classifiers>
         </policy>
         <policy>
-          <name>P_QC_policy7_schedule_pbit2tc2color</name>
+          <name>P_QC_input2_policy7_schedule_pbit2tc2color</name>
           <classifiers>
-            <name>C_QC_cls_pbit2tc00red</name>
+            <name>C_QC_input2_cls_pbit2tc00red</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc11red</name>
+            <name>C_QC_input2_cls_pbit2tc11red</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc22yellow</name>
+            <name>C_QC_input2_cls_pbit2tc22yellow</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc33yellow</name>
+            <name>C_QC_input2_cls_pbit2tc33yellow</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc44yellow</name>
+            <name>C_QC_input2_cls_pbit2tc44yellow</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc55green</name>
+            <name>C_QC_input2_cls_pbit2tc55green</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc66green</name>
+            <name>C_QC_input2_cls_pbit2tc66green</name>
           </classifiers>
           <classifiers>
-            <name>C_QC_cls_pbit2tc77green</name>
+            <name>C_QC_input2_cls_pbit2tc77green</name>
           </classifiers>
         </policy>
       </policies>
@@ -2354,25 +2350,25 @@
             <name>policy1_marker</name>
           </policy-list>
           <policy-list>
-            <name>P_policy4_ccl</name>
+            <name>P_input_policy4_ccl</name>
           </policy-list>
           <policy-list>
-            <name>P_policy5_port-policer</name>
+            <name>P_input_policy5_port-policer</name>
           </policy-list>
           <policy-list>
             <name>policy7_schedule_pbit2tc</name>
           </policy-list>
           <policy-list>
-            <name>P_QC_policy6_policer-action</name>
+            <name>P_QC_input_policy6_policer-action</name>
           </policy-list>
         </policy-profile>
         <policy-profile>
           <name>input2</name>
           <policy-list>
-            <name>P_policy7_schedule_pbit2tc2color</name>
+            <name>P_input2_policy7_schedule_pbit2tc2color</name>
           </policy-list>
           <policy-list>
-            <name>P_QC_policy7_schedule_pbit2tc2color</name>
+            <name>P_QC_input2_policy7_schedule_pbit2tc2color</name>
           </policy-list>
         </policy-profile>
       </qos-policy-profiles>

@@ -79,7 +79,7 @@
       <xsl:value-of select="$curActionPolicyOfQueueColorSec/name"/>
     </xsl:variable>
     <xsl:variable name="newActionBacColorPolicyName">
-      <xsl:value-of select="concat('P_QC_',$curActionPolicyName)"/>
+      <xsl:value-of select="concat('P_QC_', $profileName,'_', $curActionPolicyName)"/>
     </xsl:variable>
     <xsl:variable name="actionPolicy" select="//*[
       local-name() = 'policy'
@@ -99,10 +99,10 @@
       <xsl:value-of select="$curSchedulePolicySec/name"/>
     </xsl:variable>
     <xsl:variable name="newSchedulePolicyName">
-      <xsl:value-of select="concat('P_',$curSchedulePolicyName)"/>
+      <xsl:value-of select="concat('P_',$profileName, '_', $curSchedulePolicyName)"/>
     </xsl:variable>
     <xsl:variable name="newScheduleBacColorPolicyName">
-      <xsl:value-of select="concat('P_QC_',$curSchedulePolicyName)"/>
+      <xsl:value-of select="concat('P_QC_',$profileName, '_',$curSchedulePolicyName)"/>
     </xsl:variable>
     <xsl:variable name="schedulePolicySec" select="../child::*[local-name() = 'policy-list'
       and child::*[ local-name() = 'name' and text() = $curSchedulePolicyName ]
@@ -119,8 +119,8 @@
     ]"/>
 
     <xsl:variable name="curPortPolicerPolicyName" select="$curPortPolicerPolicySec/name"/>
-    <xsl:variable name="newPortPolicerPolicyName" select="concat('P_',$curPortPolicerPolicyName)"/>
-    <xsl:variable name="newPortPolicerPolicyPolicingPorfileName" select="concat('PP_',$curPortPolicerPolicyName)"/>
+    <xsl:variable name="newPortPolicerPolicyName" select="concat('P_',$profileName, '_', $curPortPolicerPolicyName)"/>
+    <xsl:variable name="newPortPolicerPolicyPolicingPorfileName" select="concat('PP_',$profileName, '_', $curPortPolicerPolicyName)"/>
     <xsl:variable name="portPolicerPolicy" select="//*[
       local-name() = 'policy'
       and child::*[local-name() = 'name' and text() = $curPortPolicerPolicyName]
@@ -132,7 +132,7 @@
       policy-type = $POLICY_TYPE_CCL
     ]"/>
     <xsl:variable name="curCCLPolicyName" select="$curCCLPolicySec/name"/>
-    <xsl:variable name="newCCLPolicyName" select="concat('P_',$curCCLPolicyName)"/>
+    <xsl:variable name="newCCLPolicyName" select="concat('P_',$profileName, '_', $curCCLPolicyName)"/>
     <xsl:variable name="CCLPolicy" select="//*[
       local-name() = 'policy'
       and child::*[local-name() = 'name' and text() = $curCCLPolicyName]
@@ -231,7 +231,7 @@
 
                     <xsl:element name="classifiers" namespace="urn:bbf:yang:bbf-qos-policies">
                       <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
-                        <xsl:value-of select="concat('C_',$curClassifierName)"/>
+                        <xsl:value-of select="concat('C_',$profileName, '_',$curClassifierName)"/>
                       </xsl:element>
                     </xsl:element>
                   </xsl:if>
@@ -254,7 +254,7 @@
                   ">
                     <xsl:element name="classifiers" namespace="urn:bbf:yang:bbf-qos-policies">
                       <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
-                        <xsl:value-of select="concat('C_',$curClassifierName)"/>
+                        <xsl:value-of select="concat('C_',$profileName, '_', $curClassifierName)"/>
                       </xsl:element>
                     </xsl:element>
                   </xsl:if>
@@ -275,7 +275,7 @@
                   ">
                     <xsl:element name="classifiers" namespace="urn:bbf:yang:bbf-qos-policies">
                       <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
-                        <xsl:value-of select="concat('C_QC_',$curClassifierName)"/>
+                        <xsl:value-of select="concat('C_QC_',$profileName, '_',$curClassifierName)"/>
                       </xsl:element>
                     </xsl:element>
                   </xsl:if>
@@ -297,7 +297,7 @@
                   ">
                     <xsl:element name="classifiers" namespace="urn:bbf:yang:bbf-qos-policies">
                       <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
-                        <xsl:value-of select="concat('C_',$curClassifierName)"/>
+                        <xsl:value-of select="concat('C_',$profileName, '_',$curClassifierName)"/>
                       </xsl:element>
                     </xsl:element>
                   </xsl:if>
@@ -319,7 +319,7 @@
                     <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-policies">
                       <xsl:choose>
                         <xsl:when test="$curClassifier/actions/action/policing-profile or $curClassifier/filters/enh-filter-type">
-                          <xsl:value-of select="concat('C_',$curClassifierName)"/>
+                          <xsl:value-of select="concat('C_',$profileName, '_',$curClassifierName)"/>
                         </xsl:when>
                         <xsl:otherwise>
                           <xsl:value-of select="$curClassifierName"/>
@@ -342,7 +342,7 @@
                 ]"/>
                 <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
                   <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                    <xsl:value-of select="concat('C_',$curClassifier/child::*[local-name() = 'name'])"/>
+                    <xsl:value-of select="concat('C_',$profileName, '_', $curClassifier/child::*[local-name() = 'name'])"/>
                   </xsl:element>
                   <xsl:copy-of select="$curClassifier/child::*[local-name() = 'filter-operation']"/>
                   <xsl:element name="metered-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</xsl:element>
@@ -399,7 +399,7 @@
                 <xsl:if test="$hasBacColorAction">
                   <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
                     <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                      <xsl:value-of select="concat('C_QC_', $curClassifier/child::*[local-name() = 'name'])"/>
+                      <xsl:value-of select="concat('C_QC_', $profileName, '_', $curClassifier/child::*[local-name() = 'name'])"/>
                     </xsl:element>
                     <xsl:for-each select="$curClassifier/node()">
                       <xsl:if test="local-name() != 'name' and local-name() != 'migration-cache'
@@ -413,7 +413,7 @@
                 <xsl:if test="$hasNoBacColorAction">
                   <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
                     <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                      <xsl:value-of select="concat('C_',$curClassifier/child::*[local-name() = 'name'])"/>
+                      <xsl:value-of select="concat('C_',$profileName, '_', $curClassifier/child::*[local-name() = 'name'])"/>
                     </xsl:element>
                     <xsl:for-each select="$curClassifier/node()">
                       <xsl:if test="local-name() != 'name' and local-name() != 'migration-cache'
@@ -435,7 +435,7 @@
                 ]"/>
                 <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
                   <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                    <xsl:value-of select="concat('C_',$classifier/child::*[local-name() = 'name'])"/>
+                    <xsl:value-of select="concat('C_',$profileName, '_', $classifier/child::*[local-name() = 'name'])"/>
                   </xsl:element>
                   <xsl:for-each select="$classifier/node()">
                     <xsl:choose>
@@ -489,20 +489,20 @@
                   and child::*[local-name() = 'name' and text() = current()/name]
                 ]"/>
                 <xsl:variable name="newPolicingProfileName">
-                  <xsl:value-of select="concat('PP_', $curClassifier/child::*[local-name() = 'name'])"/>
+                  <xsl:value-of select="concat('PP_', $profileName, '_', $curClassifier/child::*[local-name() = 'name'])"/>
                 </xsl:variable>
                 <!-- If have enhanced-classifier or have policing-profile action, create a new classifier or any-frame-->
                 <xsl:if test="$curClassifier/actions/action/policing-profile or $curClassifier/filters/enh-filter-type">
                   <xsl:element name="classifier-entry" namespace="urn:bbf:yang:bbf-qos-classifiers">
                     <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-classifiers">
-                      <xsl:value-of select="concat('C_',$classifier/child::*[local-name() = 'name'])"/>
+                      <xsl:value-of select="concat('C_',$profileName, '_', $classifier/child::*[local-name() = 'name'])"/>
                     </xsl:element>
                     <xsl:copy-of select="$classifier/child::*[local-name() = 'filter-operation']"/>
 
                     <xsl:choose>
                       <xsl:when test="$curClassifier/filters/enh-filter-type">
                         <xsl:element name="enhanced-filter-name" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
-                          <xsl:value-of select="concat('EF_',$curClassifier/name)"/>
+                          <xsl:value-of select="concat('EF_',$profileName, '_', $curClassifier/name)"/>
                         </xsl:element>
                       </xsl:when>
                       <xsl:otherwise>
@@ -561,7 +561,7 @@
               </xsl:variable>
               <xsl:element name="enhanced-filter" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
                 <xsl:element name="name" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
-                  <xsl:value-of select="concat('EF_',current()/name)"/>
+                  <xsl:value-of select="concat('EF_',$profileName, '_', current()/name)"/>
                 </xsl:element>
                 <xsl:element name="filter-operation" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">match-any-filter
                 </xsl:element>
@@ -636,17 +636,17 @@
                       <xsl:choose>
                         <xsl:when
                                 test="$curPolicingProfileType = $POLICING_TYPE_TRTCM_COS or $curPolicingProfileType = $POLICING_TYPE_TRTCM_MEF_COS">
-                          <xsl:value-of select="concat('PPHP_',$curPolicingTCPolicyName)"/>
+                          <xsl:value-of select="concat('PPHP_',$profileName, '_', $curPolicingTCPolicyName)"/>
                         </xsl:when>
                         <xsl:when test="$curPolicingProfileType = $POLICING_TYPE_TRTCM_MEF_COLOR_AWARE">
-                          <xsl:value-of select="concat('PPHP_',$curPreColorPolicyName)"/>
+                          <xsl:value-of select="concat('PPHP_',$profileName, '_', $curPreColorPolicyName)"/>
                         </xsl:when>
                       </xsl:choose>
                     </xsl:element>
                   </xsl:if>
                   <xsl:if test="$curActionPolicySec and $curActionPolicySec/classifiers/classifier[filters/self-filter-types = $F_FLOW_COLOR and filters/inline-filter-type = $F_FLOW_COLOR and boolean(filters/self-filter-flow-color)]">
                     <xsl:element name="policing-action-profile" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                      <xsl:value-of select="concat('PAP_',$curPortPolicerPolicySec/name)"/>
+                      <xsl:value-of select="concat('PAP_',$profileName, '_', $curPortPolicerPolicySec/name)"/>
                     </xsl:element>
                   </xsl:if>
                 </xsl:element>
@@ -679,7 +679,7 @@
                   and parent::*[local-name() = 'policing-profiles' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policing']
                 ]"/>
                 <xsl:variable name="newPolicingProfileName">
-                  <xsl:value-of select="concat('PP_', $curClassifierName)"/>
+                  <xsl:value-of select="concat('PP_', $profileName, '_', $curClassifierName)"/>
                 </xsl:variable>
 
                 <xsl:element name="policing-profile" namespace="urn:bbf:yang:bbf-qos-policing">
@@ -700,13 +700,13 @@
                             test="$curPolicingProfileType = $POLICING_TYPE_TRTCM_COS or $curPolicingProfileType = $POLICING_TYPE_TRTCM_MEF_COS">
                       <xsl:element name="policing-pre-handling-profile"
                                    namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                        <xsl:value-of select="concat('PPHP_',$curPolicingTCPolicyName)"/>
+                        <xsl:value-of select="concat('PPHP_',$profileName, '_', $curPolicingTCPolicyName)"/>
                       </xsl:element>
                     </xsl:when>
                     <xsl:when test="$curPolicingProfileType = $POLICING_TYPE_TRTCM_MEF_COLOR_AWARE">
                       <xsl:element name="policing-pre-handling-profile"
                                    namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                        <xsl:value-of select="concat('PPHP_',$curPreColorPolicyName)"/>
+                        <xsl:value-of select="concat('PPHP_',$profileName, '_', $curPreColorPolicyName)"/>
                       </xsl:element>
                     </xsl:when>
                   </xsl:choose>
@@ -715,13 +715,27 @@
                     <xsl:when test="$curEnhancedFilterSec">
                       <xsl:element name="policing-action-profile"
                                    namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                        <xsl:value-of select="concat('PAP_',$curRefFilterName)"/>
+                        <xsl:choose>
+                          <xsl:when test="$curPolicingProfileType = $POLICING_TYPE_STB">
+                            <xsl:value-of select="concat('PAP_STB_',$profileName, '_', $curRefFilterName)"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="concat('PAP_',$profileName, '_', $curRefFilterName)"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
                       <xsl:element name="policing-action-profile"
                                    namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                        <xsl:value-of select="concat('PAP_',$curPortPolicerPolicyName)"/>
+                        <xsl:choose>
+                          <xsl:when test="$curPolicingProfileType = $POLICING_TYPE_STB">
+                            <xsl:value-of select="concat('PAP_STB_',$profileName, '_', $curPortPolicerPolicyName)"/>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:value-of select="concat('PAP_',$profileName, '_', $curPortPolicerPolicyName)"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </xsl:element>
                     </xsl:otherwise>
                   </xsl:choose>
@@ -734,7 +748,7 @@
             <xsl:if test="$curPreColorPolicySec">
               <xsl:element name="pre-handling-profile" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                 <xsl:element name="name" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                  <xsl:value-of select="concat('PPHP_',$curPreColorPolicyName)"/>
+                  <xsl:value-of select="concat('PPHP_',$profileName, '_', $curPreColorPolicyName)"/>
                 </xsl:element>
                 <xsl:for-each select="$curPreColorPolicySec/classifiers/classifier">
                   <xsl:variable name="preColorClassifier" select="//*[
@@ -771,7 +785,7 @@
             <xsl:if test="$curPolicingTCPolicySec">
               <xsl:element name="pre-handling-profile" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                 <xsl:element name="name" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                  <xsl:value-of select="concat('PPHP_',$curPolicingTCPolicyName)"/>
+                  <xsl:value-of select="concat('PPHP_',$profileName, '_', $curPolicingTCPolicyName)"/>
                 </xsl:element>
                 <xsl:for-each select="$curPolicingTCPolicySec/classifiers/classifier">
                   <xsl:variable name="policingTCClassifier" select="//*[
@@ -812,7 +826,10 @@
             <!-- Create global port policer policing action profile -->
             <xsl:if test="boolean($curPortPolicerPolicySec) and boolean($curActionPolicySec)">
               <xsl:variable name="curPolicingActionProfileName">
-                <xsl:value-of select="concat('PAP_',$curPortPolicerPolicySec/name)"/>
+                <xsl:value-of select="concat('PAP_',$profileName, '_', $curPortPolicerPolicySec/name)"/>
+              </xsl:variable>
+              <xsl:variable name="curPolicingActionProfileName4STB">
+                <xsl:value-of select="concat('PAP_STB_',$profileName, '_', $curPortPolicerPolicySec/name)"/>
               </xsl:variable>
 
               <!-- pap for port-policer policy -->
@@ -829,12 +846,12 @@
                     <xsl:value-of
                             select="current()/child::*[local-name() = 'filters']/child::*[local-name() = 'self-filter-flow-color']"/>
                   </xsl:variable>
-                  <xsl:variable name="classifierOfOnlyInlineFolowColor" select="//*[
+                  <xsl:variable name="classifierOfOnlyInlineFlowColor" select="//*[
                     local-name() = 'classifier-entry'
                     and parent::*[local-name() = 'classifiers' and namespace-uri() = 'urn:bbf:yang:bbf-qos-classifiers']
                     and child::*[local-name() = 'name'] = $curActionClassifierName
                   ]"/>
-                  <xsl:if test="$classifierOfOnlyInlineFolowColor">
+                  <xsl:if test="$classifierOfOnlyInlineFlowColor">
                     <xsl:element name="action" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                       <xsl:element name="flow-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                         <xsl:value-of select="$color"/>
@@ -842,7 +859,7 @@
                       <xsl:choose>
                         <xsl:when test="boolean(current()/actions/action/type = $A_PBIT_MARKING)">
                           <xsl:variable name="actionCfg"
-                                        select="$classifierOfOnlyInlineFolowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'pbit-marking')]]"/>
+                                        select="$classifierOfOnlyInlineFlowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'pbit-marking')]]"/>
                           <xsl:element name="pbit-marking-list" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                             <xsl:element name="index" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                               <xsl:value-of
@@ -856,7 +873,7 @@
                         </xsl:when>
                         <xsl:when test="boolean(current()/actions/action/type = $A_DEI_MARKING)">
                           <xsl:variable name="actionCfg"
-                                        select="$classifierOfOnlyInlineFolowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'dei-marking')]]"/>
+                                        select="$classifierOfOnlyInlineFlowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'dei-marking')]]"/>
                           <xsl:element name="dei-marking-list" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                             <xsl:element name="index" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                               <xsl:value-of
@@ -874,7 +891,7 @@
                       </xsl:choose>
                       <xsl:if test="boolean(current()/actions/action/type = $A_BAC_COLOR)">
                         <xsl:variable name="actionCfg"
-                                      select="$classifierOfOnlyInlineFolowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'bac-color')]]"/>
+                                      select="$classifierOfOnlyInlineFlowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'bac-color')]]"/>
                         <xsl:element name="bac-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                           <xsl:value-of select="$actionCfg/child::*[local-name() = 'bac-color']"/>
                         </xsl:element>
@@ -887,6 +904,79 @@
                   </xsl:if>
                 </xsl:for-each>
               </xsl:element>
+
+              <!-- Another pap candidate only for STB policing-profile -->
+              <xsl:element name="action-profile" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                <xsl:element name="name" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                  <xsl:value-of select="$curPolicingActionProfileName4STB"/>
+                </xsl:element>
+                <xsl:for-each
+                        select="$curActionPolicySec/classifiers/classifier[filters/self-filter-types = $F_FLOW_COLOR and filters/inline-filter-type = $F_FLOW_COLOR and boolean(filters/self-filter-flow-color)]">
+                  <xsl:variable name="curActionClassifierName">
+                    <xsl:value-of select="name"/>
+                  </xsl:variable>
+                  <xsl:variable name="color">
+                    <xsl:value-of
+                            select="current()/child::*[local-name() = 'filters']/child::*[local-name() = 'self-filter-flow-color']"/>
+                  </xsl:variable>
+                  <xsl:variable name="classifierOfOnlyInlineFlowColor" select="//*[
+                    local-name() = 'classifier-entry'
+                    and parent::*[local-name() = 'classifiers' and namespace-uri() = 'urn:bbf:yang:bbf-qos-classifiers']
+                    and child::*[local-name() = 'name'] = $curActionClassifierName
+                  ]"/>
+                  <xsl:if test="$classifierOfOnlyInlineFlowColor">
+                    <xsl:element name="action" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                      <xsl:element name="flow-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                        <xsl:value-of select="$color"/>
+                      </xsl:element>
+                      <xsl:choose>
+                        <xsl:when test="boolean(current()/actions/action/type = $A_PBIT_MARKING)">
+                          <xsl:variable name="actionCfg"
+                                        select="$classifierOfOnlyInlineFlowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'pbit-marking')]]"/>
+                          <xsl:element name="pbit-marking-list" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                            <xsl:element name="index" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                              <xsl:value-of
+                                      select="$actionCfg/child::*[local-name() = 'pbit-marking-cfg']/child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'index']"/>
+                            </xsl:element>
+                            <xsl:element name="pbit-value" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                              <xsl:value-of
+                                      select="$actionCfg/child::*[local-name() = 'pbit-marking-cfg']/child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'pbit-value']"/>
+                            </xsl:element>
+                          </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="boolean(current()/actions/action/type = $A_DEI_MARKING)">
+                          <xsl:variable name="actionCfg"
+                                        select="$classifierOfOnlyInlineFlowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'dei-marking')]]"/>
+                          <xsl:element name="dei-marking-list" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                            <xsl:element name="index" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                              <xsl:value-of
+                                      select="$actionCfg/child::*[local-name() = 'dei-marking-cfg']/child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'index']"/>
+                            </xsl:element>
+                            <xsl:element name="dei-value" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                              <xsl:value-of
+                                      select="$actionCfg/child::*[local-name() = 'dei-marking-cfg']/child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'dei-value']"/>
+                            </xsl:element>
+                          </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:element name="discard" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                      <xsl:if test="boolean(current()/actions/action/type = $A_BAC_COLOR)">
+                        <xsl:variable name="actionCfg"
+                                      select="$classifierOfOnlyInlineFlowColor/child::*[local-name() = 'classifier-action-entry-cfg' and child::*[local-name() = 'action-type' and contains(text(),'bac-color')]]"/>
+                        <xsl:element name="bac-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                          <xsl:value-of select="$actionCfg/child::*[local-name() = 'bac-color']"/>
+                        </xsl:element>
+                      </xsl:if>
+                      <xsl:if test="not(current()/actions/action/type = $A_DISCARD)">
+                        <xsl:element name="metered-flow" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">true</xsl:element>
+                      </xsl:if>
+                    </xsl:element>
+                  </xsl:if>
+                </xsl:for-each>
+              </xsl:element>
+
             </xsl:if>
 
             <!-- Create CCL rule policing action profile -->
@@ -901,7 +991,7 @@
                 <xsl:if test="$hasRefBy = 'true'">
                   <xsl:element name="action-profile" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
                     <xsl:element name="name" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
-                      <xsl:value-of select="concat('PAP_',$curRootFilterName)"/>
+                      <xsl:value-of select="concat('PAP_',$profileName, '_', $curRootFilterName)"/>
                     </xsl:element>
                     <xsl:for-each select="$curRootFilter/ref-by/filter">
                       <xsl:variable name="curChildFilterName">
@@ -963,46 +1053,73 @@
                       </xsl:element>
                     </xsl:for-each>
                   </xsl:element>
+
+                  <xsl:element name="action-profile" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                    <xsl:element name="name" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                      <xsl:value-of select="concat('PAP_STB_',$profileName, '_', $curRootFilterName)"/>
+                    </xsl:element>
+                    <xsl:for-each select="$curRootFilter/ref-by/filter">
+                      <xsl:variable name="curChildFilterName">
+                        <xsl:value-of select="child::*[local-name() = 'name']"/>
+                      </xsl:variable>
+                      <xsl:element name="action" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                        <xsl:element name="flow-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                          <xsl:value-of select="current()/color"/>
+                        </xsl:element>
+                        <xsl:variable name="curActionClassifier"
+                                      select="$curActionPolicySec/classifiers/classifier[filters/ref-filter/name = $curChildFilterName and filters/ref-filter/ref = $curRootFilterName]"/>
+                        <xsl:variable name="curActionClassifierName">
+                          <xsl:value-of select="$curActionClassifier/name"/>
+                        </xsl:variable>
+                        <xsl:variable name="actionClassifier" select="//*[
+                          local-name() = 'classifier-entry'
+                          and parent::*[local-name() = 'classifiers' and namespace-uri() = 'urn:bbf:yang:bbf-qos-classifiers']
+                          and child::*[local-name() = 'name'] = $curActionClassifierName
+                        ]"/>
+                        <xsl:choose>
+                          <xsl:when test="$curActionClassifier/actions/action/type = $A_PBIT_MARKING">
+                            <xsl:element name="pbit-marking-list" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                              <xsl:element name="index" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                                <xsl:value-of
+                                        select="$actionClassifier/child::*[local-name() = 'classifier-action-entry-cfg']/child::*[local-name() = 'pbit-marking-cfg']/child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'index']"/>
+                              </xsl:element>
+                              <xsl:element name="pbit-value" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                                <xsl:value-of
+                                        select="$actionClassifier/child::*[local-name() = 'classifier-action-entry-cfg']/child::*[local-name() = 'pbit-marking-cfg']/child::*[local-name() = 'pbit-marking-list']/child::*[local-name() = 'pbit-value']"/>
+                              </xsl:element>
+                            </xsl:element>
+                          </xsl:when>
+                          <xsl:when test="$curActionClassifier/actions/action/type = $A_DEI_MARKING">
+                            <xsl:element name="dei-marking-list" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                              <xsl:element name="index" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                                <xsl:value-of
+                                        select="$actionClassifier/child::*[local-name() = 'classifier-action-entry-cfg']/child::*[local-name() = 'dei-marking-cfg']/child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'index']"/>
+                              </xsl:element>
+                              <xsl:element name="dei-value" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                                <xsl:value-of
+                                        select="$actionClassifier/child::*[local-name() = 'classifier-action-entry-cfg']/child::*[local-name() = 'dei-marking-cfg']/child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'dei-value']"/>
+                              </xsl:element>
+                            </xsl:element>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <xsl:element name="discard" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension"/>
+                          </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="$curActionClassifier/actions/action/type = $A_BAC_COLOR">
+                          <xsl:element name="bac-color" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">
+                            <xsl:value-of
+                                    select="$actionClassifier/child::*[local-name() = 'classifier-action-entry-cfg']/child::*[local-name() = 'bac-color']"/>
+                          </xsl:element>
+                        </xsl:if>
+                        <xsl:if test="not($curActionClassifier/actions/action/type = $A_DISCARD)">
+                          <xsl:element name="metered-flow" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-sdan-qos-policing-extension">true</xsl:element>
+                        </xsl:if>
+                      </xsl:element>
+                    </xsl:for-each>
+                  </xsl:element>
+
                 </xsl:if>
               </xsl:for-each>
-
-              <!--
-              <xsl:for-each select="$enhancedFiltersSec/child::*[local-name() = 'enhanced-filter']">
-                <xsl:if test="child::*[local-name() = 'type'] = $F_EN_FILTER_FLOW_COLOR and boolean(ref)">
-                  <xsl:variable name="curFilterName">
-                    <xsl:value-of select="name"/>
-                  </xsl:variable>
-                  <xsl:variable name="refFilterName">
-                    <xsl:value-of select="ref"/>
-                  </xsl:variable>
-
-                  <xsl:variable name="actionClassifierName">
-                    <xsl:call-template name="findCurClassifierByPolicyAndRefFilterName">
-                      <xsl:with-param name="policySec" select="$curActionPolicySec"/>
-                      <xsl:with-param name="refFilterName" select="$curFilterName"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-
-                  <xsl:variable name="cclClassifierName">
-                    <xsl:call-template name="findCurClassifierByPolicyAndRefFilterName">
-                      <xsl:with-param name="policySec" select="$curCCLPolicySec"/>
-                      <xsl:with-param name="refFilterName" select="$refFilterName"/>
-                    </xsl:call-template>
-                  </xsl:variable>
-
-                  <xsl:variable name="actionClassifier" select="//*[
-                    local-name() = 'classifier-entry'
-                    and parent::*[local-name() = 'classifiers' and namespace-uri() = 'urn:bbf:yang:bbf-qos-classifiers']
-                    and child::*[local-name() = 'name']  = $actionClassifierName
-                  ]"/>
-                  <xsl:variable name="cclClassifier" select="//*[
-                    local-name() = 'classifier-entry'
-                    and parent::*[local-name() = 'classifiers' and namespace-uri() = 'urn:bbf:yang:bbf-qos-classifiers']
-                    and child::*[local-name() = 'name'] = $cclClassifierName
-                  ]"/>
-                </xsl:if>
-              </xsl:for-each>
-              -->
             </xsl:if>
           </xsl:element>
 
