@@ -351,6 +351,8 @@
                       <xsl:when test="local-name() = 'name' or local-name() = 'filter-operation'">
                       </xsl:when>
                       <xsl:when test="local-name() = 'match-criteria'">
+                        <!-- When filter is inline filter (pbit-marking-list , dei-marking-list, in-pbit-list, in-dei need to
+                        move to outer and change the namespace of enhanced-filter -->
                         <xsl:choose>
                           <xsl:when test="child::*[local-name() = 'pbit-marking-list']">
                             <xsl:element name="pbit-marking-list" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
@@ -370,6 +372,29 @@
                               <xsl:element name="dei-value" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
                                 <xsl:value-of select="child::*[local-name() = 'dei-marking-list']/child::*[local-name() = 'dei-value']"/>
                               </xsl:element>
+                            </xsl:element>
+                          </xsl:when>
+                          <xsl:when test="child::*[local-name() = 'tag']/child::*[local-name() = 'in-pbit-list' or local-name() = 'in-dei']">
+                            <xsl:element name="vlans" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                              <xsl:for-each select="child::*[local-name() = 'tag']">
+                                <xsl:element name="tag" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                  <xsl:if test="child::*[local-name() = 'tag']/child::*[local-name() = 'index']">
+                                    <xsl:element name="index" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                      <xsl:value-of select="child::*[local-name() = 'tag']/child::*[local-name() = 'index']"/>
+                                    </xsl:element>
+                                  </xsl:if>
+                                  <xsl:if test="child::*[local-name() = 'tag']/child::*[local-name() = 'in-pbit-list']">
+                                    <xsl:element name="in-pbit-list" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                      <xsl:value-of select="child::*[local-name() = 'tag']/child::*[local-name() = 'in-pbit-list']"/>
+                                    </xsl:element>
+                                  </xsl:if>
+                                  <xsl:if test="child::*[local-name() = 'tag']/child::*[local-name() = 'in-dei']">
+                                    <xsl:element name="in-pbit-list" namespace="urn:bbf:yang:bbf-qos-enhanced-filters">
+                                      <xsl:value-of select="child::*[local-name() = 'tag']/child::*[local-name() = 'in-dei']"/>
+                                    </xsl:element>
+                                  </xsl:if>
+                                </xsl:element>
+                              </xsl:for-each>
                             </xsl:element>
                           </xsl:when>
                         </xsl:choose>
