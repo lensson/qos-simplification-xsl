@@ -201,6 +201,8 @@
               <xsl:if test="$curSchedulePolicySec and not($curSchedulePolicyOfQueueColorSec)">
                 <xsl:copy-of select="$schedulePolicySec"/>
               </xsl:if>
+              <!-- Move count policy to new profile -->
+              <xsl:copy-of select="$countPolicySec"/>
               <!-- Add queue color policy to policy-profile -->
               <xsl:if test="$curActionPolicyOfQueueColorSec">
                 <xsl:element name="policy-list" namespace="urn:bbf:yang:bbf-qos-policies">
@@ -209,8 +211,6 @@
                   </xsl:element>
                 </xsl:element>
               </xsl:if>
-              <!-- Move count policy to new profile -->
-              <xsl:copy-of select="$countPolicySec"/>
             </xsl:element>
           </xsl:element>
           <xsl:element name="policies" namespace="urn:bbf:yang:bbf-qos-policies">
@@ -467,9 +467,15 @@
                       <xsl:when test="local-name() = 'name'">
                       </xsl:when>
                       <xsl:when test="local-name() = 'match-criteria'">
-                        <xsl:if test="child::*[local-name() = 'unmetered']">
-                          <xsl:element name="metered-flow" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</xsl:element>
-                        </xsl:if>
+                        <xsl:choose>
+                          <xsl:when test="child::*[local-name() = 'unmetered']">
+                            <xsl:element name="metered-flow" namespace="http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext">false</xsl:element>
+                          </xsl:when>
+                          <xsl:otherwise>
+                            <!-- For match-all case -->
+                            <xsl:copy-of select="."/>
+                          </xsl:otherwise>
+                        </xsl:choose>
                       </xsl:when>
                       <xsl:when test="local-name() = 'classifier-action-entry-cfg'">
                         <xsl:copy>
