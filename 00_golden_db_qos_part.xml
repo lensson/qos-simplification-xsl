@@ -1,0 +1,1086 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc message-id="1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <filters xmlns="urn:bbf:yang:bbf-qos-filters">
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit0_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>1-7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit1_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0,2-7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit2_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0-1,3-7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit3_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0-2,4-7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit4_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0-3,5-7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit5_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0-4,6-7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit6_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0-5,7</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+        <enhanced-filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">
+          <name>pbit7_enhfilter</name>
+          <filter-operation xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:match-all-filter</filter-operation>
+          <filter>
+            <name>enhfilter0</name>
+            <vlans>
+              <tag>
+                <index>0</index>
+                <in-pbit-list>0-6</in-pbit-list>
+              </tag>
+            </vlans>
+          </filter>
+        </enhanced-filter>
+      </filters>
+      <classifiers xmlns="urn:bbf:yang:bbf-qos-classifiers">
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg0</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>0</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg1</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg2</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg3</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>4</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>5</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>6</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_eg7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>7</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg0</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg0</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg0</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>0</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg1</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg1</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg1</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>1</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg2</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg2</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg2</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>2</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg3</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg3</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg3</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>3</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc1_eg7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>1</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc2_eg7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>2</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc3_eg7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>3</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc4_eg4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>4</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>4</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc5_eg5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>5</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>4</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc6_eg6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>6</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>4</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_tc7_eg7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <pbit-marking-list xmlns="urn:bbf:yang:bbf-qos-policing">
+              <index>0</index>
+              <pbit-value>7</pbit-value>
+            </pbit-marking-list>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>scheduling-traffic-class</action-type>
+            <scheduling-traffic-class>4</scheduling-traffic-class>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing0</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit0_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing1</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit1_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing2</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit2_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing3</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit3_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing4</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit4_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing5</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit5_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing6</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit6_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_ing7</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <enhanced-filter-name xmlns="urn:bbf:yang:bbf-qos-enhanced-filters">pbit7_enhfilter</enhanced-filter-name>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:discard</action-type>
+            <discard xmlns="urn:bbf:yang:bbf-qos-policing"/>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>BAC_ACTION-cls-port-red</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">red</flow-color>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+            <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">red</bac-color>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>BAC_ACTION-cls-port-yellow</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</flow-color>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+            <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">yellow</bac-color>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>BAC_ACTION-cls-port-green</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <flow-color xmlns="urn:bbf:yang:bbf-qos-policing">green</flow-color>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:bac-color</action-type>
+            <bac-color xmlns="urn:bbf:yang:bbf-qos-policing">green</bac-color>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>classifier_mc</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <protocol>igmp</protocol>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type>pbit-marking</action-type>
+            <pbit-marking-cfg>
+              <pbit-marking-list>
+                <index>0</index>
+                <pbit-value>7</pbit-value>
+              </pbit-marking-list>
+            </pbit-marking-cfg>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+        <classifier-entry xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>cls-ratelimit-HSI_DOWN_200M</name>
+          <filter-operation>match-all-filter</filter-operation>
+          <match-criteria>
+            <match-all/>
+          </match-criteria>
+          <classifier-action-entry-cfg>
+            <action-type xmlns:bbf-qos-plc="urn:bbf:yang:bbf-qos-policing">bbf-qos-plc:policing</action-type>
+            <policing xmlns="urn:bbf:yang:bbf-qos-policing">
+              <policing-profile>policier-HSI_DOWN_200M</policing-profile>
+            </policing>
+          </classifier-action-entry-cfg>
+        </classifier-entry>
+      </classifiers>
+      <policies xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY0</name>
+          <classifiers>
+            <name>classifier_eg0</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg1</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg2</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg3</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg4</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg5</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg6</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_eg7</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC1</name>
+          <classifiers>
+            <name>classifier_tc1_eg0</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg1</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg2</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg3</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg4</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg5</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg6</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc1_eg7</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC2</name>
+          <classifiers>
+            <name>classifier_tc2_eg0</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg1</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg2</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg3</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg4</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg5</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg6</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc2_eg7</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC3</name>
+          <classifiers>
+            <name>classifier_tc3_eg0</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg1</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg2</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg3</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg4</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg5</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg6</name>
+          </classifiers>
+          <classifiers>
+            <name>classifier_tc3_eg7</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC4</name>
+          <classifiers>
+            <name>classifier_tc4_eg4</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC5</name>
+          <classifiers>
+            <name>classifier_tc5_eg5</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC6</name>
+          <classifiers>
+            <name>classifier_tc6_eg6</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_TC7</name>
+          <classifiers>
+            <name>classifier_tc7_eg7</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING0</name>
+          <classifiers>
+            <name>classifier_ing0</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING1</name>
+          <classifiers>
+            <name>classifier_ing1</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING2</name>
+          <classifiers>
+            <name>classifier_ing2</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING3</name>
+          <classifiers>
+            <name>classifier_ing3</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING4</name>
+          <classifiers>
+            <name>classifier_ing4</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING5</name>
+          <classifiers>
+            <name>classifier_ing5</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING6</name>
+          <classifiers>
+            <name>classifier_ing6</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>POLICY_ING7</name>
+          <classifiers>
+            <name>classifier_ing7</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>BAC_ACTION</name>
+          <classifiers>
+            <name>BAC_ACTION-cls-port-red</name>
+          </classifiers>
+          <classifiers>
+            <name>BAC_ACTION-cls-port-yellow</name>
+          </classifiers>
+          <classifiers>
+            <name>BAC_ACTION-cls-port-green</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>policy_ds_mcast</name>
+          <classifiers>
+            <name>classifier_mc</name>
+          </classifiers>
+        </policy>
+        <policy xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>HSI_DOWN_200M</name>
+          <classifiers>
+            <name>cls-ratelimit-HSI_DOWN_200M</name>
+          </classifiers>
+        </policy>
+      </policies>
+      <qos-policy-profiles xmlns="urn:bbf:yang:bbf-qos-policies">
+        <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>IPP0</name>
+          <policy-list>
+            <name>POLICY_ING0</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>IPP1</name>
+          <policy-list>
+            <name>POLICY_ING1</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>IPP2</name>
+          <policy-list>
+            <name>POLICY_ING2</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>QPP1</name>
+          <policy-list>
+            <name>POLICY_TC1</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>QPP2</name>
+          <policy-list>
+            <name>POLICY_TC2</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>IPP3</name>
+          <policy-list>
+            <name>POLICY_ING3</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>QPP3</name>
+          <policy-list>
+            <name>POLICY_TC3</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>IPP4</name>
+          <policy-list>
+            <name>POLICY_ING4</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>QPP4</name>
+          <policy-list>
+            <name>POLICY_TC4</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>IPP5</name>
+          <policy-list>
+            <name>POLICY_ING5</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>QPP5</name>
+          <policy-list>
+            <name>POLICY_TC5</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>IPP6</name>
+          <policy-list>
+            <name>POLICY_ING6</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>QPP6</name>
+          <policy-list>
+            <name>POLICY_TC6</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>IPP7</name>
+          <policy-list>
+            <name>POLICY_ING7</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>QPP7</name>
+          <policy-list>
+            <name>POLICY_TC7</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>QPP0</name>
+          <policy-list>
+            <name>HSI_DOWN_200M</name>
+          </policy-list>
+          <policy-list>
+            <name>BAC_ACTION</name>
+          </policy-list>
+          <policy-list>
+            <name>POLICY0</name>
+          </policy-list>
+        </policy-profile>
+        <policy-profile>
+          <name>MCQP</name>
+          <policy-list>
+            <name>policy_ds_mcast</name>
+          </policy-list>
+        </policy-profile>
+      </qos-policy-profiles>
+      <policing-profiles xmlns="urn:bbf:yang:bbf-qos-policing">
+        <policing-profile xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0">
+          <name>policier-HSI_DOWN_200M</name>
+          <scope xmlns:bbf-qos-cls="urn:bbf:yang:bbf-qos-classifiers">bbf-qos-cls:vlan-sub-interface</scope>
+          <two-rate-three-color-marker-mef>
+            <cir>0</cir>
+            <cbs>1024</cbs>
+            <eir>240000000</eir>
+            <ebs>10000000</ebs>
+            <couple-flag>0</couple-flag>
+            <color-mode>color-blind</color-mode>
+          </two-rate-three-color-marker-mef>
+        </policing-profile>
+      </policing-profiles>
+    </config>
+  </edit-config>
+</rpc>
