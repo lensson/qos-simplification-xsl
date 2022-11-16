@@ -75,18 +75,51 @@
   </xsl:template>
 
   <!-- Remove all wrap , space and namespace prefix in text -->
+
   <xsl:template match="text()">
     <xsl:variable name="result">
       <xsl:value-of select="normalize-space(.)"/>
     </xsl:variable>
+    <xsl:variable name="ptag" select=".."/>
     <xsl:choose>
       <xsl:when test="contains($result,':')">
-        <xsl:value-of select="substring-after($result,':')"/>
+        <xsl:variable name="prefixCandidate">
+          <xsl:value-of select="substring-before($result,':')"/>
+        </xsl:variable>
+        <xsl:message><xsl:value-of select="$prefixCandidate"/></xsl:message>
+        <xsl:variable name="prefixVar">
+          <xsl:call-template name="isPrefix">
+            <xsl:with-param name="prefixStr" select="$prefixCandidate"/>
+            <xsl:with-param name="parentSec" select="$ptag"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:message>prefixVar : <xsl:value-of select="$prefixVar"/></xsl:message>
+        <xsl:choose>
+          <xsl:when test="$prefixVar and string-length($prefixVar)>0">
+            <xsl:value-of select="substring-after($result,':')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$result"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$result"/>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="isPrefix">
+    <xsl:param name="parentSec"/>
+    <xsl:param name="prefixStr"/>
+    <xsl:for-each select="$parentSec/namespace::node()">
+      <xsl:choose>
+        <xsl:when test="local-name() = 'xml'"/>
+        <xsl:when test="local-name() = $prefixStr">
+          <xsl:value-of select="$prefixStr"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template name="getParentDefaultNamespace">
@@ -103,4 +136,6 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+
 </xsl:stylesheet>
