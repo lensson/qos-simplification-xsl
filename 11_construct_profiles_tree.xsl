@@ -98,7 +98,7 @@
                           </xsl:element>
                         </xsl:if>
                       </xsl:element>
-                      <actions/>
+                      <xsl:element name="actions"/>
                     </xsl:element>
                   </xsl:for-each>
                 </xsl:element>
