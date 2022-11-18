@@ -92,4 +92,56 @@
     ]">
   </xsl:template>
 
+  <!--
+    /bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/bbf-qos-enhfilt:filter
+    /bbf-qos-enhfilt:source-mac-address/bbf-qos-enhfilt:any-multicast-mac-address
+  -->
+  <xsl:template match="*[
+        local-name() = 'any-multicast-mac-address' and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and parent::*[name() = 'source-mac-address'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'enhanced-filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filters'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-filters'
+    ]">
+  </xsl:template>
+
+  <!--
+    /bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/bbf-qos-enhfilt:filter
+    /bbf-qos-enhfilt:source-mac-address/bbf-qos-enhfilt:unicast-address
+  -->
+  <xsl:template match="*[
+        local-name() = 'unicast-address' and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and parent::*[name() = 'source-mac-address'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'enhanced-filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filters'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-filters'
+    ]">
+  </xsl:template>
+
+  <!--
+    /bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/bbf-qos-enhfilt:filter
+    /bbf-qos-enhfilt:destination-mac-address/bbf-qos-enhfilt:any-multicast-mac-address
+  -->
+  <xsl:template match="*[
+        local-name() = 'any-multicast-mac-address' and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and parent::*[name() = 'destination-mac-address'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'enhanced-filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filters'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-filters'
+    ]">
+  </xsl:template>
+
+  <!--
+    /bbf-qos-filt:filters/bbf-qos-enhfilt:enhanced-filter/bbf-qos-enhfilt:filter
+    /bbf-qos-enhfilt:destination-mac-address/bbf-qos-enhfilt:unicast-address
+  -->
+  <xsl:template match="*[
+        local-name() = 'unicast-address' and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and parent::*[name() = 'destination-mac-address'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'enhanced-filter'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-enhanced-filters'
+        and ancestor::*[name() = 'filters'] and namespace-uri() = 'urn:bbf:yang:bbf-qos-filters'
+    ]">
+  </xsl:template>
+
 </xsl:stylesheet>
