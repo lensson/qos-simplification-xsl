@@ -1,0 +1,100 @@
+module nokia-qos-filters-ext-qos-fiber-dev {
+
+  namespace
+    "http://www.nokia.com/Fixed-Networks/BBA/yang/nokia-qos-filters-ext-qos-fiber-dev";
+
+  prefix  nokia-qos-filters-ext-qos-fiber-dev;
+
+  import bbf-qos-classifiers {
+    prefix bbf-qos-cls;
+  }
+  
+  import bbf-qos-policing {
+    prefix bbf-qos-plc;
+  }
+
+  import bbf-qos-filters {
+    prefix bbf-qos-filt;
+  }
+
+  import nokia-qos-filters-ext{
+    prefix nokia-qos-filt;
+  }
+  
+  import bbf-qos-rate-control {
+    prefix bbf-qos-rc;
+  }
+
+  organization
+    "Nokia";
+
+  contact
+    "isam.yang@nokia.com";
+
+  description
+    "This module contains a collection of YANG deviations on top 
+     of standard for supporting BBF/bbf-qos-policies YANG module.
+
+     This specification is published by Nokia under Non-Disclosure
+     Agreement(s) (NDA) with specific parties and has to be considered
+     as Confidential Information as defined in such NDA. Nokia 
+     reserves the right to revise this document for any reason, 
+     including but not limited to conformity with standards 
+     promulgated by various agencies, utilisation of advances in the 
+     state of the technical areas, or the reflection of changes in the
+     design of any equipment, techniques, or procedures described or 
+     referred to herein.
+
+     The product specifications and other technical or performance 
+     information contained herein are subject to change without 
+     notice. Updates of this document will be issued under the above 
+     NDA's.
+
+     Nokia makes no representation or warranty, expressed or implied,
+     with respect to the sufficiency, accuracy, or utility of any 
+     information or opinion contained herein. Nokia expressly advises 
+     that any use of for any purpose or reliance upon this technical 
+     reference is at the risk of the user and that Nokia shall not be 
+     liable for any damage or injury incurred by any person arising 
+     out of the sufficiency, accuracy, or utility of any information 
+     or opinion contained herein.
+
+     This document is not to be construed as a suggestion to any 
+     manufacturer to modify or change any of its products, nor does 
+     this document represent any commitment by Nokia to sell or 
+     purchase any product. Nothing contained herein shall be construed
+     as conferring by implication, estoppel, or otherwise any license 
+     or right under any patent, whether or not the use of any 
+     information herein necessarily employs an invention of any 
+     existing or later issued patent.
+
+     Nokia reserves the right not to offer any or all of these
+     products and to withdraw any or all of them at any future time.
+
+     Copyright (C) 2017-2018, Nokia. All Rights Reserved.";
+
+  /* revision */
+
+  revision 2018-09-06 {
+    description
+      "removed bbf-qos-filters filter-match restriction.";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2018-06-04 {
+    description
+      "removed bbf-qos-filters max element restriction.";
+    reference
+      "Nokia specific";
+  }
+
+  revision 2018-02-02 {
+    description
+      "Initial revision.";
+    reference
+      "Nokia specific";
+  }
+
+
+}
