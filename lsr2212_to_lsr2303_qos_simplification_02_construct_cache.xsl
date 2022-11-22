@@ -14,8 +14,9 @@
   <xsl:strip-space elements="*"/>
   <xsl:output method="xml" indent="yes"/>
 
-  <xsl:include href="00_head_classifier_filter_and_action_type_var.xsl"/>
-  <xsl:include href="00_head_enhanced_filter_var.xsl"/>
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_classifier_filter_and_action_type_var.xsl"/>
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_enhanced_filter_var.xsl"/>
+
   <!-- default rule -->
   <xsl:template match="*">
     <xsl:copy>
@@ -34,22 +35,17 @@
           <xsl:element name="name">
             <xsl:value-of select="child::*[local-name() = 'name']"/>
           </xsl:element>
-
           <xsl:element name="enhanced-filters"/>
-
           <xsl:element name="policies">
             <xsl:for-each select="child::*[local-name() = 'policy-list']">
               <xsl:element name="policy">
                 <xsl:variable name="curPolicyName">
                   <xsl:value-of select="child::*[local-name() = 'name']"/>
                 </xsl:variable>
-
                 <xsl:element name="name">
                   <xsl:value-of select="$curPolicyName"/>
                 </xsl:element>
-
                 <xsl:element name="enhanced-filters"/>
-
                 <xsl:variable name="curPolicy" select="//*[
                   local-name() = 'policy'
                   and parent::*[local-name() = 'policies' and namespace-uri() = 'urn:bbf:yang:bbf-qos-policies']

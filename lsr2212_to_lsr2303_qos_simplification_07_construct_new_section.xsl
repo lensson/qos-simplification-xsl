@@ -14,13 +14,14 @@
   <xsl:strip-space elements="*"/>
   <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
 
-  <xsl:include href="00_head_classifier_filter_and_action_type_var.xsl"/>
-  <xsl:include href="00_head_enhanced_filter_var.xsl"/>
-  <xsl:include href="00_head_classifier_type_var.xsl"/>
-  <xsl:include href="00_head_policy_type_var.xsl"/>
-  <xsl:include href="00_head_policing_var.xsl"/>
-  <!-- default rule -->
 
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_classifier_filter_and_action_type_var.xsl"/>
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_enhanced_filter_var.xsl"/>
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_policing_var.xsl"/>
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_classifier_type_var.xsl"/>
+  <xsl:include href="lsr2212_to_lsr2303_qos_simplification_00_head_policy_type_var.xsl"/>
+
+  <!-- default rule -->
   <xsl:template match="*">
     <xsl:copy>
       <xsl:copy-of select="@*"/>

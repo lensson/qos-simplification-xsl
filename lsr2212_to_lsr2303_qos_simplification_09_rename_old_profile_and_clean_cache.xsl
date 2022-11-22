@@ -14,9 +14,6 @@
   <xsl:strip-space elements="*"/>
   <xsl:output method="xml" indent="yes"/>
 
-  <xsl:include href="00_head_classifier_filter_and_action_type_var.xsl"/>
-  <xsl:include href="00_head_classifier_type_var.xsl"/>
-  <xsl:include href="00_head_policy_type_var.xsl"/>
 
   <!-- default rule -->
   <xsl:template match="*">
